@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 日志文件
+*.log
+logs/
+
+# 环境变量文件（生产环境应该通过其他方式注入）
+.env
+.env.local
+
+# Git
+.git/
+.gitignore
+
+# 文档
+README.md
+*.md
+
+# 脚本文件
+run.sh
+run_prod.sh
+*.sh
+
+# 临时文件
+*.pid
+*.tmp
+*.bak
+
+# 数据库文件
+*.db
+*.sqlite
+
+# 其他
+.DS_Store
+*.egg-info/
+dist/
+build/
+
+

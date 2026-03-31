@@ -1,0 +1,17 @@
+[
+  {
+    "sql": "select * from account where acct_id = 1",
+    "db_type": "mysql",
+    "dbname": "CUSDBX",
+    "db_ip": "127.0.0.1",
+    "db_port": 3306,
+    "template_sql": "select * from account where acct_id = ?",
+    "observation_override": {
+      "cluster_count": 12,
+      "min_query_time_ms": 120.0,
+      "avg_query_time_ms": 560.0,
+      "max_query_time_ms": 2100.0,
+      "latest_timestamp": 1710756000000
+    }
+  }
+]

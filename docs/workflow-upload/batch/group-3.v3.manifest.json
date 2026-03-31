@@ -1,0 +1,66 @@
+{
+  "title": "V3 Group 3 - 订单项与交易优惠",
+  "version": "v3",
+  "focused_upload": true,
+  "sql_ids": [
+    "sql_5",
+    "sql_8"
+  ],
+  "sql_units": [
+    {
+      "sql_id": "sql_5",
+      "title": "order_item 多条件排序",
+      "tables": [
+        "inf_bc_order_item"
+      ],
+      "required_index_names": [
+        "idx_order_item_agreement",
+        "idx_order_item_cust_order",
+        "idx_order_item_sequence"
+      ],
+      "table_expectations": [
+        {
+          "table_name": "inf_bc_order_item",
+          "table_rows_exact": 12600000,
+          "primary_key": [],
+          "forbidden_primary_key_columns": [
+            "order_item_id",
+            "cust_order_id"
+          ]
+        }
+      ]
+    },
+    {
+      "sql_id": "sql_8",
+      "title": "tran_offer 去重排序",
+      "tables": [
+        "inf_bc_tran_offer"
+      ],
+      "required_index_names": [
+        "idx_tran_offer_agreement",
+        "idx_tran_offer_order_item",
+        "idx_tran_offer_prod_offer_inst"
+      ],
+      "table_expectations": [
+        {
+          "table_name": "inf_bc_tran_offer",
+          "table_rows_exact": 980000,
+          "primary_key": [],
+          "forbidden_primary_key_columns": [
+            "prod_offer_inst_id",
+            "agreement_id"
+          ]
+        }
+      ]
+    }
+  ],
+  "global_forbidden_phrases": [
+    "无索引",
+    "索引未知",
+    "未显示索引信息",
+    "无法确认是否有索引",
+    "DDL 未提供",
+    "未提供 DDL",
+    "DDL 为空"
+  ]
+}

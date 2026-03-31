@@ -1,0 +1,4 @@
+# pnpm 配置文件
+auto-install-peers=true
+strict-peer-dependencies=false
+

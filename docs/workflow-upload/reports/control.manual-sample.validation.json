@@ -1,0 +1,196 @@
+{
+  "passed": false,
+  "failure_count": 25,
+  "pass_count": 20,
+  "failures": [
+    {
+      "type": "forbidden_phrase",
+      "detail": "无索引"
+    },
+    {
+      "type": "forbidden_phrase",
+      "detail": "DDL 未提供"
+    },
+    {
+      "type": "missing_index_name",
+      "sql_id": "sql_1",
+      "detail": [
+        "idx_account_acct_id",
+        "idx_account_acct_id_cust_id"
+      ]
+    },
+    {
+      "type": "missing_table_rows_exact",
+      "sql_id": "sql_1",
+      "detail": 150000
+    },
+    {
+      "type": "wrong_primary_key_claim",
+      "sql_id": "sql_1",
+      "detail": [
+        "acct_id",
+        "cust_id"
+      ]
+    },
+    {
+      "type": "missing_index_name",
+      "sql_id": "sql_2",
+      "detail": [
+        "idx_account_cust_id",
+        "idx_account_acct_id_cust_id"
+      ]
+    },
+    {
+      "type": "missing_table_rows_exact",
+      "sql_id": "sql_2",
+      "detail": 150000
+    },
+    {
+      "type": "wrong_primary_key_claim",
+      "sql_id": "sql_2",
+      "detail": [
+        "acct_id",
+        "cust_id"
+      ]
+    },
+    {
+      "type": "missing_index_name",
+      "sql_id": "sql_3",
+      "detail": [
+        "PRIMARY",
+        "idx_customer_cust_id"
+      ]
+    },
+    {
+      "type": "missing_table_rows_exact",
+      "sql_id": "sql_3",
+      "detail": 890000
+    },
+    {
+      "type": "missing_index_name",
+      "sql_id": "sql_4",
+      "detail": [
+        "idx_prod_inst_owner_cust",
+        "idx_prod_inst_status"
+      ]
+    },
+    {
+      "type": "missing_table_rows_exact",
+      "sql_id": "sql_4",
+      "detail": 5200000
+    },
+    {
+      "type": "missing_index_name",
+      "sql_id": "sql_5",
+      "detail": [
+        "idx_order_item_agreement",
+        "idx_order_item_cust_order",
+        "idx_order_item_sequence"
+      ]
+    },
+    {
+      "type": "missing_table_rows_exact",
+      "sql_id": "sql_5",
+      "detail": 12600000
+    },
+    {
+      "type": "missing_index_name",
+      "sql_id": "sql_6",
+      "detail": [
+        "idx_piar_acct_id",
+        "idx_piar_status"
+      ]
+    },
+    {
+      "type": "missing_table_rows_exact",
+      "sql_id": "sql_6",
+      "detail": 6800000
+    },
+    {
+      "type": "wrong_primary_key_claim",
+      "sql_id": "sql_6",
+      "detail": [
+        "prod_inst_acct_rel_id",
+        "acct_id"
+      ]
+    },
+    {
+      "type": "missing_index_name",
+      "sql_id": "sql_7",
+      "detail": [
+        "idx_offer_inst_owner_cust",
+        "idx_offer_inst_status"
+      ]
+    },
+    {
+      "type": "missing_table_rows_exact",
+      "sql_id": "sql_7",
+      "detail": 4300000
+    },
+    {
+      "type": "missing_index_name",
+      "sql_id": "sql_8",
+      "detail": [
+        "idx_tran_offer_agreement",
+        "idx_tran_offer_order_item",
+        "idx_tran_offer_prod_offer_inst"
+      ]
+    },
+    {
+      "type": "missing_table_rows_exact",
+      "sql_id": "sql_8",
+      "detail": 980000
+    },
+    {
+      "type": "missing_index_name",
+      "sql_id": "sql_9",
+      "detail": [
+        "PRIMARY",
+        "idx_audit_log_user_id",
+        "idx_audit_log_user_time",
+        "idx_audit_log_created_at"
+      ]
+    },
+    {
+      "type": "missing_table_rows_exact",
+      "sql_id": "sql_9",
+      "detail": 8600000
+    },
+    {
+      "type": "missing_index_name",
+      "sql_id": "sql_10",
+      "detail": [
+        "PRIMARY",
+        "idx_audit_log_created_at",
+        "idx_audit_log_request_path"
+      ]
+    },
+    {
+      "type": "missing_table_rows_exact",
+      "sql_id": "sql_10",
+      "detail": 8600000
+    }
+  ],
+  "passes": [
+    "sql_1: 命中表名 account",
+    "sql_2: 命中表名 account",
+    "sql_3: 命中表名 customer",
+    "sql_3: 命中主键 ['id']",
+    "sql_3: 未发现错误主键推断 ['cust_id']",
+    "sql_4: 命中表名 inf_bc_prod_inst",
+    "sql_4: 未发现错误主键推断 ['prod_inst_id', 'owner_cust_id']",
+    "sql_5: 命中表名 inf_bc_order_item",
+    "sql_5: 未发现错误主键推断 ['order_item_id', 'cust_order_id']",
+    "sql_6: 命中表名 inf_bc_prod_inst_acct_rel",
+    "sql_7: 命中表名 inf_bc_offer_inst",
+    "sql_7: 未发现错误主键推断 ['offer_inst_id', 'owner_cust_id']",
+    "sql_8: 命中表名 inf_bc_tran_offer",
+    "sql_8: 未发现错误主键推断 ['prod_offer_inst_id', 'agreement_id']",
+    "sql_9: 命中表名 audit_log",
+    "sql_9: 命中主键 ['id']",
+    "sql_9: 未发现错误主键推断 ['user_id', 'request_path']",
+    "sql_10: 命中表名 audit_log",
+    "sql_10: 命中主键 ['id']",
+    "sql_10: 未发现错误主键推断 ['user_id', 'request_path']"
+  ]
+}

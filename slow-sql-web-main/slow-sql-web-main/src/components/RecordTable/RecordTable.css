@@ -1,0 +1,69 @@
+.record-table-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.record-table-toolbar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.record-table-toolbar__title {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-strong);
+}
+
+.record-table-toolbar__hint {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.record-table-selection-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(25, 118, 210, 0.1);
+  color: #1557a6;
+  font-weight: 600;
+}
+
+.record-table.ant-table-wrapper {
+  border: 1px solid #e1e9f3;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.record-table .ant-table-thead > tr > th {
+  font-size: 13px;
+  font-weight: 700;
+  color: #27415d;
+}
+
+.record-table .ant-table-tbody > tr > td {
+  color: var(--text-body);
+}
+
+.record-table .ant-table-row-selected > td {
+  background: rgba(25, 118, 210, 0.06) !important;
+}
+
+.record-table-pagination {
+  margin-top: 4px;
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  .record-table-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

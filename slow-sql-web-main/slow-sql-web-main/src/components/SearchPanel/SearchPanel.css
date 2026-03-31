@@ -1,0 +1,83 @@
+.search-panel-card {
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.search-panel-card .ant-card-head {
+  border-bottom: 1px solid #edf2f8;
+}
+
+.search-panel-card .ant-card-head-title {
+  font-weight: 700;
+  color: var(--text-strong);
+}
+
+.search-panel-card .ant-card-body {
+  padding: 20px 22px;
+}
+
+.search-panel-toggle {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.search-panel-quick-filters {
+  display: flex;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.search-panel-quick-filter {
+  cursor: pointer;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid #d5e4f3;
+  background: #f6f9fd;
+  color: #3e5875;
+  transition: all 0.2s ease;
+}
+
+.search-panel-quick-filter:hover {
+  transform: translateY(-1px);
+  border-color: #90caf9;
+  box-shadow: 0 10px 18px rgba(25, 118, 210, 0.1);
+}
+
+.search-panel-card .ant-collapse {
+  background: transparent;
+}
+
+.search-panel-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #49637d;
+}
+
+.search-panel-card .ant-input,
+.search-panel-card .ant-select-selector,
+.search-panel-card .ant-picker {
+  border-color: #d8e3ef;
+  background: #fbfcfe;
+}
+
+.search-panel-card .ant-input-prefix {
+  color: #7f93aa;
+}
+
+.search-panel-card .ant-input:hover,
+.search-panel-card .ant-select-selector:hover,
+.search-panel-card .ant-picker:hover {
+  border-color: #90caf9;
+}
+
+.search-panel-actions {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .search-panel-card .ant-card-body {
+    padding: 18px 16px;
+  }
+}

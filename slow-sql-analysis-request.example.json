@@ -1,0 +1,53 @@
+{
+  "request_id": "b6d2f6aa-9f1c-4b8d-bf58-8d0b2b74f001",
+  "source": "manual",
+  "db_type": "mysql",
+  "db_version": "8.0.36",
+  "instance_name": "prod-order-mysql-01",
+  "database_name": "order_db",
+  "schema_name": "order_db",
+  "sql_txt": "SELECT * FROM t_order WHERE user_id = ? AND status = ? ORDER BY create_time DESC LIMIT 20",
+  "sql_template": "SELECT * FROM t_order WHERE user_id = ? AND status = ? ORDER BY create_time DESC LIMIT 20",
+  "bind_params": [
+    {
+      "name": "user_id",
+      "type": "BIGINT",
+      "value": "10001"
+    },
+    {
+      "name": "status",
+      "type": "VARCHAR",
+      "value": "PAID"
+    }
+  ],
+  "avg_cost_ms": 842.31,
+  "max_cost_ms": 2315.48,
+  "min_cost_ms": 116.22,
+  "p95_cost_ms": 1804.13,
+  "exec_count": 127,
+  "rows_examined": 185000,
+  "rows_returned": 20,
+  "lock_wait_ms": 0,
+  "tmp_table_count": 1,
+  "sample_time": "2026-03-21T10:30:00+08:00",
+  "start_time": "2026-03-21T10:00:00+08:00",
+  "end_time": "2026-03-21T10:30:00+08:00",
+  "explain_format": "text",
+  "explain_content": "EXPLAIN SELECT * FROM t_order WHERE user_id = ? AND status = ? ORDER BY create_time DESC LIMIT 20",
+  "table_name": "t_order",
+  "table_row_count": 5280000,
+  "index_info": [
+    "PRIMARY(id)",
+    "idx_user_id(user_id)",
+    "idx_status(status)",
+    "idx_create_time(create_time)"
+  ],
+  "module_name": "order-service",
+  "api_name": "/api/order/list",
+  "environment": "prod",
+  "expected_sla_ms": 200,
+  "tags": {
+    "app": "order-center",
+    "owner": "trade-team"
+  }
+}

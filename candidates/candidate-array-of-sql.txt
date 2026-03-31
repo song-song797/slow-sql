@@ -1,0 +1,8 @@
+[
+  {
+    "sql_txt": "SELECT * FROM t_order WHERE user_id = 10001 ORDER BY create_time DESC LIMIT 20"
+  },
+  {
+    "sql_txt": "SELECT * FROM t_user WHERE phone = '13800138000'"
+  }
+]

@@ -1,0 +1,11 @@
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+CREATE USER IF NOT EXISTS 'root'@'127.0.0.1' IDENTIFIED BY 'root';
+ALTER USER 'root'@'127.0.0.1' IDENTIFIED BY 'root';
+CREATE DATABASE IF NOT EXISTS slow_sql_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS 'slow_sql'@'localhost' IDENTIFIED BY 'slow_sql';
+CREATE USER IF NOT EXISTS 'slow_sql'@'127.0.0.1' IDENTIFIED BY 'slow_sql';
+ALTER USER 'slow_sql'@'localhost' IDENTIFIED BY 'slow_sql';
+ALTER USER 'slow_sql'@'127.0.0.1' IDENTIFIED BY 'slow_sql';
+GRANT ALL PRIVILEGES ON slow_sql_db.* TO 'slow_sql'@'localhost';
+GRANT ALL PRIVILEGES ON slow_sql_db.* TO 'slow_sql'@'127.0.0.1';
+FLUSH PRIVILEGES;

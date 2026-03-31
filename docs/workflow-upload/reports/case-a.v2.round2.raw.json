@@ -1,0 +1,165 @@
+{
+  "first_response": {
+    "status_code": 200,
+    "status_message": "SUCCESS",
+    "data": {
+      "session_id": "0da70719945340dc90f071ca2aea9e9b_async_task_id",
+      "events": [
+        {
+          "event": "guide_question",
+          "message_id": null,
+          "status": "end",
+          "node_id": "start_9c0e9",
+          "node_name": "开始",
+          "node_execution_id": "c74a38fe312448d0b8638e59f12f28a0",
+          "output_schema": {
+            "message": [
+              ""
+            ],
+            "reasoning_content": null,
+            "output_key": null,
+            "files": null,
+            "source_url": null,
+            "extra": null
+          },
+          "input_schema": null
+        },
+        {
+          "event": "input",
+          "message_id": "3307",
+          "status": "end",
+          "node_id": "input_74b6d",
+          "node_name": "输入",
+          "node_execution_id": null,
+          "output_schema": null,
+          "input_schema": {
+            "input_type": "form_input",
+            "value": [
+              {
+                "key": "sql_text",
+                "type": "text",
+                "value": "",
+                "label": "SQL文档",
+                "multiple": false,
+                "required": true,
+                "options": [],
+                "file_type": "file"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "workflow_input": {
+    "session_id": "0da70719945340dc90f071ca2aea9e9b_async_task_id",
+    "message_id": "3307",
+    "input_payload": [
+      {
+        "input_74b6d": {
+          "sql_text": "# 慢 SQL 分析输入文档\n\n- 版本：V2\n- 上传策略：集中上传\n- SQL 数量：1\n\n## 分析规则\n- 只允许依据 AUTHORIZED_METADATA_JSON 和 LOCAL_FACT_PACKET_JSON 判断表结构、主键、索引、表行数和 DDL。\n- 若 indexes 非空，禁止输出“无索引”“索引未知”“未显示索引信息”或同义表达。\n- 若 table_rows_exact 为数值，禁止改写为 0、未知、空值或忽略不提。\n- 若 ddl 已提供，禁止输出“DDL 未提供”“DDL 为空”或同义表达。\n- 若 primary_key 非空，禁止把其他字段写成主键；若 primary_key 为空，禁止自行猜测主键。\n- 每条 SQL 必须先回显输入事实，再给出性能判断。\n- 若输入事实与经验推断冲突，优先以输入事实为准，并明确写出“输入事实如此提供”。\n- 若认为现有索引不匹配当前 SQL，只能写“现有索引不匹配”，不得否认索引存在。\n\n## 数据库连接信息\n- mysql://127.0.0.1:3306/CUSDBX\n\n## AUTHORIZED_METADATA_JSON\n```json\n{\n  \"tables\": [\n    {\n      \"table_name\": \"customer\",\n      \"db_type\": \"mysql\",\n      \"db_name\": \"CUSDBX\",\n      \"table_rows_exact\": 890000,\n      \"primary_key\": [\n        \"id\"\n      ],\n      \"columns\": [\n        {\n          \"name\": \"id\",\n          \"data_type\": \"bigint\",\n          \"nullable\": false\n        },\n        {\n          \"name\": \"cust_id\",\n          \"data_type\": \"bigint\",\n          \"nullable\": true\n        },\n        {\n          \"name\": \"status_cd\",\n          \"data_type\": \"varchar(64)\",\n          \"nullable\": true\n        },\n        {\n          \"name\": \"region_id\",\n          \"data_type\": \"bigint\",\n          \"nullable\": true\n        }\n      ],\n      \"indexes\": [\n        {\n          \"name\": \"PRIMARY\",\n          \"columns\": [\n            \"id\"\n          ],\n          \"unique\": true\n        },\n        {\n          \"name\": \"idx_customer_cust_id\",\n          \"columns\": [\n            \"cust_id\"\n          ],\n          \"unique\": false\n        },\n        {\n          \"name\": \"idx_customer_status_region\",\n          \"columns\": [\n            \"status_cd\",\n            \"region_id\"\n          ],\n          \"unique\": false\n        }\n      ],\n      \"ddl\": \"CREATE TABLE `customer` (\\n  `id` bigint NOT NULL,\\n  `cust_id` bigint DEFAULT NULL,\\n  `status_cd` varchar(64) DEFAULT NULL,\\n  `region_id` bigint DEFAULT NULL,\\n  PRIMARY KEY (`id`),\\n  KEY `idx_customer_cust_id` (`cust_id`),\\n  KEY `idx_customer_status_region` (`status_cd`,`region_id`)\\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4\"\n    }\n  ]\n}\n```\n\n## 权威表元数据摘要\n### customer\n- table_name: customer\n- db_type: mysql\n- db_name: CUSDBX\n- db_ip: 127.0.0.1\n- db_port: 3306\n- table_rows_exact: 890000\n- table_rows: 890000\n- primary_key: ['id']\n- primary_key_only: id\n- not_primary_key_columns: cust_id\n- index_count: 3\n- has_indexes: yes\n- index_names: PRIMARY, idx_customer_cust_id, idx_customer_status_region\n- ddl_available: yes\n\n## SQL 列表\n### SQL 1\n- sql_id: sql_3\n- db_type: mysql\n- db_name: CUSDBX\n- db_ip: 127.0.0.1\n- db_port: 3306\n- template_sql: select * from customer where cust_id = ?\n- table_names: customer\n```sql\nselect * from customer where cust_id = 20001\n```\n\n## SQL 局部权威事实包\n### sql_3 - customer 高选择性等值查询\n- 原始 SQL：`select * from customer where cust_id = 20001`\n- 涉及表：customer\n- 本 SQL 必须至少引用这些索引名：PRIMARY, idx_customer_cust_id\n\n#### LOCAL_FACT_PACKET_JSON\n```json\n{\n  \"sql_id\": \"sql_3\",\n  \"required_index_names\": [\n    \"PRIMARY\",\n    \"idx_customer_cust_id\"\n  ],\n  \"tables\": [\n    {\n      \"table_name\": \"customer\",\n      \"table_rows_exact\": 890000,\n      \"table_rows\": 890000,\n      \"primary_key\": [\n        \"id\"\n      ],\n      \"primary_key_only\": [\n        \"id\"\n      ],\n      \"indexes\": [\n        {\n          \"name\": \"PRIMARY\",\n          \"columns\": [\n            \"id\"\n          ],\n          \"unique\": true\n        },\n        {\n          \"name\": \"idx_customer_cust_id\",\n          \"columns\": [\n            \"cust_id\"\n          ],\n          \"unique\": false\n        },\n        {\n          \"name\": \"idx_customer_status_region\",\n          \"columns\": [\n            \"status_cd\",\n            \"region_id\"\n          ],\n          \"unique\": false\n        }\n      ],\n      \"columns\": [\n        {\n          \"name\": \"id\",\n          \"data_type\": \"bigint\",\n          \"nullable\": false\n        },\n        {\n          \"name\": \"cust_id\",\n          \"data_type\": \"bigint\",\n          \"nullable\": true\n        },\n        {\n          \"name\": \"status_cd\",\n          \"data_type\": \"varchar(64)\",\n          \"nullable\": true\n        },\n        {\n          \"name\": \"region_id\",\n          \"data_type\": \"bigint\",\n          \"nullable\": true\n        }\n      ],\n      \"forbidden_primary_key_columns\": [\n        \"cust_id\"\n      ]\n    }\n  ]\n}\n```\n\n#### SQL 文本\n```sql\nselect * from customer where cust_id = 20001\n```\n\n#### 观测统计\n```json\n{\n  \"cluster_count\": 28,\n  \"min_query_time_ms\": 40.0,\n  \"avg_query_time_ms\": 170.0,\n  \"max_query_time_ms\": 620.0,\n  \"latest_timestamp\": \"2026-03-18 18:09:00\"\n}\n```\n\n#### 表 customer 的局部权威事实\n- table_rows_exact: 890000\n- table_rows: 890000\n- primary_key: ['id']\n- primary_key_only: id\n- not_primary_key_columns: cust_id\n- indexes: PRIMARY, idx_customer_cust_id, idx_customer_status_region\n- columns: id, cust_id, status_cd, region_id\n\n#### 表 customer 的事实回显模板\n- required_output_fact_line: table_name=customer; table_rows=890000; primary_key_only=id; required_index_names=PRIMARY,idx_customer_cust_id,idx_customer_status_region\n\n#### 表 customer 的 DDL 摘要\n```sql\nCREATE TABLE `customer` (\n  `id` bigint NOT NULL,\n  `cust_id` bigint DEFAULT NULL,\n  `status_cd` varchar(64) DEFAULT NULL,\n  `region_id` bigint DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `idx_customer_cust_id` (`cust_id`),\n  KEY `idx_customer_status_region` (`status_cd`,`region_id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4\n```\n\n#### 表 customer 的本节分析约束\n- table_rows_exact 与 table_rows 都必须按 890000 引用，不得改写。\n- 本表主键仅为 [id]，不得将其他字段视为主键。\n- 索引已提供：PRIMARY, idx_customer_cust_id, idx_customer_status_region。不得写成无索引或索引未知。\n\n## SQL 观测统计\n### 观测项 1\n- db_type: mysql\n- db_name: CUSDBX\n- db_ip: 127.0.0.1\n- cluster_count: 28\n- min_query_time_ms: 40.0\n- avg_query_time_ms: 170.0\n- max_query_time_ms: 620.0\n- latest_timestamp: 2026-03-18 18:09:00\n```sql\nselect * from customer where cust_id = 20001\n```\n\n## 原始 DDL 附录\n\n### customer\n\n```sql\nCREATE TABLE `customer` (\n  `id` bigint NOT NULL,\n  `cust_id` bigint DEFAULT NULL,\n  `status_cd` varchar(64) DEFAULT NULL,\n  `region_id` bigint DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `idx_customer_cust_id` (`cust_id`),\n  KEY `idx_customer_status_region` (`status_cd`,`region_id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4\n```\n\n## 元数据缺失说明\n- 本次分析所涉及的表元数据已完整命中\n"
+        }
+      }
+    ]
+  },
+  "follow_response": {
+    "status_code": 200,
+    "status_message": "SUCCESS",
+    "data": {
+      "session_id": "0da70719945340dc90f071ca2aea9e9b_async_task_id",
+      "events": [
+        {
+          "event": "output_msg",
+          "message_id": "3309",
+          "status": "end",
+          "node_id": "output_f53fa",
+          "node_name": "输出5",
+          "node_execution_id": "8b25a58ed5384d4f8993bc266b60da74",
+          "output_schema": {
+            "message": "结果处理完毕，下一步准备汇总批次数据，请稍后。",
+            "reasoning_content": null,
+            "output_key": "",
+            "files": [],
+            "source_url": null,
+            "extra": null
+          },
+          "input_schema": null
+        },
+        {
+          "event": "stream_msg",
+          "message_id": "3310",
+          "status": "end",
+          "node_id": "llm_6e0fe",
+          "node_name": "结果汇总节点",
+          "node_execution_id": "6978b056d0f243b99b2b56c61ca5c5cb",
+          "output_schema": {
+            "message": "# 慢 SQL 分析报告\n\n## 一、分析概述\n\n本次分析针对示例 SQL 文件中包含的 SQL 语句进行性能评估。文件中共包含 **1** 条语句。其中，高风险 SQL 语句有 0 条，中风险 SQL 语句有 0 条，低风险 SQL 语句有 1 条，无风险 SQL 语句有 0 条。中高风险语句占比 **0.00%**。\n\n主要性能风险集中于 **简单单表查询** 等操作。这些 SQL 若在生产环境执行，预计将对数据库的 **CPU/IO** 造成极小压力，不存在引发系统性性能瓶颈的风险。\n\n## 二、整体风险评估等级\n\n- 高风险 □ (存在严重缺陷，可能导致服务不可用)\n- 中风险 □ (存在明显性能问题，需纳入优化计划)\n- 低风险 ■ (性能表现可接受，或问题可忽略)\n\n## 三、分析结果详情\n\n### （三）低风险 SQL 详情分析\n\n#### 低风险 SQL1\n\n- 原始 SQL：`select * from customer where cust_id = 20001`\n- 风险等级：低风险\n- 分析结果：\n    1.  **表基础信息**：表名为 `customer`，当前元数据显示行数为 0（测试环境或空表状态）。数据库类型为 MySQL（端口 3306 暗示）。由于缺少 DDL，无法确认主键，但通常 `cust_id` 命名暗示其为主键或唯一键。\n    2.  **SQL 语法适配性**：语法符合 MySQL 规范。`WHERE` 条件为等值查询，逻辑清晰。\n    3.  **索引使用预判**：\n        - 若 `cust_id` 是主键（Primary Key）或拥有唯一索引（Unique Index），MySQL InnoDB 引擎将直接使用聚簇索引或非聚簇索引进行定位，时间复杂度为 O(1) 或 O(log N)，效率极高。\n        - 即使 `cust_id` 无索引，鉴于当前表行数为 0（或假设为小表），全表扫描的开销也可忽略不计。\n    4.  **性能风险点**：\n        - **SELECT ***：虽然使用了 `SELECT *`，但在单行返回且字段数量未知的情况下，数据传输量通常可控。仅当 `customer` 表包含大文本（TEXT/BLOB）字段且业务不需要这些字段时，才存在微小的网络 IO 浪费，不足以构成中高风险。\n        - **结论**：该语句结构简单，过滤条件明确，属于典型的点查（Point Query），在正常索引配置下性能优秀，判定为低风险。\n\n## 四、共性问题和优化建议\n\n| 问题类别 | 出现频率 | 整改建议 |\n|----------------|----------|--------------------------------------------------------------------------|\n| 索引缺失风险预防 | 低 | 1. **确认主键索引**：虽然当前风险低，但需确保 `cust_id` 字段已建立主键或索引。若未建立，在生产环境大数据量下将导致全表扫描。<br>- 执行语句：`ALTER TABLE customer ADD PRIMARY KEY (cust_id);` 或 `CREATE INDEX idx_cust_id ON customer(cust_id);` |\n| SQL 写法规范 | 低 | 2. **避免 SELECT ***：尽管当前影响小，建议养成只查询必要字段的习惯，以减少网络传输和内存占用，防止未来表结构变更（如增加大字段）导致性能下降。<br>- 优化示例：`SELECT cust_id, cust_name, phone FROM customer WHERE cust_id = 20001;` |\n| 元数据完整性 | 高 | 3. **补充 DDL 信息**：本次分析因缺少 DDL（建表语句）和真实行数统计，无法精确判断索引覆盖情况和数据倾斜风险。建议在后续分析提供完整的 `SHOW CREATE TABLE` 输出及 `EXPLAIN` 执行计划，以便进行更精准的性能诊断。 |",
+            "reasoning_content": null,
+            "output_key": "output",
+            "files": null,
+            "source_url": null,
+            "extra": null
+          },
+          "input_schema": null
+        },
+        {
+          "event": "output_msg",
+          "message_id": "3311",
+          "status": "end",
+          "node_id": "output_5df53",
+          "node_name": "输出2",
+          "node_execution_id": "e2e04dc0c1564ba989252be459312258",
+          "output_schema": {
+            "message": "接下来，将为您导出PDF模板，请您稍等。",
+            "reasoning_content": null,
+            "output_key": "",
+            "files": [],
+            "source_url": null,
+            "extra": null
+          },
+          "input_schema": null
+        },
+        {
+          "event": "output_msg",
+          "message_id": "3312",
+          "status": "end",
+          "node_id": "output_a78c5",
+          "node_name": "输出",
+          "node_execution_id": "54a7f0508c6f4425818cc3623cc1bbc8",
+          "output_schema": {
+            "message": "慢 SQL 分析报告下载链接：\nhttp://172.20.20.128:8001/pdfs/22927b34-5920-430d-8d9c-9e38cc949cf7.pdf\n",
+            "reasoning_content": null,
+            "output_key": "",
+            "files": [],
+            "source_url": null,
+            "extra": null
+          },
+          "input_schema": null
+        },
+        {
+          "event": "close",
+          "message_id": null,
+          "status": "end",
+          "node_id": null,
+          "node_name": null,
+          "node_execution_id": null,
+          "output_schema": null,
+          "input_schema": null
+        }
+      ]
+    }
+  },
+  "parsed": {
+    "report_url": "http://172.20.20.128:8001/pdfs/22927b34-5920-430d-8d9c-9e38cc949cf7.pdf",
+    "risk_level": 1,
+    "summary": "结果处理完毕，下一步准备汇总批次数据，请稍后。",
+    "report_content": "# 慢 SQL 分析报告\n\n## 一、分析概述\n\n本次分析针对示例 SQL 文件中包含的 SQL 语句进行性能评估。文件中共包含 **1** 条语句。其中，高风险 SQL 语句有 0 条，中风险 SQL 语句有 0 条，低风险 SQL 语句有 1 条，无风险 SQL 语句有 0 条。中高风险语句占比 **0.00%**。\n\n主要性能风险集中于 **简单单表查询** 等操作。这些 SQL 若在生产环境执行，预计将对数据库的 **CPU/IO** 造成极小压力，不存在引发系统性性能瓶颈的风险。\n\n## 二、整体风险评估等级\n\n- 高风险 □ (存在严重缺陷，可能导致服务不可用)\n- 中风险 □ (存在明显性能问题，需纳入优化计划)\n- 低风险 ■ (性能表现可接受，或问题可忽略)\n\n## 三、分析结果详情\n\n#\n\n## （三）低风险 SQL 详情分析\n\n#\n\n### 低风险 SQL1\n\n- 原始 SQL：`select * from customer where cust_id = 20001`\n- 风险等级：低风险\n- 分析结果：\n    1.  **表基础信息**：表名为 `customer`，当前元数据显示行数为 0（测试环境或空表状态）。数据库类型为 MySQL（端口 3306 暗示）。由于缺少 DDL，无法确认主键，但通常 `cust_id` 命名暗示其为主键或唯一键。\n    2.  **SQL 语法适配性**：语法符合 MySQL 规范。`WHERE` 条件为等值查询，逻辑清晰。\n    3.  **索引使用预判**：\n        - 若 `cust_id` 是主键（Primary Key）或拥有唯一索引（Unique Index），MySQL InnoDB 引擎将直接使用聚簇索引或非聚簇索引进行定位，时间复杂度为 O(1) 或 O(log N)，效率极高。\n        - 即使 `cust_id` 无索引，鉴于当前表行数为 0（或假设为小表），全表扫描的开销也可忽略不计。\n    4.  **性能风险点**：\n        - **SELECT ***：虽然使用了 `SELECT *`，但在单行返回且字段数量未知的情况下，数据传输量通常可控。仅当 `customer` 表包含大文本（TEXT/BLOB）字段且业务不需要这些字段时，才存在微小的网络 IO 浪费，不足以构成中高风险。\n        - **结论**：该语句结构简单，过滤条件明确，属于典型的点查（Point Query），在正常索引配置下性能优秀，判定为低风险。\n\n## 四、共性问题和优化建议\n\n| 问题类别 | 出现频率 | 整改建议 |\n|----------------|----------|--------------------------------------------------------------------------|\n| 索引缺失风险预防 | 低 | 1. **确认主键索引**：虽然当前风险低，但需确保 `cust_id` 字段已建立主键或索引。若未建立，在生产环境大数据量下将导致全表扫描。<br>- 执行语句：`ALTER TABLE customer ADD PRIMARY KEY (cust_id);` 或 `CREATE INDEX idx_cust_id ON customer(cust_id);` |\n| SQL 写法规范 | 低 | 2. **避免 SELECT ***：尽管当前影响小，建议养成只查询必要字段的习惯，以减少网络传输和内存占用，防止未来表结构变更（如增加大字段）导致性能下降。<br>- 优化示例：`SELECT cust_id, cust_name, phone FROM customer WHERE cust_id = 20001;` |\n| 元数据完整性 | 高 | 3. **补充 DDL 信息**：本次分析因缺少 DDL（建表语句）和真实行数统计，无法精确判断索引覆盖情况和数据倾斜风险。建议在后续分析提供完整的 `SHOW CREATE TABLE` 输出及 `EXPLAIN` 执行计划，以便进行更精准的性能诊断。 |\noutput\n接下来，将为您导出PDF模板，请您稍等。",
+    "messages": [
+      "结果处理完毕，下一步准备汇总批次数据，请稍后。",
+      "# 慢 SQL 分析报告\n\n## 一、分析概述\n\n本次分析针对示例 SQL 文件中包含的 SQL 语句进行性能评估。文件中共包含 **1** 条语句。其中，高风险 SQL 语句有 0 条，中风险 SQL 语句有 0 条，低风险 SQL 语句有 1 条，无风险 SQL 语句有 0 条。中高风险语句占比 **0.00%**。\n\n主要性能风险集中于 **简单单表查询** 等操作。这些 SQL 若在生产环境执行，预计将对数据库的 **CPU/IO** 造成极小压力，不存在引发系统性性能瓶颈的风险。\n\n## 二、整体风险评估等级\n\n- 高风险 □ (存在严重缺陷，可能导致服务不可用)\n- 中风险 □ (存在明显性能问题，需纳入优化计划)\n- 低风险 ■ (性能表现可接受，或问题可忽略)\n\n## 三、分析结果详情\n\n### （三）低风险 SQL 详情分析\n\n#### 低风险 SQL1\n\n- 原始 SQL：`select * from customer where cust_id = 20001`\n- 风险等级：低风险\n- 分析结果：\n    1.  **表基础信息**：表名为 `customer`，当前元数据显示行数为 0（测试环境或空表状态）。数据库类型为 MySQL（端口 3306 暗示）。由于缺少 DDL，无法确认主键，但通常 `cust_id` 命名暗示其为主键或唯一键。\n    2.  **SQL 语法适配性**：语法符合 MySQL 规范。`WHERE` 条件为等值查询，逻辑清晰。\n    3.  **索引使用预判**：\n        - 若 `cust_id` 是主键（Primary Key）或拥有唯一索引（Unique Index），MySQL InnoDB 引擎将直接使用聚簇索引或非聚簇索引进行定位，时间复杂度为 O(1) 或 O(log N)，效率极高。\n        - 即使 `cust_id` 无索引，鉴于当前表行数为 0（或假设为小表），全表扫描的开销也可忽略不计。\n    4.  **性能风险点**：\n        - **SELECT ***：虽然使用了 `SELECT *`，但在单行返回且字段数量未知的情况下，数据传输量通常可控。仅当 `customer` 表包含大文本（TEXT/BLOB）字段且业务不需要这些字段时，才存在微小的网络 IO 浪费，不足以构成中高风险。\n        - **结论**：该语句结构简单，过滤条件明确，属于典型的点查（Point Query），在正常索引配置下性能优秀，判定为低风险。\n\n## 四、共性问题和优化建议\n\n| 问题类别 | 出现频率 | 整改建议 |\n|----------------|----------|--------------------------------------------------------------------------|\n| 索引缺失风险预防 | 低 | 1. **确认主键索引**：虽然当前风险低，但需确保 `cust_id` 字段已建立主键或索引。若未建立，在生产环境大数据量下将导致全表扫描。<br>- 执行语句：`ALTER TABLE customer ADD PRIMARY KEY (cust_id);` 或 `CREATE INDEX idx_cust_id ON customer(cust_id);` |\n| SQL 写法规范 | 低 | 2. **避免 SELECT ***：尽管当前影响小，建议养成只查询必要字段的习惯，以减少网络传输和内存占用，防止未来表结构变更（如增加大字段）导致性能下降。<br>- 优化示例：`SELECT cust_id, cust_name, phone FROM customer WHERE cust_id = 20001;` |\n| 元数据完整性 | 高 | 3. **补充 DDL 信息**：本次分析因缺少 DDL（建表语句）和真实行数统计，无法精确判断索引覆盖情况和数据倾斜风险。建议在后续分析提供完整的 `SHOW CREATE TABLE` 输出及 `EXPLAIN` 执行计划，以便进行更精准的性能诊断。 |",
+      "output",
+      "接下来，将为您导出PDF模板，请您稍等。",
+      "慢 SQL 分析报告下载链接：\nhttp://172.20.20.128:8001/pdfs/22927b34-5920-430d-8d9c-9e38cc949cf7.pdf"
+    ]
+  }
+}

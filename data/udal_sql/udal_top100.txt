@@ -1,0 +1,1600 @@
+*************************** 1. row ***************************
+        Statement: SELECT b . cert_type , a . cert_num new_cert_num , a . cert_addr new_cert_addr , b . create_staff , b . cert_num old_cert_num , a . party_cert_id , b . create_date FROM party_cert a , party_cert_ext b WHERE a . party_cert_id = b . party_cert_id AND b . deal_state IN ( ? , ? , ? , ? ) AND b . status_cd = ? AND b . cert_type = ? ORDER BY b . create_date DESC 
+            Count: 360
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 8727
+         Avg time: 24
+         Max time: 867
+         Min time: 1
+     Max time sql: select b.cert_type,a.cert_num new_cert_num,a.cert_addr new_cert_addr, b.create_staff,b.cert_num old_cert_num,a.party_cert_id,b.create_date from party_cert a,      party_cert_ext b where a.party_cert_id = b.party_cert_id   and b.deal_state in (0, -1, -2, -3)   and b.status_cd = '1000'   and b.cert_type = '50' order by b.create_date desc
+Max time sql req : crmtest@136.25.62.144:60728
+         Last sql: select b.cert_type,a.cert_num new_cert_num,a.cert_addr new_cert_addr, b.create_staff,b.cert_num old_cert_num,a.party_cert_id,b.create_date from party_cert a,      party_cert_ext b where a.party_cert_id = b.party_cert_id   and b.deal_state in (0, -1, -2, -3)   and b.status_cd = '1000'   and b.cert_type = '50' order by b.create_date desc
+     Last sql req: crmtest@136.25.62.144:56030
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 2. row ***************************
+        Statement: SELECT dc_sql , dc_desc , dc_name FROM dc_sql_service WHERE dc_name = ? 
+            Count: 185
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 236
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: SELECT dc_sql,dc_desc,dc_name  FROM dc_sql_service  WHERE  dc_name = 'SERVICE_CUST_20210510001'
+Max time sql req : crmtest@136.6.168.89:43200
+         Last sql: SELECT dc_sql,dc_desc,dc_name  FROM dc_sql_service  WHERE  dc_name = 'SERVICE_CUST_20210510001'
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 3. row ***************************
+        Statement: SELECT pc . cert_type AS certi_type , pc . cert_num AS certi_number , pc . cert_addr AS certi_address FROM party_cert pc WHERE pc . party_id = ? AND pc . party_cert_id = ? 
+            Count: 79
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 103
+         Avg time: 1
+         Max time: 3
+         Min time: 1
+     Max time sql: select pc.cert_type as certi_type, pc.cert_num as certi_number,  pc.cert_addr as certi_address       	from party_cert pc     	where pc.party_id = '110421635955' and pc.party_cert_id = '1346442'
+Max time sql req : crmtest@136.6.168.89:43904
+         Last sql: select pc.cert_type as certi_type, pc.cert_num as certi_number,  pc.cert_addr as certi_address       	from party_cert pc     	where pc.party_id = '110425127838' and pc.party_cert_id = '2976798'
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 4. row ***************************
+        Statement: SELECT a . cust_id , a . cust_name , a . cust_number , a . cust_type , a . cust_addr AS cust_address , a . handle_cust_id , a . state , a . status_cd , a . cust_order_id , a . ini_password , a . party_cert_id , a . party_id , a . is_realname FROM customer a WHERE a . cust_id = ? AND a . state = ? 
+            Count: 79
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 139
+         Avg time: 1
+         Max time: 20
+         Min time: 1
+     Max time sql: select a.cust_id, a.cust_name, a.cust_number, a.cust_type, a.cust_addr as cust_address, a.handle_cust_id,  			a.state, a.status_cd, a.cust_order_id, a.ini_password, a.party_cert_id, a.party_id, a.is_realname      	from customer a     	where a.cust_id = '2383007816'      	  			and a.state = '1000'
+Max time sql req : crmtest@136.6.168.89:54710
+         Last sql: select a.cust_id, a.cust_name, a.cust_number, a.cust_type, a.cust_addr as cust_address, a.handle_cust_id,  			a.state, a.status_cd, a.cust_order_id, a.ini_password, a.party_cert_id, a.party_id, a.is_realname      	from customer a     	where a.cust_id = '2383007816'      	  			and a.state = '1000'
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 5. row ***************************
+        Statement: SELECT CUST_ID , SEQ_NBR , CUST_ORDER_ID , ACTION_TYPE , EFF_DATE , EXP_DATE , UPDATE_DATE , CUST_NAME , CUST_NUMBER , INDUSTRY_TYPE_ID , TYPE_FLAG , CUST_TYPE , CUST_SUB_TYPE , IS_VIP , INDUSTRY_CD , CUST_AREA_GRADE , TOWN_FLAG , LIEU_ID , STATUS_CD , CUST_ADDR , ADDR_ID , CUST_MGR , ENTER_DATE , CREATE_DATE , INI_PASSWORD , DEF_ACCT_ID , GRP_CUST_CODE , CHARGE_PROVINCE_CODE , CHARGE_LAN_ID , NOT_REAL_REASON , ACCEPT_CHANNEL , REMARK , REGION_ID , CUST_BRAND_MODIFY , GRID_ATTR , GROUP_CUST_SEQ , PARTY_ID , STATUS_DATE , CREATE_STAFF , DISTRIBUTOR_ID , EXT_CUST_ID , PUSH_FLAG , HANDLE_CUST_ID , TAX_PAYER_ID , CUST_SOURCE_ID , CUST_CONTROL_LEVEL , IS_INSTEAD , UPDATE_STAFF , LAST_ORDER_ITEM_ID , PARTY_CERT_ID , MARKET_REGION , IS_REALNAME , LAN_ID , STATE , SECRECY_LEVEL , EXT1_CUST_ID , EXT2_CUST_ID , EXT3_CUST_ID , GROUP_CUST_ID , PARTY_NBR FROM customer WHERE ? = ? AND CUST_ID = ? ORDER BY cust_id LIMIT ? 
+            Count: 72
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 113
+         Avg time: 1
+         Max time: 3
+         Min time: 1
+     Max time sql: select 		  		CUST_ID, 		SEQ_NBR, 		CUST_ORDER_ID, 		ACTION_TYPE, 		EFF_DATE, 		EXP_DATE, 		UPDATE_DATE, 		CUST_NAME, 		CUST_NUMBER, 		INDUSTRY_TYPE_ID, 		TYPE_FLAG, 		CUST_TYPE, 		CUST_SUB_TYPE, 		IS_VIP, 		INDUSTRY_CD, 		CUST_AREA_GRADE, 		TOWN_FLAG, 		LIEU_ID, 		STATUS_CD, 		CUST_ADDR, 		ADDR_ID, 		CUST_MGR, 		ENTER_DATE, 		CREATE_DATE, 		INI_PASSWORD, 		DEF_ACCT_ID, 		GRP_CUST_CODE, 		CHARGE_PROVINCE_CODE, 		CHARGE_LAN_ID, 		NOT_REAL_REASON, 		ACCEPT_CHANNEL, 		REMARK, 		REGION_ID, 		CUST_BRAND_MODIFY, 		GRID_ATTR, 		GROUP_CUST_SEQ, 		PARTY_ID, 		STATUS_DATE, 		CREATE_STAFF, 		DISTRIBUTOR_ID, 		EXT_CUST_ID, 		PUSH_FLAG, 		HANDLE_CUST_ID, 		TAX_PAYER_ID, 		CUST_SOURCE_ID, 		CUST_CONTROL_LEVEL, 		IS_INSTEAD, 		UPDATE_STAFF, 		LAST_ORDER_ITEM_ID, 		PARTY_CERT_ID, 		MARKET_REGION, 		IS_REALNAME, 		LAN_ID, 		STATE, 		SECRECY_LEVEL, 		EXT1_CUST_ID, 		EXT2_CUST_ID, 		EXT3_CUST_ID, 		GROUP_CUST_ID, 		PARTY_NBR 		  	  		from 		 customer  		  		where 1=1 		  			and CUST_ID = '834133844927' 		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		   		  		  	  		order by cust_id LIMIT 1
+Max time sql req : crmtest@136.6.168.89:43216
+         Last sql: select 		  		CUST_ID, 		SEQ_NBR, 		CUST_ORDER_ID, 		ACTION_TYPE, 		EFF_DATE, 		EXP_DATE, 		UPDATE_DATE, 		CUST_NAME, 		CUST_NUMBER, 		INDUSTRY_TYPE_ID, 		TYPE_FLAG, 		CUST_TYPE, 		CUST_SUB_TYPE, 		IS_VIP, 		INDUSTRY_CD, 		CUST_AREA_GRADE, 		TOWN_FLAG, 		LIEU_ID, 		STATUS_CD, 		CUST_ADDR, 		ADDR_ID, 		CUST_MGR, 		ENTER_DATE, 		CREATE_DATE, 		INI_PASSWORD, 		DEF_ACCT_ID, 		GRP_CUST_CODE, 		CHARGE_PROVINCE_CODE, 		CHARGE_LAN_ID, 		NOT_REAL_REASON, 		ACCEPT_CHANNEL, 		REMARK, 		REGION_ID, 		CUST_BRAND_MODIFY, 		GRID_ATTR, 		GROUP_CUST_SEQ, 		PARTY_ID, 		STATUS_DATE, 		CREATE_STAFF, 		DISTRIBUTOR_ID, 		EXT_CUST_ID, 		PUSH_FLAG, 		HANDLE_CUST_ID, 		TAX_PAYER_ID, 		CUST_SOURCE_ID, 		CUST_CONTROL_LEVEL, 		IS_INSTEAD, 		UPDATE_STAFF, 		LAST_ORDER_ITEM_ID, 		PARTY_CERT_ID, 		MARKET_REGION, 		IS_REALNAME, 		LAN_ID, 		STATE, 		SECRECY_LEVEL, 		EXT1_CUST_ID, 		EXT2_CUST_ID, 		EXT3_CUST_ID, 		GROUP_CUST_ID, 		PARTY_NBR 		  	  		from 		 customer  		  		where 1=1 		  			and CUST_ID = '834133844927' 		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		   		  		  	  		order by cust_id LIMIT 1
+     Last sql req: crmtest@136.6.168.89:54714
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 6. row ***************************
+        Statement: SELECT count ( ? ) FROM customer WHERE ? = ? AND CUST_ID = ? 
+            Count: 72
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 83
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: SELECT count(0) FROM customer WHERE 1 = 1 AND CUST_ID = '834133844927'
+Max time sql req : crmtest@136.6.168.89:43216
+         Last sql: SELECT count(0) FROM customer WHERE 1 = 1 AND CUST_ID = '834133844927'
+     Last sql req: crmtest@136.6.168.89:54714
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 7. row ***************************
+        Statement: SELECT acct_id , acct_cd FROM account WHERE acct_id = ? AND cust_id = ? AND status_cd = ? 
+            Count: 67
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 72
+         Avg time: 1
+         Max time: 2
+         Min time: 0
+     Max time sql: select acct_id, acct_cd from account where acct_id = '214115114226' and cust_id='834133844927' and status_cd = '1'
+Max time sql req : crmtest@136.6.168.89:43216
+         Last sql: select acct_id, acct_cd from account where acct_id = '214115120423' and cust_id='834133844927' and status_cd = '1'
+     Last sql req: crmtest@136.6.168.89:54714
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 8. row ***************************
+        Statement: SELECT party_id , party_cert_id , cust_id , cust_name , cust_number FROM customer WHERE cust_id = ? AND state = ? 
+            Count: 46
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 54
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select party_id,party_cert_id,cust_id,cust_name,cust_number from customer where cust_id='834133844927' and state = 1000 
+Max time sql req : crmtest@136.6.168.89:43200
+         Last sql: select party_id,party_cert_id,cust_id,cust_name,cust_number from customer where cust_id='2383007816' and state = 1000 
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 9. row ***************************
+        Statement: SELECT ? FROM private_cust_info a WHERE a . cust_number = ? AND a . state = ? AND a . eff_date < sysdate ( ) AND a . exp_date > sysdate ( ) 
+            Count: 34
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 51
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select 1 from private_cust_info a where a.cust_number = '123016514560000' and a.state = '00A' and a.eff_date < sysdate() and a.exp_date > sysdate()
+Max time sql req : crmtest@136.6.168.89:43200
+         Last sql: select 1 from private_cust_info a where a.cust_number = '2023045041123000' and a.state = '00A' and a.eff_date < sysdate() and a.exp_date > sysdate()
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 10. row ***************************
+        Statement: SELECT party_attr_id , party_id , attr_id , attr_value_id , attr_value , status_cd , status_date , create_staff , create_date , update_staff , update_date , remark FROM party_attr WHERE attr_id = ? AND party_id = ? 
+            Count: 31
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 67
+         Avg time: 2
+         Max time: 16
+         Min time: 1
+     Max time sql: SELECT party_attr_id,party_id,attr_id,attr_value_id,attr_value,status_cd,status_date,create_staff,create_date,update_staff,update_date,remark FROM  party_attr WHERE attr_id=2021042701 and party_id = '110418237349'
+Max time sql req : crmtest@136.6.168.89:43904
+         Last sql: SELECT party_attr_id,party_id,attr_id,attr_value_id,attr_value,status_cd,status_date,create_staff,create_date,update_staff,update_date,remark FROM  party_attr WHERE attr_id=2021042701 and party_id = '110425127838'
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 11. row ***************************
+        Statement: SELECT pc . cert_type AS certi_type , pc . cert_num AS certi_number , pc . cert_addr AS certi_address , ci . mobile_phone FROM party_cert pc LEFT JOIN contacts_info ci ON pc . party_id = ci . party_id WHERE pc . party_id = ? LIMIT ? 
+            Count: 26
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 295
+         Avg time: 11
+         Max time: 262
+         Min time: 1
+     Max time sql: SELECT 			pc.cert_type AS certi_type, 			pc.cert_num AS certi_number, 			pc.cert_addr AS certi_address, 			ci.mobile_phone 		FROM 			party_cert pc left join contacts_info ci on pc.party_id = ci.party_id 		WHERE 		 pc.party_id = '110420568625' LIMIT 1
+Max time sql req : crmtest@136.6.168.89:43904
+         Last sql: SELECT 			pc.cert_type AS certi_type, 			pc.cert_num AS certi_number, 			pc.cert_addr AS certi_address, 			ci.mobile_phone 		FROM 			party_cert pc left join contacts_info ci on pc.party_id = ci.party_id 		WHERE 		 pc.party_id = '110425127838' LIMIT 1
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 12. row ***************************
+        Statement: SELECT c . cust_id , c . cust_name , c . cust_number , c . cust_type , c . cust_addr AS cust_address , c . handle_cust_id , c . state , c . status_cd , c . cust_order_id , c . ini_password , c . party_id , ccir . contact_id , c . is_realname FROM customer c LEFT JOIN cust_contact_info_rel ccir ON c . cust_id = ccir . cust_id WHERE c . cust_id = ? LIMIT ? 
+            Count: 26
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 41
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select c.cust_id, c.cust_name, c.cust_number, c.cust_type, c.cust_addr as cust_address ,  			c.handle_cust_id, c.state, c.status_cd, c.cust_order_id, c.ini_password, c.party_id,   			ccir.contact_id, c.is_realname 		from customer c left join cust_contact_info_rel ccir on c.cust_id = ccir.cust_id  		where  c.cust_id = '834133844927' limit 1
+Max time sql req : crmtest@136.6.168.89:43200
+         Last sql: select c.cust_id, c.cust_name, c.cust_number, c.cust_type, c.cust_addr as cust_address ,  			c.handle_cust_id, c.state, c.status_cd, c.cust_order_id, c.ini_password, c.party_id,   			ccir.contact_id, c.is_realname 		from customer c left join cust_contact_info_rel ccir on c.cust_id = ccir.cust_id  		where  c.cust_id = '2383007816' limit 1
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 13. row ***************************
+        Statement: SELECT p . cert_type AS certi_type , p . cert_num AS certi_number , p . cert_addr AS certi_address , p . cert_org AS certi_org , b . org_name , ci . mobile_phone , ci . contact_name , ci . home_phone , ci . office_phone FROM party a LEFT JOIN party_cert p ON a . party_id = p . party_id AND p . party_cert_id = ? LEFT JOIN party_org b ON a . party_id = b . party_id AND b . status_cd = ? LEFT JOIN contacts_info ci ON ci . party_id = a . party_id AND ci . contact_id = ? WHERE a . party_id = ? 
+            Count: 26
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 83
+         Avg time: 3
+         Max time: 26
+         Min time: 1
+     Max time sql: select p.cert_type AS certi_type,p.cert_num AS certi_number,p.cert_addr AS certi_address,p.cert_org AS certi_org,b.org_name,ci.mobile_phone, ci.contact_name,ci.home_phone,ci.office_phone from party a left join party_cert p on a.party_id=p.party_id and p.party_cert_id='11670502' left join party_org b on a.party_id=b.party_id and b.status_cd='1000' left join contacts_info ci on ci.party_id=a.party_id and ci.contact_id= '100013179789'  where a.party_id= '110418237349' 
+Max time sql req : crmtest@136.6.168.89:43904
+         Last sql: select p.cert_type AS certi_type,p.cert_num AS certi_number,p.cert_addr AS certi_address,p.cert_org AS certi_org,b.org_name,ci.mobile_phone, ci.contact_name,ci.home_phone,ci.office_phone from party a left join party_cert p on a.party_id=p.party_id and p.party_cert_id='2976798' left join party_org b on a.party_id=b.party_id and b.status_cd='1000' left join contacts_info ci on ci.party_id=a.party_id and ci.contact_id= ''  where a.party_id= '110425127838' 
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 14. row ***************************
+        Statement: SELECT param_code , param_desc , param_val , is_refresh , cache_time FROM dc_system_param WHERE ? = ? AND param_code = ? 
+            Count: 25
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 36
+         Avg time: 1
+         Max time: 4
+         Min time: 1
+     Max time sql: select param_code,   			   param_desc,   			   param_val,   			   is_refresh,   			   cache_time 		from dc_system_param 		where 1 = 1 	  		  and param_code = 'KITE_SWITCH'
+Max time sql req : crmtest@136.6.168.89:51172
+         Last sql: select param_code,   			   param_desc,   			   param_val,   			   is_refresh,   			   cache_time 		from dc_system_param 		where 1 = 1 	  		  and param_code = 'removeExpRedPackage'
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 15. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT a . group_acct_id , a . acct_id , a . seq_nbr , a . action_type , a . eff_date , a . exp_date , a . acct_type , a . status_date , a . cust_id , a . region_id , a . lan_id , a . prod_inst_id , a . login_password , a . remark , a . acct_billing_type , a . acct_login_name , a . create_staff , a . create_date , a . charge_province_code , a . update_staff , a . update_date , a . acct_name , a . status_cd , a . acct_cd , a . ext_acct_id , ex . cust_order_id , ex . order_item_id , ex . account_number , ex . if_default , ex . address_id , ex . credit_limit_plan_id , ex . staff_locked , ex . balance , ex . agreement_id , ex . party_id , ex . bureau_no , ex . owe_tel , ex . post_name , ex . post_code , ex . bill_format_id , ex . self_quota , ex . bil_quota , ex . no_stop_flag , ex . pay_info , ex . owe_units , ex . pay_cycle , ex . bill_post_mode , ex . bill_post_addr , ex . city_no , ex . grp_acct_id , ex . acct_address , ex . bill_post_content , ex . bill_post_phone , ex . account_area_grade , ex . group_pay_method , ex . contact_phone , ex . mobile_phone , ex . ext_account_id , ex . free_flag , ex . post_cycle , ex . hb_invoice_print_type , ex . distributor_id FROM account a LEFT JOIN account_ext ex ON a . acct_id = ex . acct_id AND ex . seq_nbr = a . seq_nbr WHERE ? = ? AND a . acct_id = ? AND a . status_cd = ? AND a . exp_date > now ( ) ) k 
+            Count: 16
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 322
+         Avg time: 20
+         Max time: 138
+         Min time: 3
+     Max time sql:  select count(1) as count from ( SELECT a.group_acct_id,a.acct_id, a.seq_nbr, a.action_type, a.eff_date, a.exp_date, a.acct_type, a.status_date, a.cust_id, a.region_id, a.lan_id, a.prod_inst_id, a.login_password, a.remark, a.acct_billing_type, a.acct_login_name, a.create_staff, a.create_date,a.charge_province_code, a.update_staff, a.update_date, a.acct_name, a.status_cd, a.acct_cd, a.ext_acct_id, ex.cust_order_id, ex.order_item_id, ex.account_number, ex.if_default, ex.address_id, ex.credit_limit_plan_id, ex.staff_locked, ex.balance, ex.agreement_id, ex.party_id, ex.bureau_no, ex.owe_tel, ex.post_name, ex.post_code, ex.bill_format_id, ex.self_quota, ex.bil_quota, ex.no_stop_flag, ex.pay_info, ex.owe_units, ex.pay_cycle, ex.bill_post_mode, ex.bill_post_addr, ex.city_no, ex.grp_acct_id, ex.acct_address, ex.bill_post_content, ex.bill_post_phone, ex.account_area_grade, ex.group_pay_method, ex.contact_phone, ex.mobile_phone, ex.ext_account_id, ex.free_flag, ex.post_cycle, ex.hb_invoice_print_type, ex.distributor_id FROM account a LEFT JOIN account_ext ex ON a.acct_id = ex.acct_id and ex.seq_nbr = a.seq_nbr WHERE 1=1 and a.acct_id='108410982499'  and a.status_cd='1'  and a.exp_date>  now()  ) k
+Max time sql req : crmtest@136.6.168.89:43210
+         Last sql:  select count(1) as count from ( SELECT a.group_acct_id,a.acct_id, a.seq_nbr, a.action_type, a.eff_date, a.exp_date, a.acct_type, a.status_date, a.cust_id, a.region_id, a.lan_id, a.prod_inst_id, a.login_password, a.remark, a.acct_billing_type, a.acct_login_name, a.create_staff, a.create_date,a.charge_province_code, a.update_staff, a.update_date, a.acct_name, a.status_cd, a.acct_cd, a.ext_acct_id, ex.cust_order_id, ex.order_item_id, ex.account_number, ex.if_default, ex.address_id, ex.credit_limit_plan_id, ex.staff_locked, ex.balance, ex.agreement_id, ex.party_id, ex.bureau_no, ex.owe_tel, ex.post_name, ex.post_code, ex.bill_format_id, ex.self_quota, ex.bil_quota, ex.no_stop_flag, ex.pay_info, ex.owe_units, ex.pay_cycle, ex.bill_post_mode, ex.bill_post_addr, ex.city_no, ex.grp_acct_id, ex.acct_address, ex.bill_post_content, ex.bill_post_phone, ex.account_area_grade, ex.group_pay_method, ex.contact_phone, ex.mobile_phone, ex.ext_account_id, ex.free_flag, ex.post_cycle, ex.hb_invoice_print_type, ex.distributor_id FROM account a LEFT JOIN account_ext ex ON a.acct_id = ex.acct_id and ex.seq_nbr = a.seq_nbr WHERE 1=1 and a.acct_id='214115125201'  and a.status_cd='1'  and a.exp_date>  now()  ) k
+     Last sql req: crmtest@136.6.168.89:54714
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 16. row ***************************
+        Statement: SELECT a . group_acct_id , a . acct_id , a . seq_nbr , a . action_type , a . eff_date , a . exp_date , a . acct_type , a . status_date , a . cust_id , a . region_id , a . lan_id , a . prod_inst_id , a . login_password , a . remark , a . acct_billing_type , a . acct_login_name , a . create_staff , a . create_date , a . charge_province_code , a . update_staff , a . update_date , a . acct_name , a . status_cd , a . acct_cd , a . ext_acct_id , ex . cust_order_id , ex . order_item_id , ex . account_number , ex . if_default , ex . address_id , ex . credit_limit_plan_id , ex . staff_locked , ex . balance , ex . agreement_id , ex . party_id , ex . bureau_no , ex . owe_tel , ex . post_name , ex . post_code , ex . bill_format_id , ex . self_quota , ex . bil_quota , ex . no_stop_flag , ex . pay_info , ex . owe_units , ex . pay_cycle , ex . bill_post_mode , ex . bill_post_addr , ex . city_no , ex . grp_acct_id , ex . acct_address , ex . bill_post_content , ex . bill_post_phone , ex . account_area_grade , ex . group_pay_method , ex . contact_phone , ex . mobile_phone , ex . ext_account_id , ex . free_flag , ex . post_cycle , ex . hb_invoice_print_type , ex . distributor_id FROM account a LEFT JOIN account_ext ex ON a . acct_id = ex . acct_id AND ex . seq_nbr = a . seq_nbr WHERE ? = ? AND a . acct_id = ? AND a . status_cd = ? AND a . exp_date > now ( ) LIMIT ? , ? 
+            Count: 15
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 191
+         Avg time: 12
+         Max time: 125
+         Min time: 4
+     Max time sql: SELECT a.group_acct_id,a.acct_id, a.seq_nbr, a.action_type, a.eff_date, a.exp_date, a.acct_type, a.status_date, a.cust_id, a.region_id, a.lan_id, a.prod_inst_id, a.login_password, a.remark, a.acct_billing_type, a.acct_login_name, a.create_staff, a.create_date,a.charge_province_code, a.update_staff, a.update_date, a.acct_name, a.status_cd, a.acct_cd, a.ext_acct_id, ex.cust_order_id, ex.order_item_id, ex.account_number, ex.if_default, ex.address_id, ex.credit_limit_plan_id, ex.staff_locked, ex.balance, ex.agreement_id, ex.party_id, ex.bureau_no, ex.owe_tel, ex.post_name, ex.post_code, ex.bill_format_id, ex.self_quota, ex.bil_quota, ex.no_stop_flag, ex.pay_info, ex.owe_units, ex.pay_cycle, ex.bill_post_mode, ex.bill_post_addr, ex.city_no, ex.grp_acct_id, ex.acct_address, ex.bill_post_content, ex.bill_post_phone, ex.account_area_grade, ex.group_pay_method, ex.contact_phone, ex.mobile_phone, ex.ext_account_id, ex.free_flag, ex.post_cycle, ex.hb_invoice_print_type, ex.distributor_id FROM account a LEFT JOIN account_ext ex ON a.acct_id = ex.acct_id and ex.seq_nbr = a.seq_nbr WHERE 1=1 and a.acct_id='214115125201'  and a.status_cd='1'  and a.exp_date>  now()  limit 0,20 
+Max time sql req : crmtest@136.6.168.89:51164
+         Last sql: SELECT a.group_acct_id,a.acct_id, a.seq_nbr, a.action_type, a.eff_date, a.exp_date, a.acct_type, a.status_date, a.cust_id, a.region_id, a.lan_id, a.prod_inst_id, a.login_password, a.remark, a.acct_billing_type, a.acct_login_name, a.create_staff, a.create_date,a.charge_province_code, a.update_staff, a.update_date, a.acct_name, a.status_cd, a.acct_cd, a.ext_acct_id, ex.cust_order_id, ex.order_item_id, ex.account_number, ex.if_default, ex.address_id, ex.credit_limit_plan_id, ex.staff_locked, ex.balance, ex.agreement_id, ex.party_id, ex.bureau_no, ex.owe_tel, ex.post_name, ex.post_code, ex.bill_format_id, ex.self_quota, ex.bil_quota, ex.no_stop_flag, ex.pay_info, ex.owe_units, ex.pay_cycle, ex.bill_post_mode, ex.bill_post_addr, ex.city_no, ex.grp_acct_id, ex.acct_address, ex.bill_post_content, ex.bill_post_phone, ex.account_area_grade, ex.group_pay_method, ex.contact_phone, ex.mobile_phone, ex.ext_account_id, ex.free_flag, ex.post_cycle, ex.hb_invoice_print_type, ex.distributor_id FROM account a LEFT JOIN account_ext ex ON a.acct_id = ex.acct_id and ex.seq_nbr = a.seq_nbr WHERE 1=1 and a.acct_id='214115125201'  and a.status_cd='1'  and a.exp_date>  now()  limit 0,20 
+     Last sql req: crmtest@136.6.168.89:54714
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 17. row ***************************
+        Statement: SELECT DISTINCT d . attr_value_name FROM cert_black_info c , attr_value d WHERE c . cert_num = ? AND c . classify = d . attr_value AND c . STATE = ? AND d . attr_id = ? 
+            Count: 10
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 15
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: SELECT distinct d.attr_value_name FROM  cert_black_info c,attr_value d WHERE c.cert_num = 'LiuYiYi130' AND c.classify = d.attr_value AND c.STATE = '00A' AND d.attr_id=20200804001
+Max time sql req : crmtest@136.6.168.89:43216
+         Last sql: SELECT distinct d.attr_value_name FROM  cert_black_info c,attr_value d WHERE c.cert_num = 'LiuYiYi130' AND c.classify = d.attr_value AND c.STATE = '00A' AND d.attr_id=20200804001
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 18. row ***************************
+        Statement: SELECT * FROM party_cert WHERE party_cert_id = ? 
+            Count: 10
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 260
+         Avg time: 26
+         Max time: 171
+         Min time: 3
+     Max time sql: select * from party_cert where party_cert_id='100013248'
+Max time sql req : crmtest@136.6.168.89:43216
+         Last sql: select * from party_cert where party_cert_id='100013248'
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 19. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT cust_id , seq_nbr , cust_order_id , last_order_item_id AS order_id , action_type , eff_date AS record_eff_date , exp_date record_exp_date , update_date , cust_name , cust_number , industry_type_id , type_flag , cust_type , cust_sub_type , is_vip , cust_control_level , industry_cd , cust_area_grade , town_flag , lieu_id , status_cd , secrecy_level , cust_addr , addr_id , cust_mgr , enter_date , create_date , ini_password , def_acct_id , grp_cust_code , charge_province_code , charge_lan_id , not_real_reason , accept_channel , remark , state , region_id , cust_brand_modify , grid_attr , group_cust_seq , party_id , status_date , create_staff , distributor_id , ext_cust_id , push_flag , handle_cust_id , tax_payer_id , lan_id , cust_source_id , is_instead , update_staff , party_cert_id , market_region , is_realname FROM customer WHERE ? = ? AND cust_id = ? AND state = ? ) k 
+            Count: 8
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 16
+         Avg time: 2
+         Max time: 2
+         Min time: 2
+     Max time sql:  select count(1) as count from ( select cust_id, seq_nbr, cust_order_id, last_order_item_id as order_id, action_type, eff_date as record_eff_date, exp_date record_exp_date, update_date, cust_name, cust_number, industry_type_id, type_flag, cust_type, cust_sub_type,  is_vip, cust_control_level, industry_cd, cust_area_grade, town_flag, lieu_id,  status_cd, secrecy_level, cust_addr, addr_id, cust_mgr, enter_date, create_date, ini_password, def_acct_id, grp_cust_code, charge_province_code, charge_lan_id, not_real_reason, accept_channel, remark, state, region_id, cust_brand_modify, grid_attr, group_cust_seq, party_id, status_date, create_staff, distributor_id, ext_cust_id, push_flag, handle_cust_id, tax_payer_id, lan_id, cust_source_id, is_instead, update_staff, party_cert_id, market_region, is_realname from customer where 1 = 1 and cust_id = '834133844927'  and state = '1000' ) k
+Max time sql req : crmtest@136.6.168.89:43200
+         Last sql:  select count(1) as count from ( select cust_id, seq_nbr, cust_order_id, last_order_item_id as order_id, action_type, eff_date as record_eff_date, exp_date record_exp_date, update_date, cust_name, cust_number, industry_type_id, type_flag, cust_type, cust_sub_type,  is_vip, cust_control_level, industry_cd, cust_area_grade, town_flag, lieu_id,  status_cd, secrecy_level, cust_addr, addr_id, cust_mgr, enter_date, create_date, ini_password, def_acct_id, grp_cust_code, charge_province_code, charge_lan_id, not_real_reason, accept_channel, remark, state, region_id, cust_brand_modify, grid_attr, group_cust_seq, party_id, status_date, create_staff, distributor_id, ext_cust_id, push_flag, handle_cust_id, tax_payer_id, lan_id, cust_source_id, is_instead, update_staff, party_cert_id, market_region, is_realname from customer where 1 = 1 and cust_id = '834133844927'  and state = '1000' ) k
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 20. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT contact_id , party_id , contact_type , contact_name , contact_gender , contact_addr , contact_employer , home_phone , office_phone , mobile_phone , contact_desc , e_mail AS email , postcode , post_addr , fax , status_cd , status_date , create_staff , create_date , update_staff , update_date , remark , cust_order_id , record_eff_date , record_exp_date , seq_billing , ext_contact_id , order_item_id , qq_code , wx_code , unsuitable_contact_time , microblog , yzf_code FROM contacts_info WHERE contact_id = ? AND party_id = ? AND status_cd = ? ) k 
+            Count: 8
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 13
+         Avg time: 1
+         Max time: 4
+         Min time: 1
+     Max time sql:  select count(1) as count from ( select contact_id, party_id, contact_type, contact_name, contact_gender, contact_addr, contact_employer, home_phone, office_phone, mobile_phone, contact_desc, e_mail as email, postcode, post_addr, fax, status_cd, status_date, create_staff, create_date, update_staff, update_date, remark, cust_order_id, record_eff_date, record_exp_date, seq_billing, ext_contact_id, order_item_id,qq_code,wx_code,unsuitable_contact_time,microblog,yzf_code from contacts_info where contact_id = '20134204731' and party_id = '112006242307' and status_cd = '1000'  ) k
+Max time sql req : crmtest@136.6.168.89:49662
+         Last sql:  select count(1) as count from ( select contact_id, party_id, contact_type, contact_name, contact_gender, contact_addr, contact_employer, home_phone, office_phone, mobile_phone, contact_desc, e_mail as email, postcode, post_addr, fax, status_cd, status_date, create_staff, create_date, update_staff, update_date, remark, cust_order_id, record_eff_date, record_exp_date, seq_billing, ext_contact_id, order_item_id,qq_code,wx_code,unsuitable_contact_time,microblog,yzf_code from contacts_info where contact_id = '20134204731' and party_id = '112006242307' and status_cd = '1000'  ) k
+     Last sql req: crmtest@136.6.168.89:54712
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 21. row ***************************
+        Statement: SELECT contact_id , party_id , contact_type , contact_name , contact_gender , contact_addr , contact_employer , home_phone , office_phone , mobile_phone , contact_desc , e_mail AS email , postcode , post_addr , fax , status_cd , status_date , create_staff , create_date , update_staff , update_date , remark , cust_order_id , record_eff_date , record_exp_date , seq_billing , ext_contact_id , order_item_id , qq_code , wx_code , unsuitable_contact_time , microblog , yzf_code FROM contacts_info WHERE contact_id = ? AND party_id = ? AND status_cd = ? LIMIT ? , ? 
+            Count: 8
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 10
+         Avg time: 1
+         Max time: 3
+         Min time: 1
+     Max time sql: select contact_id, party_id, contact_type, contact_name, contact_gender, contact_addr, contact_employer, home_phone, office_phone, mobile_phone, contact_desc, e_mail as email, postcode, post_addr, fax, status_cd, status_date, create_staff, create_date, update_staff, update_date, remark, cust_order_id, record_eff_date, record_exp_date, seq_billing, ext_contact_id, order_item_id,qq_code,wx_code,unsuitable_contact_time,microblog,yzf_code from contacts_info where contact_id = '20134204731' and party_id = '112006242307' and status_cd = '1000'  limit 0,20 
+Max time sql req : crmtest@136.6.168.89:54712
+         Last sql: select contact_id, party_id, contact_type, contact_name, contact_gender, contact_addr, contact_employer, home_phone, office_phone, mobile_phone, contact_desc, e_mail as email, postcode, post_addr, fax, status_cd, status_date, create_staff, create_date, update_staff, update_date, remark, cust_order_id, record_eff_date, record_exp_date, seq_billing, ext_contact_id, order_item_id,qq_code,wx_code,unsuitable_contact_time,microblog,yzf_code from contacts_info where contact_id = '20134204731' and party_id = '112006242307' and status_cd = '1000'  limit 0,20 
+     Last sql req: crmtest@136.6.168.89:54712
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 22. row ***************************
+        Statement: SELECT sum ( t . ACCT_QUANTIT ) AS ACCT_QUANTIT FROM ( SELECT a . CREDIT_LIMIT_FEE AS ACCT_QUANTIT FROM temporary_credit_limit a WHERE a . credit_type = ? AND a . status_cd = ? AND exp_date >= now ( ) AND a . cust_id = ? UNION ALL SELECT a . CREDIT_LIMIT_FEE AS ACCT_QUANTIT FROM temporary_credit_limit a WHERE a . credit_type = ? AND a . status_cd = ? AND exp_date >= now ( ) AND a . cust_id = ? UNION ALL SELECT a . CREDIT_LIMIT_FEE AS ACCT_QUANTIT FROM temporary_credit_limit a WHERE a . credit_type = ? AND a . status_cd = ? AND exp_date >= now ( ) AND a . cust_id = ? UNION ALL SELECT a . CREDIT_LIMIT_FEE AS ACCT_QUANTIT FROM temporary_credit_limit a WHERE a . credit_type = ? AND a . status_cd = ? AND exp_date >= now ( ) AND a . cust_id = ? ) t LIMIT ? , ? 
+            Count: 8
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 15
+         Avg time: 1
+         Max time: 4
+         Min time: 1
+     Max time sql: select sum(t.ACCT_QUANTIT) as ACCT_QUANTIT  from (select a.CREDIT_LIMIT_FEE as ACCT_QUANTIT from temporary_credit_limit a  where a.credit_type='G' and a.status_cd='1000' and exp_date>=now() and a.cust_id= '834133844927' UNION ALL select a.CREDIT_LIMIT_FEE as ACCT_QUANTIT from temporary_credit_limit a  where a.credit_type='A' and a.status_cd='1000' and exp_date>=now() and a.cust_id= '834133844927' UNION ALL select a.CREDIT_LIMIT_FEE as ACCT_QUANTIT from temporary_credit_limit a where a.credit_type='C' and a.status_cd='1000' and exp_date>=now() and a.cust_id= '834133844927' UNION ALL select a.CREDIT_LIMIT_FEE as ACCT_QUANTIT from temporary_credit_limit a where a.credit_type='B' and a.status_cd='1000' and exp_date>=now() and a.cust_id= '834133844927' ) t limit 0,20 
+Max time sql req : crmtest@136.6.168.89:51168
+         Last sql: select sum(t.ACCT_QUANTIT) as ACCT_QUANTIT  from (select a.CREDIT_LIMIT_FEE as ACCT_QUANTIT from temporary_credit_limit a  where a.credit_type='G' and a.status_cd='1000' and exp_date>=now() and a.cust_id= '834133844927' UNION ALL select a.CREDIT_LIMIT_FEE as ACCT_QUANTIT from temporary_credit_limit a  where a.credit_type='A' and a.status_cd='1000' and exp_date>=now() and a.cust_id= '834133844927' UNION ALL select a.CREDIT_LIMIT_FEE as ACCT_QUANTIT from temporary_credit_limit a where a.credit_type='C' and a.status_cd='1000' and exp_date>=now() and a.cust_id= '834133844927' UNION ALL select a.CREDIT_LIMIT_FEE as ACCT_QUANTIT from temporary_credit_limit a where a.credit_type='B' and a.status_cd='1000' and exp_date>=now() and a.cust_id= '834133844927' ) t limit 0,20 
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 23. row ***************************
+        Statement: SELECT party_cert_id , party_id , is_realname_cert , cert_type , cert_org , cert_addr , cert_num , checker , check_time , cert_check_result , eff_date , exp_date , create_date , status_cd , create_staff , update_staff , status_date , update_date , remark , cust_order_id , order_item_id , org_uscc FROM party_cert WHERE party_id = ? AND status_cd = ? AND party_cert_id = ? LIMIT ? , ? 
+            Count: 8
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 9
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select party_cert_id, party_id, is_realname_cert, cert_type, cert_org, cert_addr, cert_num, checker, check_time, cert_check_result, eff_date, exp_date, create_date, status_cd, create_staff, update_staff, status_date, update_date, remark, cust_order_id, order_item_id, org_uscc  from party_cert where party_id = '112006242307' and status_cd = '1000'  and party_cert_id = 100013248  limit 0,20 
+Max time sql req : crmtest@136.6.168.89:49662
+         Last sql: select party_cert_id, party_id, is_realname_cert, cert_type, cert_org, cert_addr, cert_num, checker, check_time, cert_check_result, eff_date, exp_date, create_date, status_cd, create_staff, update_staff, status_date, update_date, remark, cust_order_id, order_item_id, org_uscc  from party_cert where party_id = '112006242307' and status_cd = '1000'  and party_cert_id = 100013248  limit 0,20 
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 24. row ***************************
+        Statement: SELECT contact_id , status_cd , status_date , seq_nbr , cust_order_id , order_item_id , action_type , record_eff_date , record_exp_date , cust_id , head_flag , seq_billing , cust_connect_id , update_staff , create_staff , create_date , update_date , remark FROM cust_contact_info_rel WHERE cust_id = ? AND status_cd = ? ORDER BY create_date DESC LIMIT ? , ? 
+            Count: 8
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 17
+         Avg time: 2
+         Max time: 4
+         Min time: 1
+     Max time sql: select contact_id, status_cd, status_date, seq_nbr, cust_order_id, order_item_id, action_type, record_eff_date, record_exp_date, cust_id, head_flag, seq_billing, cust_connect_id, update_staff, create_staff, create_date, update_date, remark from cust_contact_info_rel where cust_id = '834133844927' and status_cd = '1000'  order by create_date desc  limit 0,20 
+Max time sql req : crmtest@136.6.168.89:43904
+         Last sql: select contact_id, status_cd, status_date, seq_nbr, cust_order_id, order_item_id, action_type, record_eff_date, record_exp_date, cust_id, head_flag, seq_billing, cust_connect_id, update_staff, create_staff, create_date, update_date, remark from cust_contact_info_rel where cust_id = '834133844927' and status_cd = '1000'  order by create_date desc  limit 0,20 
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 25. row ***************************
+        Statement: SELECT cust_id , seq_nbr , cust_order_id , last_order_item_id AS order_id , action_type , eff_date AS record_eff_date , exp_date record_exp_date , update_date , cust_name , cust_number , industry_type_id , type_flag , cust_type , cust_sub_type , is_vip , cust_control_level , industry_cd , cust_area_grade , town_flag , lieu_id , status_cd , secrecy_level , cust_addr , addr_id , cust_mgr , enter_date , create_date , ini_password , def_acct_id , grp_cust_code , charge_province_code , charge_lan_id , not_real_reason , accept_channel , remark , state , region_id , cust_brand_modify , grid_attr , group_cust_seq , party_id , status_date , create_staff , distributor_id , ext_cust_id , push_flag , handle_cust_id , tax_payer_id , lan_id , cust_source_id , is_instead , update_staff , party_cert_id , market_region , is_realname FROM customer WHERE ? = ? AND cust_id = ? AND state = ? LIMIT ? , ? 
+            Count: 8
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 9
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select cust_id, seq_nbr, cust_order_id, last_order_item_id as order_id, action_type, eff_date as record_eff_date, exp_date record_exp_date, update_date, cust_name, cust_number, industry_type_id, type_flag, cust_type, cust_sub_type,  is_vip, cust_control_level, industry_cd, cust_area_grade, town_flag, lieu_id,  status_cd, secrecy_level, cust_addr, addr_id, cust_mgr, enter_date, create_date, ini_password, def_acct_id, grp_cust_code, charge_province_code, charge_lan_id, not_real_reason, accept_channel, remark, state, region_id, cust_brand_modify, grid_attr, group_cust_seq, party_id, status_date, create_staff, distributor_id, ext_cust_id, push_flag, handle_cust_id, tax_payer_id, lan_id, cust_source_id, is_instead, update_staff, party_cert_id, market_region, is_realname from customer where 1 = 1 and cust_id = '834133844927'  and state = '1000' limit 0,1 
+Max time sql req : crmtest@136.6.168.89:51166
+         Last sql: select cust_id, seq_nbr, cust_order_id, last_order_item_id as order_id, action_type, eff_date as record_eff_date, exp_date record_exp_date, update_date, cust_name, cust_number, industry_type_id, type_flag, cust_type, cust_sub_type,  is_vip, cust_control_level, industry_cd, cust_area_grade, town_flag, lieu_id,  status_cd, secrecy_level, cust_addr, addr_id, cust_mgr, enter_date, create_date, ini_password, def_acct_id, grp_cust_code, charge_province_code, charge_lan_id, not_real_reason, accept_channel, remark, state, region_id, cust_brand_modify, grid_attr, group_cust_seq, party_id, status_date, create_staff, distributor_id, ext_cust_id, push_flag, handle_cust_id, tax_payer_id, lan_id, cust_source_id, is_instead, update_staff, party_cert_id, market_region, is_realname from customer where 1 = 1 and cust_id = '834133844927'  and state = '1000' limit 0,1 
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 26. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT contact_id , status_cd , status_date , seq_nbr , cust_order_id , order_item_id , action_type , record_eff_date , record_exp_date , cust_id , head_flag , seq_billing , cust_connect_id , update_staff , create_staff , create_date , update_date , remark FROM cust_contact_info_rel WHERE cust_id = ? AND status_cd = ? ORDER BY create_date DESC ) k 
+            Count: 8
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 7
+         Avg time: 0
+         Max time: 1
+         Min time: 0
+     Max time sql:  select count(1) as count from ( select contact_id, status_cd, status_date, seq_nbr, cust_order_id, order_item_id, action_type, record_eff_date, record_exp_date, cust_id, head_flag, seq_billing, cust_connect_id, update_staff, create_staff, create_date, update_date, remark from cust_contact_info_rel where cust_id = '834133844927' and status_cd = '1000'  order by create_date desc  ) k
+Max time sql req : crmtest@136.6.168.89:43200
+         Last sql:  select count(1) as count from ( select contact_id, status_cd, status_date, seq_nbr, cust_order_id, order_item_id, action_type, record_eff_date, record_exp_date, cust_id, head_flag, seq_billing, cust_connect_id, update_staff, create_staff, create_date, update_date, remark from cust_contact_info_rel where cust_id = '834133844927' and status_cd = '1000'  order by create_date desc  ) k
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 27. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT party_cert_id , party_id , is_realname_cert , cert_type , cert_org , cert_addr , cert_num , checker , check_time , cert_check_result , eff_date , exp_date , create_date , status_cd , create_staff , update_staff , status_date , update_date , remark , cust_order_id , order_item_id , org_uscc FROM party_cert WHERE party_id = ? AND status_cd = ? AND party_cert_id = ? ) k 
+            Count: 8
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 11
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql:  select count(1) as count from ( select party_cert_id, party_id, is_realname_cert, cert_type, cert_org, cert_addr, cert_num, checker, check_time, cert_check_result, eff_date, exp_date, create_date, status_cd, create_staff, update_staff, status_date, update_date, remark, cust_order_id, order_item_id, org_uscc  from party_cert where party_id = '112006242307' and status_cd = '1000'  and party_cert_id = 100013248  ) k
+Max time sql req : crmtest@136.6.168.89:43200
+         Last sql:  select count(1) as count from ( select party_cert_id, party_id, is_realname_cert, cert_type, cert_org, cert_addr, cert_num, checker, check_time, cert_check_result, eff_date, exp_date, create_date, status_cd, create_staff, update_staff, status_date, update_date, remark, cust_order_id, order_item_id, org_uscc  from party_cert where party_id = '112006242307' and status_cd = '1000'  and party_cert_id = 100013248  ) k
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 28. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT sum ( t . ACCT_QUANTIT ) AS ACCT_QUANTIT FROM ( SELECT a . CREDIT_LIMIT_FEE AS ACCT_QUANTIT FROM temporary_credit_limit a WHERE a . credit_type = ? AND a . status_cd = ? AND exp_date >= now ( ) AND a . cust_id = ? UNION ALL SELECT a . CREDIT_LIMIT_FEE AS ACCT_QUANTIT FROM temporary_credit_limit a WHERE a . credit_type = ? AND a . status_cd = ? AND exp_date >= now ( ) AND a . cust_id = ? UNION ALL SELECT a . CREDIT_LIMIT_FEE AS ACCT_QUANTIT FROM temporary_credit_limit a WHERE a . credit_type = ? AND a . status_cd = ? AND exp_date >= now ( ) AND a . cust_id = ? UNION ALL SELECT a . CREDIT_LIMIT_FEE AS ACCT_QUANTIT FROM temporary_credit_limit a WHERE a . credit_type = ? AND a . status_cd = ? AND exp_date >= now ( ) AND a . cust_id = ? ) t ) k 
+            Count: 8
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 15
+         Avg time: 1
+         Max time: 4
+         Min time: 1
+     Max time sql:  select count(1) as count from ( select sum(t.ACCT_QUANTIT) as ACCT_QUANTIT  from (select a.CREDIT_LIMIT_FEE as ACCT_QUANTIT from temporary_credit_limit a  where a.credit_type='G' and a.status_cd='1000' and exp_date>=now() and a.cust_id= '834133844927' UNION ALL select a.CREDIT_LIMIT_FEE as ACCT_QUANTIT from temporary_credit_limit a  where a.credit_type='A' and a.status_cd='1000' and exp_date>=now() and a.cust_id= '834133844927' UNION ALL select a.CREDIT_LIMIT_FEE as ACCT_QUANTIT from temporary_credit_limit a where a.credit_type='C' and a.status_cd='1000' and exp_date>=now() and a.cust_id= '834133844927' UNION ALL select a.CREDIT_LIMIT_FEE as ACCT_QUANTIT from temporary_credit_limit a where a.credit_type='B' and a.status_cd='1000' and exp_date>=now() and a.cust_id= '834133844927' ) t ) k
+Max time sql req : crmtest@136.6.168.89:43210
+         Last sql:  select count(1) as count from ( select sum(t.ACCT_QUANTIT) as ACCT_QUANTIT  from (select a.CREDIT_LIMIT_FEE as ACCT_QUANTIT from temporary_credit_limit a  where a.credit_type='G' and a.status_cd='1000' and exp_date>=now() and a.cust_id= '834133844927' UNION ALL select a.CREDIT_LIMIT_FEE as ACCT_QUANTIT from temporary_credit_limit a  where a.credit_type='A' and a.status_cd='1000' and exp_date>=now() and a.cust_id= '834133844927' UNION ALL select a.CREDIT_LIMIT_FEE as ACCT_QUANTIT from temporary_credit_limit a where a.credit_type='C' and a.status_cd='1000' and exp_date>=now() and a.cust_id= '834133844927' UNION ALL select a.CREDIT_LIMIT_FEE as ACCT_QUANTIT from temporary_credit_limit a where a.credit_type='B' and a.status_cd='1000' and exp_date>=now() and a.cust_id= '834133844927' ) t ) k
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 29. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT DISTINCT a . cust_id , a . handle_cust_id , a . seq_nbr , a . party_id , a . cust_order_id , a . last_order_item_id AS order_id , a . action_type , a . eff_date record_eff_date , a . exp_date record_exp_date , a . update_date AS mod_date , a . cust_name , a . cust_number , a . lan_id service_region , a . market_region , a . type_flag , a . cust_type , a . cust_sub_type , cb . brand_cd AS cust_brand , cb . cust_sub_brand AS sub_cust_brand , a . is_vip , s . service_level , a . industry_cd , a . cust_area_grade , a . town_flag , a . lieu_id , a . status_cd , a . secrecy_level AS secr_grade , a . cust_addr AS cust_address , a . addr_id , a . cust_mgr , a . enter_date , a . create_date , a . ini_password , a . def_acct_id , a . grp_cust_code , a . charge_province_code , a . charge_lan_id , a . is_realname AS real_flag , a . not_real_reason , a . accept_channel , a . remark AS notes , d . credit_level , a . region_id AS common_region_id , a . cust_brand_modify , c . attr_name AS industry_name , de . approve_level , ccir . contact_id , a . party_cert_id , a . is_realname FROM CUSTOMER a LEFT JOIN credit d ON d . obj_id = a . cust_id AND d . obj_type = ? AND d . status_cd = ? LEFT JOIN credit_ext de ON d . credit_id = de . credit_id LEFT JOIN service_grade s ON s . obj_id = a . cust_id AND s . obj_type = ? AND s . status_cd = ? LEFT JOIN cust_brand cb ON cb . cust_id = a . cust_id AND cb . status_cd = ? AND cb . main_flag = ? LEFT JOIN cust_contact_info_rel ccir ON a . cust_id = ccir . cust_id AND ccir . head_flag = ? AND ccir . status_cd = ? LEFT JOIN attr_spec_tree c ON a . industry_cd = c . attr_value WHERE ? = ? AND a . state = ? AND a . lan_id = ? AND a . cust_name LIKE ? AND a . status_cd <> ? ) k 
+            Count: 7
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 195
+         Avg time: 27
+         Max time: 61
+         Min time: 5
+     Max time sql:  select count(1) as count from (   select distinct a.cust_id,a.handle_cust_id,a.seq_nbr,a.party_id,a.cust_order_id,a.last_order_item_id as order_id,a.action_type,a.eff_date record_eff_date,a.exp_date record_exp_date,a.update_date AS mod_date,a.cust_name,a.cust_number,a.lan_id service_region,a.market_region,a.type_flag,a.cust_type,a.cust_sub_type,cb.brand_cd AS cust_brand,cb.cust_sub_brand AS sub_cust_brand,a.is_vip,s.service_level,a.industry_cd,a.cust_area_grade,a.town_flag,a.lieu_id,a.status_cd,a.secrecy_level AS secr_grade,a.cust_addr AS cust_address,a.addr_id,a.cust_mgr,a.enter_date,a.create_date,a.ini_password,a.def_acct_id,a.grp_cust_code,a.charge_province_code,  a.charge_lan_id,a.is_realname AS real_flag,a.not_real_reason,a.accept_channel,a.remark as notes,d.credit_level,a.region_id as common_region_id,a.cust_brand_modify,c.attr_name as industry_name, de.approve_level, ccir.contact_id, a.party_cert_id,a.is_realname  from CUSTOMER a  LEFT JOIN credit d ON d.obj_id = a.cust_id and d.obj_type = '1100' AND d.status_cd = '1000'  LEFT JOIN credit_ext de on d.credit_id=de.credit_id  LEFT JOIN service_grade s ON s.obj_id = a.cust_id AND s.obj_type = '1100' AND s.status_cd = '1000'  LEFT JOIN cust_brand cb ON cb.cust_id = a.cust_id and cb.status_cd = '1000' and cb.main_flag='1'  LEFT JOIN cust_contact_info_rel ccir on a.cust_id = ccir.cust_id AND ccir.head_flag = '1'  and ccir.status_cd ='1000'  left join attr_spec_tree c on  a.industry_cd=c.attr_value where 1=1   and a.state = '1000'  and a.lan_id = '23'  and a.cust_name like 'adsl136262235%'  and a.status_cd <> '1300'  ) k
+Max time sql req : crmtest@136.6.168.89:43200
+         Last sql:  select count(1) as count from (   select distinct a.cust_id,a.handle_cust_id,a.seq_nbr,a.party_id,a.cust_order_id,a.last_order_item_id as order_id,a.action_type,a.eff_date record_eff_date,a.exp_date record_exp_date,a.update_date AS mod_date,a.cust_name,a.cust_number,a.lan_id service_region,a.market_region,a.type_flag,a.cust_type,a.cust_sub_type,cb.brand_cd AS cust_brand,cb.cust_sub_brand AS sub_cust_brand,a.is_vip,s.service_level,a.industry_cd,a.cust_area_grade,a.town_flag,a.lieu_id,a.status_cd,a.secrecy_level AS secr_grade,a.cust_addr AS cust_address,a.addr_id,a.cust_mgr,a.enter_date,a.create_date,a.ini_password,a.def_acct_id,a.grp_cust_code,a.charge_province_code,  a.charge_lan_id,a.is_realname AS real_flag,a.not_real_reason,a.accept_channel,a.remark as notes,d.credit_level,a.region_id as common_region_id,a.cust_brand_modify,c.attr_name as industry_name, de.approve_level, ccir.contact_id, a.party_cert_id,a.is_realname  from CUSTOMER a  LEFT JOIN credit d ON d.obj_id = a.cust_id and d.obj_type = '1100' AND d.status_cd = '1000'  LEFT JOIN credit_ext de on d.credit_id=de.credit_id  LEFT JOIN service_grade s ON s.obj_id = a.cust_id AND s.obj_type = '1100' AND s.status_cd = '1000'  LEFT JOIN cust_brand cb ON cb.cust_id = a.cust_id and cb.status_cd = '1000' and cb.main_flag='1'  LEFT JOIN cust_contact_info_rel ccir on a.cust_id = ccir.cust_id AND ccir.head_flag = '1'  and ccir.status_cd ='1000'  left join attr_spec_tree c on  a.industry_cd=c.attr_value where 1=1   and a.state = '1000'  and a.lan_id = '23'  and a.cust_name like 'adsl136262235%'  and a.status_cd <> '1300'  ) k
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 30. row ***************************
+        Statement: SELECT status_date , create_date , create_staff , update_date , update_staff , cust_id , seq_nbr , cust_order_id , action_type , eff_date , exp_date , cust_name , cust_number , cust_sub_type , is_vip , industry_cd , cust_area_grade , town_flag , industry_type_id , type_flag , addr_id , cust_mgr , enter_date , ini_password , def_acct_id , cust_type , lieu_id , status_cd , cust_addr , grp_cust_code , charge_province_code , region_id , cust_brand_modify , grid_attr , group_cust_seq , party_id , distributor_id , ext_cust_id , push_flag , handle_cust_id , charge_lan_id , not_real_reason , accept_channel , remark , tax_payer_id , cust_source_id , cust_control_level , is_instead , last_order_item_id , party_cert_id , market_region , is_realname , lan_id , state , secrecy_level , ext1_cust_id , ext2_cust_id , ext3_cust_id , group_cust_id , party_nbr FROM customer WHERE cust_id = ? AND state = ? LIMIT ? 
+            Count: 6
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 24
+         Avg time: 4
+         Max time: 13
+         Min time: 1
+     Max time sql: SELECT status_date,create_date,create_staff,update_date,update_staff,cust_id,seq_nbr,cust_order_id,action_type,eff_date,exp_date,cust_name,cust_number,cust_sub_type,is_vip,industry_cd,cust_area_grade,town_flag,industry_type_id,type_flag,addr_id,cust_mgr,enter_date,ini_password,def_acct_id,cust_type,lieu_id,status_cd,cust_addr,grp_cust_code,charge_province_code,region_id,cust_brand_modify,grid_attr,group_cust_seq,party_id,distributor_id,ext_cust_id,push_flag,handle_cust_id,charge_lan_id,not_real_reason,accept_channel,remark,tax_payer_id,cust_source_id,cust_control_level,is_instead,last_order_item_id,party_cert_id,market_region,is_realname,lan_id,state,secrecy_level,ext1_cust_id,ext2_cust_id,ext3_cust_id,group_cust_id,party_nbr  FROM customer  WHERE  cust_id = 800007191674 AND state = '1000' LIMIT 1
+Max time sql req : crmtest@136.25.62.144:52576
+         Last sql: SELECT status_date,create_date,create_staff,update_date,update_staff,cust_id,seq_nbr,cust_order_id,action_type,eff_date,exp_date,cust_name,cust_number,cust_sub_type,is_vip,industry_cd,cust_area_grade,town_flag,industry_type_id,type_flag,addr_id,cust_mgr,enter_date,ini_password,def_acct_id,cust_type,lieu_id,status_cd,cust_addr,grp_cust_code,charge_province_code,region_id,cust_brand_modify,grid_attr,group_cust_seq,party_id,distributor_id,ext_cust_id,push_flag,handle_cust_id,charge_lan_id,not_real_reason,accept_channel,remark,tax_payer_id,cust_source_id,cust_control_level,is_instead,last_order_item_id,party_cert_id,market_region,is_realname,lan_id,state,secrecy_level,ext1_cust_id,ext2_cust_id,ext3_cust_id,group_cust_id,party_nbr  FROM customer  WHERE  cust_id = 800007191674 AND state = '1000' LIMIT 1
+     Last sql req: crmtest@136.25.62.144:44682
+               Ip: 136.25.62.144
+           Schema: CUSDB
+*************************** 31. row ***************************
+        Statement: SELECT status_date , create_date , create_staff , update_date , update_staff , party_cert_id , cert_type , cert_org , cert_addr , cert_num , eff_date , exp_date , is_realname_cert , check_time , cert_check_result , status_cd , remark , cust_order_id , order_item_id , party_id , checker FROM party_cert WHERE party_cert_id = ? AND cert_type = ? AND status_cd = ? LIMIT ? 
+            Count: 6
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 633
+         Avg time: 105
+         Max time: 598
+         Min time: 3
+     Max time sql: SELECT status_date,create_date,create_staff,update_date,update_staff,party_cert_id,cert_type,cert_org,cert_addr,cert_num,eff_date,exp_date,is_realname_cert,check_time,cert_check_result,status_cd,remark,cust_order_id,order_item_id,party_id,checker  FROM party_cert  WHERE  party_cert_id = 1370334 AND cert_type = '1' AND status_cd = '1000' LIMIT 1
+Max time sql req : crmtest@136.25.62.144:52576
+         Last sql: SELECT status_date,create_date,create_staff,update_date,update_staff,party_cert_id,cert_type,cert_org,cert_addr,cert_num,eff_date,exp_date,is_realname_cert,check_time,cert_check_result,status_cd,remark,cust_order_id,order_item_id,party_id,checker  FROM party_cert  WHERE  party_cert_id = 1370334 AND cert_type = '1' AND status_cd = '1000' LIMIT 1
+     Last sql req: crmtest@136.25.62.144:44682
+               Ip: 136.25.62.144
+           Schema: CUSDB
+*************************** 32. row ***************************
+        Statement: SELECT a . is_realname , a . party_cert_id , a . cust_id , a . cust_name , a . cust_number , a . cust_type , a . cust_addr cust_address , a . handle_cust_id , a . state , a . status_cd , a . cust_order_id , a . ini_password , b . contact_id , a . party_id , a . create_date FROM customer a LEFT JOIN CUST_CONTACT_INFO_REL b ON a . cust_id = b . cust_id WHERE a . cust_id = ? LIMIT ? 
+            Count: 6
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 8
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select  a.is_realname,a.party_cert_id,  a.cust_id, a.cust_name, a.cust_number,  a.cust_type,        a.cust_addr cust_address, a.handle_cust_id, a.state, a.status_cd,  a.cust_order_id,        a.ini_password,b.contact_id,a.party_id,a.create_date   from  customer a left join CUST_CONTACT_INFO_REL b  on  a.cust_id = b.cust_id          where   a.cust_id = '834133844927'  limit 1 
+Max time sql req : crmtest@136.6.168.89:43216
+         Last sql: select  a.is_realname,a.party_cert_id,  a.cust_id, a.cust_name, a.cust_number,  a.cust_type,        a.cust_addr cust_address, a.handle_cust_id, a.state, a.status_cd,  a.cust_order_id,        a.ini_password,b.contact_id,a.party_id,a.create_date   from  customer a left join CUST_CONTACT_INFO_REL b  on  a.cust_id = b.cust_id          where   a.cust_id = '834133844927'  limit 1 
+     Last sql req: crmtest@136.6.168.89:54714
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 33. row ***************************
+        Statement: SELECT a . cert_type certi_type , a . cert_num certi_number , a . cert_addr certi_address , c . mobile_phone FROM party_cert a LEFT JOIN contacts_info c ON ( a . party_id = c . party_id AND c . contact_id = ? ) WHERE a . party_cert_id = ? AND a . party_id = ? 
+            Count: 6
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 7
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select a.cert_type certi_type,a.cert_num certi_number,a.cert_addr certi_address,c.mobile_phone from party_cert a left join contacts_info c on (a.party_id = c.party_id and  c.contact_id ='20134204731' ) where a.party_cert_id = '100013248' and a.party_id = '112006242307'  
+Max time sql req : crmtest@136.6.168.89:54714
+         Last sql: select a.cert_type certi_type,a.cert_num certi_number,a.cert_addr certi_address,c.mobile_phone from party_cert a left join contacts_info c on (a.party_id = c.party_id and  c.contact_id ='20134204731' ) where a.party_cert_id = '100013248' and a.party_id = '112006242307'  
+     Last sql req: crmtest@136.6.168.89:54714
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 34. row ***************************
+        Statement: SELECT count ( * ) AS col_counts FROM club_member WHERE ? = ? AND cust_id = ? AND status_cd = ? AND exp_date >= ? 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 6
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select count(*) as col_counts from club_member where 1=1  and cust_id = '834133844927'  and status_cd = '1000'  and exp_date >= '2026-02-27 14:11:24'
+Max time sql req : crmtest@136.6.168.89:43216
+         Last sql: select count(*) as col_counts from club_member where 1=1  and cust_id = '834133844927'  and status_cd = '1000'  and exp_date >= '2026-02-27 15:48:52'
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 35. row ***************************
+        Statement: SELECT credit_level FROM party_credit_risk_level WHERE party_id = ? LIMIT ? 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 6
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select credit_level from party_credit_risk_level where party_id = '9824021000074755' limit 1 
+Max time sql req : crmtest@136.6.168.89:43200
+         Last sql: select credit_level from party_credit_risk_level where party_id = '9824021000074755' limit 1 
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 36. row ***************************
+        Statement: SELECT a . ATTR_NAME FROM attr_spec_tree a WHERE a . attr_code = ? AND attr_value = ? 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 9
+         Avg time: 1
+         Max time: 4
+         Min time: 1
+     Max time sql: select a.ATTR_NAME from attr_spec_tree a where a.attr_code = 'PTY-0005' AND attr_value = '1142' 
+Max time sql req : crmtest@136.6.168.89:51170
+         Last sql: select a.ATTR_NAME from attr_spec_tree a where a.attr_code = 'PTY-0005' AND attr_value = '1142' 
+     Last sql req: crmtest@136.6.168.89:54714
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 37. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT credit_limit_id , obj_id , product_id , lan_id , is_use , serv_id , lan_code , oper_id , cust_price_plan_id , pricing_plan_id , audit_oper_id , audit_memo , action_type , credit_type , obj_type , cust_id FROM credit_limit_ext WHERE ? = ? AND obj_type = ? AND obj_id = ? AND cust_id = ? ) k 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 9
+         Avg time: 1
+         Max time: 3
+         Min time: 1
+     Max time sql:  select count(1) as count from ( select credit_limit_id, obj_id, product_id, lan_id, is_use, serv_id, lan_code, oper_id, cust_price_plan_id, pricing_plan_id, audit_oper_id, audit_memo, action_type, credit_type, obj_type, cust_id from credit_limit_ext where 1=1 and obj_type = '1100' and obj_id = '834133844927' and cust_id = '834133844927'  ) k
+Max time sql req : crmtest@136.6.168.89:54716
+         Last sql:  select count(1) as count from ( select credit_limit_id, obj_id, product_id, lan_id, is_use, serv_id, lan_code, oper_id, cust_price_plan_id, pricing_plan_id, audit_oper_id, audit_memo, action_type, credit_type, obj_type, cust_id from credit_limit_ext where 1=1 and obj_type = '1100' and obj_id = '834133844927' and cust_id = '834133844927'  ) k
+     Last sql req: crmtest@136.6.168.89:54716
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 38. row ***************************
+        Statement: SELECT party_id FROM customer WHERE cust_id = ? AND state = ? LIMIT ? 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 7
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select party_id from customer where cust_id = '834133844927' and state = '1000' limit 1 
+Max time sql req : crmtest@136.6.168.89:43904
+         Last sql: select party_id from customer where cust_id = '834133844927' and state = '1000' limit 1 
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 39. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT credit_limit_id , obj_id , credit_limit_fee , eff_date , update_date , exp_date , remark , evaluate_time , status_cd , create_staff , create_date , set_reason , obj_type , available_credit_limit_fee , evaluate_type , status_date , update_staff , cust_id FROM credit_limit WHERE ? = ? AND cust_id = ? AND obj_type = ? AND obj_id = ? AND status_cd = ? ) k 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 6
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql:  select count(1) as count from ( select credit_limit_id, obj_id, credit_limit_fee, eff_date, update_date, exp_date, remark, evaluate_time, status_cd, create_staff, create_date, set_reason, obj_type, available_credit_limit_fee, evaluate_type, status_date, update_staff, cust_id from credit_limit where 1=1 and cust_id = '834133844927' and obj_type = '1100' and obj_id = '834133844927' and status_cd = '1000' ) k
+Max time sql req : crmtest@136.6.168.89:43210
+         Last sql:  select count(1) as count from ( select credit_limit_id, obj_id, credit_limit_fee, eff_date, update_date, exp_date, remark, evaluate_time, status_cd, create_staff, create_date, set_reason, obj_type, available_credit_limit_fee, evaluate_type, status_date, update_staff, cust_id from credit_limit where 1=1 and cust_id = '834133844927' and obj_type = '1100' and obj_id = '834133844927' and status_cd = '1000' ) k
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 40. row ***************************
+        Statement: SELECT obj_id , lan_id , approve_level , v_flag , is_change , imp_cust_type , cust_class , nostopmonths , credit_id , obj_type , cust_id FROM credit_ext WHERE ? = ? AND obj_type = ? AND obj_id = ? AND cust_id = ? LIMIT ? , ? 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 9
+         Avg time: 1
+         Max time: 3
+         Min time: 1
+     Max time sql: select obj_id, lan_id, approve_level, v_flag, is_change, imp_cust_type, cust_class, nostopmonths, credit_id, obj_type, cust_id from credit_ext where 1=1 and obj_type = '1100' and obj_id = '834133844927' and cust_id = '834133844927' limit 0,20 
+Max time sql req : crmtest@136.6.168.89:43218
+         Last sql: select obj_id, lan_id, approve_level, v_flag, is_change, imp_cust_type, cust_class, nostopmonths, credit_id, obj_type, cust_id from credit_ext where 1=1 and obj_type = '1100' and obj_id = '834133844927' and cust_id = '834133844927' limit 0,20 
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 41. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT obj_id , lan_id , approve_level , v_flag , is_change , imp_cust_type , cust_class , nostopmonths , credit_id , obj_type , cust_id FROM credit_ext WHERE ? = ? AND obj_type = ? AND obj_id = ? AND cust_id = ? ) k 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 4
+         Avg time: 0
+         Max time: 1
+         Min time: 0
+     Max time sql:  select count(1) as count from ( select obj_id, lan_id, approve_level, v_flag, is_change, imp_cust_type, cust_class, nostopmonths, credit_id, obj_type, cust_id from credit_ext where 1=1 and obj_type = '1100' and obj_id = '834133844927' and cust_id = '834133844927' ) k
+Max time sql req : crmtest@136.6.168.89:43218
+         Last sql:  select count(1) as count from ( select obj_id, lan_id, approve_level, v_flag, is_change, imp_cust_type, cust_class, nostopmonths, credit_id, obj_type, cust_id from credit_ext where 1=1 and obj_type = '1100' and obj_id = '834133844927' and cust_id = '834133844927' ) k
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 42. row ***************************
+        Statement: SELECT max ( kmr . level_of_gov ) point_value FROM cust_key_person_rel kpr , key_man_record kmr WHERE kmr . cust_relation_id = kpr . cust_key_person_rel_id AND kmr . cust_id = kpr . CUST_ID AND kmr . key_cust_id = ? AND kpr . status_cd = ? 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 83
+         Avg time: 16
+         Max time: 23
+         Min time: 12
+     Max time sql: select max(kmr.level_of_gov) point_value from cust_key_person_rel kpr,key_man_record kmr where kmr.cust_relation_id = kpr.cust_key_person_rel_id and kmr.cust_id = kpr.CUST_ID and kmr.key_cust_id='834133844927' and kpr.status_cd=1000
+Max time sql req : crmtest@136.6.168.89:51170
+         Last sql: select max(kmr.level_of_gov) point_value from cust_key_person_rel kpr,key_man_record kmr where kmr.cust_relation_id = kpr.cust_key_person_rel_id and kmr.cust_id = kpr.CUST_ID and kmr.key_cust_id='834133844927' and kpr.status_cd=1000
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 43. row ***************************
+        Statement: SELECT t . cust_id FROM CLUB_MEMBER t WHERE t . STATUS_CD = ? AND t . MEMBERSHIP_LEVEL IS NOT ? AND t . cust_id = ? AND TIMESTAMPDIFF ( DAY , t . exp_date , now ( ) ) <= ? 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 5
+         Avg time: 1
+         Max time: 1
+         Min time: 1
+     Max time sql: select t.cust_id from CLUB_MEMBER t where t.STATUS_CD = '1000' and t.MEMBERSHIP_LEVEL is not null and t.cust_id = '834133844927' and  TIMESTAMPDIFF(DAY,t.exp_date,now()) <= 0
+Max time sql req : crmtest@136.6.168.89:43216
+         Last sql: select t.cust_id from CLUB_MEMBER t where t.STATUS_CD = '1000' and t.MEMBERSHIP_LEVEL is not null and t.cust_id = '834133844927' and  TIMESTAMPDIFF(DAY,t.exp_date,now()) <= 0
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 44. row ***************************
+        Statement: SELECT ext_party_id FROM party WHERE party_id = ? LIMIT ? 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 5
+         Avg time: 1
+         Max time: 1
+         Min time: 1
+     Max time sql: select ext_party_id from party where party_id = '112006242307' limit 1  
+Max time sql req : crmtest@136.6.168.89:43200
+         Last sql: select ext_party_id from party where party_id = '112006242307' limit 1  
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 45. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT cust_key_person_rel_id , cust_id , key_person_id , description , status_cd , create_staff , update_staff , create_date , status_date , update_date , remark FROM cust_key_person_rel WHERE cust_id = ? AND status_cd = ? ) k 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 6
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql:  select count(1) as count from ( select cust_key_person_rel_id, cust_id, key_person_id, description, status_cd, create_staff, update_staff, create_date, status_date, update_date, remark from cust_key_person_rel where cust_id = '834133844927' and status_cd = '1000'  ) k
+Max time sql req : crmtest@136.6.168.89:48196
+         Last sql:  select count(1) as count from ( select cust_key_person_rel_id, cust_id, key_person_id, description, status_cd, create_staff, update_staff, create_date, status_date, update_date, remark from cust_key_person_rel where cust_id = '834133844927' and status_cd = '1000'  ) k
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 46. row ***************************
+        Statement: SELECT a . tax_pri_id , a . tax_payer_id , a . cust_id , a . tax_id , a . tax_name , a . tax_rela_tel , a . tax_rela_addr , a . tax_bank_name , a . tax_bank_acct , a . start_date , a . tax_end_date , a . general_taxpayer_flag , a . vat_invoices_flag , a . bill_deliver_way , a . bill_deliver_addr , a . postcode AS post_code , a . eff_date , a . exp_date , a . approval_time , a . status_cd , a . status_date , a . create_staff , a . create_date , a . update_staff , a . update_date , a . remark , a . fax_contact_person , a . fax_contact_idcard , a . fax_picture , a . tax_province_code , a . invoice_address , a . notice_phone , a . email , a . service_region FROM Tax_Payer a WHERE ? = ? AND a . cust_id = ? AND a . status_cd = ? LIMIT ? , ? 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 10
+         Avg time: 2
+         Max time: 4
+         Min time: 1
+     Max time sql: select a.tax_pri_id,a.tax_payer_id,a.cust_id,a.tax_id,a.tax_name,a.tax_rela_tel,a.tax_rela_addr,a.tax_bank_name,a.tax_bank_acct,a.start_date,a.tax_end_date,a.general_taxpayer_flag,a.vat_invoices_flag,a.bill_deliver_way, a.bill_deliver_addr,a.postcode as post_code,a.eff_date,a.exp_date,a.approval_time,a.status_cd,a.status_date,a.create_staff,a.create_date,a.update_staff,a.update_date,a.remark,a.fax_contact_person,a.fax_contact_idcard,  a.fax_picture,a.tax_province_code,a.invoice_address,a.notice_phone,a.email,a.service_region from Tax_Payer a where 1=1  and a.cust_id = '834133844927'  and a.status_cd = '1000'  limit 0,20 
+Max time sql req : crmtest@136.6.168.89:43216
+         Last sql: select a.tax_pri_id,a.tax_payer_id,a.cust_id,a.tax_id,a.tax_name,a.tax_rela_tel,a.tax_rela_addr,a.tax_bank_name,a.tax_bank_acct,a.start_date,a.tax_end_date,a.general_taxpayer_flag,a.vat_invoices_flag,a.bill_deliver_way, a.bill_deliver_addr,a.postcode as post_code,a.eff_date,a.exp_date,a.approval_time,a.status_cd,a.status_date,a.create_staff,a.create_date,a.update_staff,a.update_date,a.remark,a.fax_contact_person,a.fax_contact_idcard,  a.fax_picture,a.tax_province_code,a.invoice_address,a.notice_phone,a.email,a.service_region from Tax_Payer a where 1=1  and a.cust_id = '834133844927'  and a.status_cd = '1000'  limit 0,20 
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 47. row ***************************
+        Statement: SELECT show_nbr , sub_special_type FROM special_list WHERE sub_special_type IN ( ? , ? , ? , ? , ? , ? ) AND status_cd = ? AND cust_id = ? 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 6
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select show_nbr, sub_special_type  from special_list  where sub_special_type in (2100, 2200, 2300, 2400, 2500, 2600)    and status_cd = 1000    and cust_id = '834133844927'
+Max time sql req : crmtest@136.6.168.89:43216
+         Last sql: select show_nbr, sub_special_type  from special_list  where sub_special_type in (2100, 2200, 2300, 2400, 2500, 2600)    and status_cd = 1000    and cust_id = '834133844927'
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 48. row ***************************
+        Statement: SELECT individual_id , party_id , birthday , marital_status , gender , nationality , nation , religion , education , occupation , employer , position , website , status_cd , status_date , create_staff , create_date , update_staff , update_date , remark , cust_order_id , order_item_id , skill , birth_place , school_name , college_name , grade_name , yazc FROM party_ind WHERE party_id = ? AND status_cd = ? LIMIT ? , ? 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 6
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select individual_id, party_id, birthday, marital_status, gender, nationality, nation, religion, education, occupation, employer, position, website, status_cd, status_date, create_staff, create_date, update_staff, update_date, remark, cust_order_id, order_item_id, skill, birth_place,school_name,college_name,grade_name,yazc from party_ind where party_id = '112006242307' and status_cd = '1000'  limit 0,20 
+Max time sql req : crmtest@136.6.168.89:43200
+         Last sql: select individual_id, party_id, birthday, marital_status, gender, nationality, nation, religion, education, occupation, employer, position, website, status_cd, status_date, create_staff, create_date, update_staff, update_date, remark, cust_order_id, order_item_id, skill, birth_place,school_name,college_name,grade_name,yazc from party_ind where party_id = '112006242307' and status_cd = '1000'  limit 0,20 
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 49. row ***************************
+        Statement: SELECT DISTINCT a . cust_id , a . handle_cust_id , a . seq_nbr , a . party_id , a . cust_order_id , a . last_order_item_id AS order_id , a . action_type , a . eff_date record_eff_date , a . exp_date record_exp_date , a . update_date AS mod_date , a . cust_name , a . cust_number , a . lan_id service_region , a . market_region , a . type_flag , a . cust_type , a . cust_sub_type , cb . brand_cd AS cust_brand , cb . cust_sub_brand AS sub_cust_brand , a . is_vip , s . service_level , a . industry_cd , a . cust_area_grade , a . town_flag , a . lieu_id , a . status_cd , a . secrecy_level AS secr_grade , a . cust_addr AS cust_address , a . addr_id , a . cust_mgr , a . enter_date , a . create_date , a . ini_password , a . def_acct_id , a . grp_cust_code , a . charge_province_code , a . charge_lan_id , a . is_realname AS real_flag , a . not_real_reason , a . accept_channel , a . remark AS notes , d . credit_level , a . region_id AS common_region_id , a . cust_brand_modify , c . attr_name AS industry_name , de . approve_level , ccir . contact_id , a . party_cert_id , a . is_realname FROM CUSTOMER a LEFT JOIN credit d ON d . obj_id = a . cust_id AND d . obj_type = ? AND d . status_cd = ? LEFT JOIN credit_ext de ON d . credit_id = de . credit_id LEFT JOIN service_grade s ON s . obj_id = a . cust_id AND s . obj_type = ? AND s . status_cd = ? LEFT JOIN cust_brand cb ON cb . cust_id = a . cust_id AND cb . status_cd = ? AND cb . main_flag = ? LEFT JOIN cust_contact_info_rel ccir ON a . cust_id = ccir . cust_id AND ccir . head_flag = ? AND ccir . status_cd = ? LEFT JOIN attr_spec_tree c ON a . industry_cd = c . attr_value WHERE ? = ? AND a . state = ? AND a . lan_id = ? AND a . cust_id = ? AND a . status_cd <> ? LIMIT ? , ? 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 12
+         Avg time: 2
+         Max time: 3
+         Min time: 2
+     Max time sql:   select distinct a.cust_id,a.handle_cust_id,a.seq_nbr,a.party_id,a.cust_order_id,a.last_order_item_id as order_id,a.action_type,a.eff_date record_eff_date,a.exp_date record_exp_date,a.update_date AS mod_date,a.cust_name,a.cust_number,a.lan_id service_region,a.market_region,a.type_flag,a.cust_type,a.cust_sub_type,cb.brand_cd AS cust_brand,cb.cust_sub_brand AS sub_cust_brand,a.is_vip,s.service_level,a.industry_cd,a.cust_area_grade,a.town_flag,a.lieu_id,a.status_cd,a.secrecy_level AS secr_grade,a.cust_addr AS cust_address,a.addr_id,a.cust_mgr,a.enter_date,a.create_date,a.ini_password,a.def_acct_id,a.grp_cust_code,a.charge_province_code,  a.charge_lan_id,a.is_realname AS real_flag,a.not_real_reason,a.accept_channel,a.remark as notes,d.credit_level,a.region_id as common_region_id,a.cust_brand_modify,c.attr_name as industry_name, de.approve_level, ccir.contact_id, a.party_cert_id,a.is_realname  from CUSTOMER a  LEFT JOIN credit d ON d.obj_id = a.cust_id and d.obj_type = '1100' AND d.status_cd = '1000'  LEFT JOIN credit_ext de on d.credit_id=de.credit_id  LEFT JOIN service_grade s ON s.obj_id = a.cust_id AND s.obj_type = '1100' AND s.status_cd = '1000'  LEFT JOIN cust_brand cb ON cb.cust_id = a.cust_id and cb.status_cd = '1000' and cb.main_flag='1'  LEFT JOIN cust_contact_info_rel ccir on a.cust_id = ccir.cust_id AND ccir.head_flag = '1'  and ccir.status_cd ='1000'  left join attr_spec_tree c on  a.industry_cd=c.attr_value where 1=1   and a.state = '1000'  and a.lan_id = '23'  and a.cust_id ='834133844927'  and a.status_cd <> '1300'  limit 0,10 
+Max time sql req : crmtest@136.6.168.89:43200
+         Last sql:   select distinct a.cust_id,a.handle_cust_id,a.seq_nbr,a.party_id,a.cust_order_id,a.last_order_item_id as order_id,a.action_type,a.eff_date record_eff_date,a.exp_date record_exp_date,a.update_date AS mod_date,a.cust_name,a.cust_number,a.lan_id service_region,a.market_region,a.type_flag,a.cust_type,a.cust_sub_type,cb.brand_cd AS cust_brand,cb.cust_sub_brand AS sub_cust_brand,a.is_vip,s.service_level,a.industry_cd,a.cust_area_grade,a.town_flag,a.lieu_id,a.status_cd,a.secrecy_level AS secr_grade,a.cust_addr AS cust_address,a.addr_id,a.cust_mgr,a.enter_date,a.create_date,a.ini_password,a.def_acct_id,a.grp_cust_code,a.charge_province_code,  a.charge_lan_id,a.is_realname AS real_flag,a.not_real_reason,a.accept_channel,a.remark as notes,d.credit_level,a.region_id as common_region_id,a.cust_brand_modify,c.attr_name as industry_name, de.approve_level, ccir.contact_id, a.party_cert_id,a.is_realname  from CUSTOMER a  LEFT JOIN credit d ON d.obj_id = a.cust_id and d.obj_type = '1100' AND d.status_cd = '1000'  LEFT JOIN credit_ext de on d.credit_id=de.credit_id  LEFT JOIN service_grade s ON s.obj_id = a.cust_id AND s.obj_type = '1100' AND s.status_cd = '1000'  LEFT JOIN cust_brand cb ON cb.cust_id = a.cust_id and cb.status_cd = '1000' and cb.main_flag='1'  LEFT JOIN cust_contact_info_rel ccir on a.cust_id = ccir.cust_id AND ccir.head_flag = '1'  and ccir.status_cd ='1000'  left join attr_spec_tree c on  a.industry_cd=c.attr_value where 1=1   and a.state = '1000'  and a.lan_id = '23'  and a.cust_id ='834133844927'  and a.status_cd <> '1300'  limit 0,10 
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 50. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT individual_id , party_id , birthday , marital_status , gender , nationality , nation , religion , education , occupation , employer , position , website , status_cd , status_date , create_staff , create_date , update_staff , update_date , remark , cust_order_id , order_item_id , skill , birth_place , school_name , college_name , grade_name , yazc FROM party_ind WHERE party_id = ? AND status_cd = ? ) k 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 12
+         Avg time: 2
+         Max time: 4
+         Min time: 1
+     Max time sql:  select count(1) as count from ( select individual_id, party_id, birthday, marital_status, gender, nationality, nation, religion, education, occupation, employer, position, website, status_cd, status_date, create_staff, create_date, update_staff, update_date, remark, cust_order_id, order_item_id, skill, birth_place,school_name,college_name,grade_name,yazc from party_ind where party_id = '112006242307' and status_cd = '1000'  ) k
+Max time sql req : crmtest@136.6.168.89:51164
+         Last sql:  select count(1) as count from ( select individual_id, party_id, birthday, marital_status, gender, nationality, nation, religion, education, occupation, employer, position, website, status_cd, status_date, create_staff, create_date, update_staff, update_date, remark, cust_order_id, order_item_id, skill, birth_place,school_name,college_name,grade_name,yazc from party_ind where party_id = '112006242307' and status_cd = '1000'  ) k
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 51. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT a . tax_pri_id , a . tax_payer_id , a . cust_id , a . tax_id , a . tax_name , a . tax_rela_tel , a . tax_rela_addr , a . tax_bank_name , a . tax_bank_acct , a . start_date , a . tax_end_date , a . general_taxpayer_flag , a . vat_invoices_flag , a . bill_deliver_way , a . bill_deliver_addr , a . postcode AS post_code , a . eff_date , a . exp_date , a . approval_time , a . status_cd , a . status_date , a . create_staff , a . create_date , a . update_staff , a . update_date , a . remark , a . fax_contact_person , a . fax_contact_idcard , a . fax_picture , a . tax_province_code , a . invoice_address , a . notice_phone , a . email , a . service_region FROM Tax_Payer a WHERE ? = ? AND a . cust_id = ? AND a . status_cd = ? ) k 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 18
+         Avg time: 3
+         Max time: 10
+         Min time: 1
+     Max time sql:  select count(1) as count from ( select a.tax_pri_id,a.tax_payer_id,a.cust_id,a.tax_id,a.tax_name,a.tax_rela_tel,a.tax_rela_addr,a.tax_bank_name,a.tax_bank_acct,a.start_date,a.tax_end_date,a.general_taxpayer_flag,a.vat_invoices_flag,a.bill_deliver_way, a.bill_deliver_addr,a.postcode as post_code,a.eff_date,a.exp_date,a.approval_time,a.status_cd,a.status_date,a.create_staff,a.create_date,a.update_staff,a.update_date,a.remark,a.fax_contact_person,a.fax_contact_idcard,  a.fax_picture,a.tax_province_code,a.invoice_address,a.notice_phone,a.email,a.service_region from Tax_Payer a where 1=1  and a.cust_id = '834133844927'  and a.status_cd = '1000'  ) k
+Max time sql req : crmtest@136.6.168.89:43216
+         Last sql:  select count(1) as count from ( select a.tax_pri_id,a.tax_payer_id,a.cust_id,a.tax_id,a.tax_name,a.tax_rela_tel,a.tax_rela_addr,a.tax_bank_name,a.tax_bank_acct,a.start_date,a.tax_end_date,a.general_taxpayer_flag,a.vat_invoices_flag,a.bill_deliver_way, a.bill_deliver_addr,a.postcode as post_code,a.eff_date,a.exp_date,a.approval_time,a.status_cd,a.status_date,a.create_staff,a.create_date,a.update_staff,a.update_date,a.remark,a.fax_contact_person,a.fax_contact_idcard,  a.fax_picture,a.tax_province_code,a.invoice_address,a.notice_phone,a.email,a.service_region from Tax_Payer a where 1=1  and a.cust_id = '834133844927'  and a.status_cd = '1000'  ) k
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 52. row ***************************
+        Statement: SELECT a . seq_id FROM pcdn_blacklist_info a WHERE a . cert_num = ? AND a . cert_type = ? 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 7
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select a.seq_id from pcdn_blacklist_info a where a.cert_num = 'LiuYiYi130' and a.cert_type = '3' 
+Max time sql req : crmtest@136.6.168.89:43216
+         Last sql: select a.seq_id from pcdn_blacklist_info a where a.cert_num = 'LiuYiYi130' and a.cert_type = '3' 
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 53. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT service_grade_id , service_level , obj_type , obj_id , evaluate_time , eff_date , exp_date , status_cd , status_date , create_staff , update_staff , create_date , update_date , remark , cust_id , cust_order_id , order_item_id , seq_nbr FROM service_grade WHERE obj_type = ? AND obj_id = ? AND status_cd = ? AND cust_id = ? ) k 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 30
+         Avg time: 6
+         Max time: 25
+         Min time: 1
+     Max time sql:  select count(1) as count from ( select service_grade_id, service_level, obj_type, obj_id, evaluate_time, eff_date, exp_date, status_cd, status_date, create_staff, update_staff, create_date, update_date, remark, cust_id, cust_order_id, order_item_id, seq_nbr from service_grade where obj_type = '1100' and obj_id = '834133844927' and status_cd = '1000' and cust_id = '834133844927'  ) k
+Max time sql req : crmtest@136.6.168.89:43212
+         Last sql:  select count(1) as count from ( select service_grade_id, service_level, obj_type, obj_id, evaluate_time, eff_date, exp_date, status_cd, status_date, create_staff, update_staff, create_date, update_date, remark, cust_id, cust_order_id, order_item_id, seq_nbr from service_grade where obj_type = '1100' and obj_id = '834133844927' and status_cd = '1000' and cust_id = '834133844927'  ) k
+     Last sql req: crmtest@136.6.168.89:54712
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 54. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT obj_id , credit_level , update_date , update_staff , credit_id , obj_type , credit_value , evaluate_time , evaluate_type , eff_date , exp_date , status_cd , status_date , create_staff , create_date , remark FROM credit WHERE ? = ? AND obj_type = ? AND obj_id = ? AND status_cd = ? AND cust_id = ? ) k 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 5
+         Avg time: 1
+         Max time: 1
+         Min time: 1
+     Max time sql:  select count(1) as count from ( select obj_id, credit_level, update_date, update_staff, credit_id, obj_type, credit_value, evaluate_time, evaluate_type, eff_date, exp_date, status_cd, status_date, create_staff, create_date, remark from credit where 1=1 and obj_type = '1100' and obj_id = '834133844927' and status_cd = '1000' and cust_id = '834133844927'  ) k
+Max time sql req : crmtest@136.6.168.89:43214
+         Last sql:  select count(1) as count from ( select obj_id, credit_level, update_date, update_staff, credit_id, obj_type, credit_value, evaluate_time, evaluate_type, eff_date, exp_date, status_cd, status_date, create_staff, create_date, remark from credit where 1=1 and obj_type = '1100' and obj_id = '834133844927' and status_cd = '1000' and cust_id = '834133844927'  ) k
+     Last sql req: crmtest@136.6.168.89:54714
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 55. row ***************************
+        Statement: SELECT obj_id , credit_level , update_date , update_staff , credit_id , obj_type , credit_value , evaluate_time , evaluate_type , eff_date , exp_date , status_cd , status_date , create_staff , create_date , remark FROM credit WHERE ? = ? AND obj_type = ? AND obj_id = ? AND status_cd = ? AND cust_id = ? LIMIT ? , ? 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 15
+         Avg time: 3
+         Max time: 4
+         Min time: 0
+     Max time sql: select obj_id, credit_level, update_date, update_staff, credit_id, obj_type, credit_value, evaluate_time, evaluate_type, eff_date, exp_date, status_cd, status_date, create_staff, create_date, remark from credit where 1=1 and obj_type = '1100' and obj_id = '834133844927' and status_cd = '1000' and cust_id = '834133844927'  limit 0,20 
+Max time sql req : crmtest@136.6.168.89:43214
+         Last sql: select obj_id, credit_level, update_date, update_staff, credit_id, obj_type, credit_value, evaluate_time, evaluate_type, eff_date, exp_date, status_cd, status_date, create_staff, create_date, remark from credit where 1=1 and obj_type = '1100' and obj_id = '834133844927' and status_cd = '1000' and cust_id = '834133844927'  limit 0,20 
+     Last sql req: crmtest@136.6.168.89:54714
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 56. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT DISTINCT a . cust_id , a . handle_cust_id , a . seq_nbr , a . party_id , a . cust_order_id , a . last_order_item_id AS order_id , a . action_type , a . eff_date record_eff_date , a . exp_date record_exp_date , a . update_date AS mod_date , a . cust_name , a . cust_number , a . lan_id service_region , a . market_region , a . type_flag , a . cust_type , a . cust_sub_type , cb . brand_cd AS cust_brand , cb . cust_sub_brand AS sub_cust_brand , a . is_vip , s . service_level , a . industry_cd , a . cust_area_grade , a . town_flag , a . lieu_id , a . status_cd , a . secrecy_level AS secr_grade , a . cust_addr AS cust_address , a . addr_id , a . cust_mgr , a . enter_date , a . create_date , a . ini_password , a . def_acct_id , a . grp_cust_code , a . charge_province_code , a . charge_lan_id , a . is_realname AS real_flag , a . not_real_reason , a . accept_channel , a . remark AS notes , d . credit_level , a . region_id AS common_region_id , a . cust_brand_modify , c . attr_name AS industry_name , de . approve_level , ccir . contact_id , a . party_cert_id , a . is_realname FROM CUSTOMER a LEFT JOIN credit d ON d . obj_id = a . cust_id AND d . obj_type = ? AND d . status_cd = ? LEFT JOIN credit_ext de ON d . credit_id = de . credit_id LEFT JOIN service_grade s ON s . obj_id = a . cust_id AND s . obj_type = ? AND s . status_cd = ? LEFT JOIN cust_brand cb ON cb . cust_id = a . cust_id AND cb . status_cd = ? AND cb . main_flag = ? LEFT JOIN cust_contact_info_rel ccir ON a . cust_id = ccir . cust_id AND ccir . head_flag = ? AND ccir . status_cd = ? LEFT JOIN attr_spec_tree c ON a . industry_cd = c . attr_value WHERE ? = ? AND a . state = ? AND a . lan_id = ? AND a . cust_id = ? AND a . status_cd <> ? ) k 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 14
+         Avg time: 2
+         Max time: 4
+         Min time: 2
+     Max time sql:  select count(1) as count from (   select distinct a.cust_id,a.handle_cust_id,a.seq_nbr,a.party_id,a.cust_order_id,a.last_order_item_id as order_id,a.action_type,a.eff_date record_eff_date,a.exp_date record_exp_date,a.update_date AS mod_date,a.cust_name,a.cust_number,a.lan_id service_region,a.market_region,a.type_flag,a.cust_type,a.cust_sub_type,cb.brand_cd AS cust_brand,cb.cust_sub_brand AS sub_cust_brand,a.is_vip,s.service_level,a.industry_cd,a.cust_area_grade,a.town_flag,a.lieu_id,a.status_cd,a.secrecy_level AS secr_grade,a.cust_addr AS cust_address,a.addr_id,a.cust_mgr,a.enter_date,a.create_date,a.ini_password,a.def_acct_id,a.grp_cust_code,a.charge_province_code,  a.charge_lan_id,a.is_realname AS real_flag,a.not_real_reason,a.accept_channel,a.remark as notes,d.credit_level,a.region_id as common_region_id,a.cust_brand_modify,c.attr_name as industry_name, de.approve_level, ccir.contact_id, a.party_cert_id,a.is_realname  from CUSTOMER a  LEFT JOIN credit d ON d.obj_id = a.cust_id and d.obj_type = '1100' AND d.status_cd = '1000'  LEFT JOIN credit_ext de on d.credit_id=de.credit_id  LEFT JOIN service_grade s ON s.obj_id = a.cust_id AND s.obj_type = '1100' AND s.status_cd = '1000'  LEFT JOIN cust_brand cb ON cb.cust_id = a.cust_id and cb.status_cd = '1000' and cb.main_flag='1'  LEFT JOIN cust_contact_info_rel ccir on a.cust_id = ccir.cust_id AND ccir.head_flag = '1'  and ccir.status_cd ='1000'  left join attr_spec_tree c on  a.industry_cd=c.attr_value where 1=1   and a.state = '1000'  and a.lan_id = '23'  and a.cust_id ='834133844927'  and a.status_cd <> '1300'  ) k
+Max time sql req : crmtest@136.6.168.89:43200
+         Last sql:  select count(1) as count from (   select distinct a.cust_id,a.handle_cust_id,a.seq_nbr,a.party_id,a.cust_order_id,a.last_order_item_id as order_id,a.action_type,a.eff_date record_eff_date,a.exp_date record_exp_date,a.update_date AS mod_date,a.cust_name,a.cust_number,a.lan_id service_region,a.market_region,a.type_flag,a.cust_type,a.cust_sub_type,cb.brand_cd AS cust_brand,cb.cust_sub_brand AS sub_cust_brand,a.is_vip,s.service_level,a.industry_cd,a.cust_area_grade,a.town_flag,a.lieu_id,a.status_cd,a.secrecy_level AS secr_grade,a.cust_addr AS cust_address,a.addr_id,a.cust_mgr,a.enter_date,a.create_date,a.ini_password,a.def_acct_id,a.grp_cust_code,a.charge_province_code,  a.charge_lan_id,a.is_realname AS real_flag,a.not_real_reason,a.accept_channel,a.remark as notes,d.credit_level,a.region_id as common_region_id,a.cust_brand_modify,c.attr_name as industry_name, de.approve_level, ccir.contact_id, a.party_cert_id,a.is_realname  from CUSTOMER a  LEFT JOIN credit d ON d.obj_id = a.cust_id and d.obj_type = '1100' AND d.status_cd = '1000'  LEFT JOIN credit_ext de on d.credit_id=de.credit_id  LEFT JOIN service_grade s ON s.obj_id = a.cust_id AND s.obj_type = '1100' AND s.status_cd = '1000'  LEFT JOIN cust_brand cb ON cb.cust_id = a.cust_id and cb.status_cd = '1000' and cb.main_flag='1'  LEFT JOIN cust_contact_info_rel ccir on a.cust_id = ccir.cust_id AND ccir.head_flag = '1'  and ccir.status_cd ='1000'  left join attr_spec_tree c on  a.industry_cd=c.attr_value where 1=1   and a.state = '1000'  and a.lan_id = '23'  and a.cust_id ='834133844927'  and a.status_cd <> '1300'  ) k
+     Last sql req: crmtest@136.6.168.89:51842
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 57. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT t . special_list_id , t . special_type , t . obj_type , t . obj_id , t . update_date , t . sub_special_type , t . special_list_reason , t . create_channel , t . from_dept , t . checker , t . check_flag , t . evaluate_time , t . eff_date , t . exp_date , t . status_cd , t . status_date , t . create_staff , t . update_staff , t . create_date , t . remark FROM special_list t WHERE t . obj_type = ? AND t . obj_id = ? AND cust_id = ? AND status_cd = ? ) k 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 8
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql:  select count(1) as count from ( select t.special_list_id,t.special_type,t.obj_type,t.obj_id,t.update_date,t.sub_special_type,t.special_list_reason,t.create_channel,t.from_dept,t.checker,t.check_flag,t.evaluate_time,t.eff_date,t.exp_date,t.status_cd,t.status_date,t.create_staff,t.update_staff,t.create_date,t.remark  from special_list t where t.obj_type = '1100' and t.obj_id = '834133844927' and cust_id = '834133844927'  and status_cd = '1000'  ) k
+Max time sql req : crmtest@136.6.168.89:43212
+         Last sql:  select count(1) as count from ( select t.special_list_id,t.special_type,t.obj_type,t.obj_id,t.update_date,t.sub_special_type,t.special_list_reason,t.create_channel,t.from_dept,t.checker,t.check_flag,t.evaluate_time,t.eff_date,t.exp_date,t.status_cd,t.status_date,t.create_staff,t.update_staff,t.create_date,t.remark  from special_list t where t.obj_type = '1100' and t.obj_id = '834133844927' and cust_id = '834133844927'  and status_cd = '1000'  ) k
+     Last sql req: crmtest@136.6.168.89:54712
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 58. row ***************************
+        Statement: SELECT DISTINCT b . cert_type , b . cert_num FROM party_cert b WHERE b . party_cert_id = ? LIMIT ? , ? 
+            Count: 5
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 170
+         Avg time: 34
+         Max time: 155
+         Min time: 3
+     Max time sql: select distinct b.cert_type,b.cert_num from party_cert b where b.party_cert_id = '100013248' limit 0,1
+Max time sql req : crmtest@136.6.168.89:51170
+         Last sql: select distinct b.cert_type,b.cert_num from party_cert b where b.party_cert_id = '100013248' limit 0,1
+     Last sql req: crmtest@136.6.168.89:54710
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 59. row ***************************
+        Statement: SELECT rel_manage , rel_tel FROM special_list p WHERE p . cust_id = ? AND p . STATUS_CD = ? AND SUB_SPECIAL_TYPE IN ( ? , ? ) 
+            Count: 4
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 5
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select rel_manage,rel_tel from special_list p where  p.cust_id = '834133844927' and p.STATUS_CD='1000' and SUB_SPECIAL_TYPE in ('1100','1200')
+Max time sql req : crmtest@136.6.168.89:51842
+         Last sql: select rel_manage,rel_tel from special_list p where  p.cust_id = '834133844927' and p.STATUS_CD='1000' and SUB_SPECIAL_TYPE in ('1100','1200')
+     Last sql req: crmtest@136.6.168.89:54714
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 60. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT acct_id , cust_id , action_type , seq_nbr , cust_order_id , order_item_id , account_number , if_default , address_id , credit_limit_plan_id , staff_locked , balance , agreement_id , party_id , bureau_no , owe_tel , post_name , post_code , bill_format_id , self_quota , bil_quota , no_stop_flag , pay_info , owe_units , pay_cycle , bill_post_mode , bill_post_addr , city_no , grp_acct_id , acct_address , bill_post_content , bill_post_phone , account_area_grade , group_pay_method , contact_phone , mobile_phone , ext_account_id , free_flag , post_cycle , hb_invoice_print_type , distributor_id FROM account_ext WHERE acct_id = ? AND seq_nbr = ? AND cust_id = ? ) k 
+            Count: 3
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 5
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql:  select count(1) as count from ( select acct_id,cust_id,action_type,seq_nbr,cust_order_id,order_item_id,account_number,if_default,address_id,credit_limit_plan_id,staff_locked,balance,agreement_id,party_id,bureau_no,owe_tel,post_name,post_code,bill_format_id,self_quota,bil_quota,no_stop_flag,pay_info,owe_units,pay_cycle,bill_post_mode,bill_post_addr,city_no,grp_acct_id,acct_address,bill_post_content,bill_post_phone,account_area_grade,group_pay_method,contact_phone,mobile_phone,ext_account_id,free_flag,post_cycle,hb_invoice_print_type,distributor_id from account_ext where acct_id='214115114226' and seq_nbr='2'  and cust_id='834133844927'  ) k
+Max time sql req : crmtest@136.6.168.89:48574
+         Last sql:  select count(1) as count from ( select acct_id,cust_id,action_type,seq_nbr,cust_order_id,order_item_id,account_number,if_default,address_id,credit_limit_plan_id,staff_locked,balance,agreement_id,party_id,bureau_no,owe_tel,post_name,post_code,bill_format_id,self_quota,bil_quota,no_stop_flag,pay_info,owe_units,pay_cycle,bill_post_mode,bill_post_addr,city_no,grp_acct_id,acct_address,bill_post_content,bill_post_phone,account_area_grade,group_pay_method,contact_phone,mobile_phone,ext_account_id,free_flag,post_cycle,hb_invoice_print_type,distributor_id from account_ext where acct_id='214115114226' and seq_nbr='2'  and cust_id='834133844927'  ) k
+     Last sql req: crmtest@136.6.168.89:51166
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 61. row ***************************
+        Statement: SELECT ? FROM cust_merage_batch a WHERE src_cust_list = ? AND state IN ( ? , ? ) LIMIT ? 
+            Count: 3
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 6
+         Avg time: 2
+         Max time: 2
+         Min time: 2
+     Max time sql: select 1 from cust_merage_batch a where src_cust_list = '834133844927' and state in (1,2) LIMIT 1
+Max time sql req : crmtest@136.6.168.89:43216
+         Last sql: select 1 from cust_merage_batch a where src_cust_list = '834133844927' and state in (1,2) LIMIT 1
+     Last sql req: crmtest@136.6.168.89:51166
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 62. row ***************************
+        Statement: SELECT acct_id , acct_name , cust_id , prod_inst_id , region_id , lan_id , acct_login_name , login_password , acct_billing_type , status_cd , status_date , eff_date , exp_date , create_staff , create_date , update_staff , update_date , remark , seq_nbr , action_type , acct_cd , ext_acct_id , charge_province_code FROM account WHERE ? = ? AND acct_id = ? AND status_cd = ? ORDER BY seq_nbr DESC 
+            Count: 3
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 17
+         Avg time: 5
+         Max time: 7
+         Min time: 4
+     Max time sql: select acct_id,acct_name,cust_id,prod_inst_id,region_id,lan_id,acct_login_name,login_password,acct_billing_type,status_cd,status_date,eff_date,exp_date,create_staff,create_date,update_staff,update_date,remark,seq_nbr,action_type,acct_cd,ext_acct_id,charge_province_code from account where 1=1  and acct_id = '214115114226'  and status_cd='1'  ORDER BY seq_nbr DESC 
+Max time sql req : crmtest@136.6.168.89:43216
+         Last sql: select acct_id,acct_name,cust_id,prod_inst_id,region_id,lan_id,acct_login_name,login_password,acct_billing_type,status_cd,status_date,eff_date,exp_date,create_staff,create_date,update_staff,update_date,remark,seq_nbr,action_type,acct_cd,ext_acct_id,charge_province_code from account where 1=1  and acct_id = '214115114226'  and status_cd='1'  ORDER BY seq_nbr DESC 
+     Last sql req: crmtest@136.6.168.89:51166
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 63. row ***************************
+        Statement: SELECT acct_id , cust_id , action_type , seq_nbr , cust_order_id , order_item_id , account_number , if_default , address_id , credit_limit_plan_id , staff_locked , balance , agreement_id , party_id , bureau_no , owe_tel , post_name , post_code , bill_format_id , self_quota , bil_quota , no_stop_flag , pay_info , owe_units , pay_cycle , bill_post_mode , bill_post_addr , city_no , grp_acct_id , acct_address , bill_post_content , bill_post_phone , account_area_grade , group_pay_method , contact_phone , mobile_phone , ext_account_id , free_flag , post_cycle , hb_invoice_print_type , distributor_id FROM account_ext WHERE acct_id = ? AND seq_nbr = ? AND cust_id = ? LIMIT ? , ? 
+            Count: 3
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 5
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select acct_id,cust_id,action_type,seq_nbr,cust_order_id,order_item_id,account_number,if_default,address_id,credit_limit_plan_id,staff_locked,balance,agreement_id,party_id,bureau_no,owe_tel,post_name,post_code,bill_format_id,self_quota,bil_quota,no_stop_flag,pay_info,owe_units,pay_cycle,bill_post_mode,bill_post_addr,city_no,grp_acct_id,acct_address,bill_post_content,bill_post_phone,account_area_grade,group_pay_method,contact_phone,mobile_phone,ext_account_id,free_flag,post_cycle,hb_invoice_print_type,distributor_id from account_ext where acct_id='214115114226' and seq_nbr='2'  and cust_id='834133844927'  limit 0,20 
+Max time sql req : crmtest@136.6.168.89:48574
+         Last sql: select acct_id,cust_id,action_type,seq_nbr,cust_order_id,order_item_id,account_number,if_default,address_id,credit_limit_plan_id,staff_locked,balance,agreement_id,party_id,bureau_no,owe_tel,post_name,post_code,bill_format_id,self_quota,bil_quota,no_stop_flag,pay_info,owe_units,pay_cycle,bill_post_mode,bill_post_addr,city_no,grp_acct_id,acct_address,bill_post_content,bill_post_phone,account_area_grade,group_pay_method,contact_phone,mobile_phone,ext_account_id,free_flag,post_cycle,hb_invoice_print_type,distributor_id from account_ext where acct_id='214115114226' and seq_nbr='2'  and cust_id='834133844927'  limit 0,20 
+     Last sql req: crmtest@136.6.168.89:51166
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 64. row ***************************
+        Statement: SELECT count ( ? ) AS count FROM ( SELECT party_id , org_type , org_intro , org_scale , principal , org_id , org_name , org_property , org_assets , hq_addr , cust_build_date cust_bulid_date , build_name bulid_name , build_attr bulid_attr , org_homepage , org_addr , register_org , register_addr , industry_type_id , econ_type , busi_scope , busi_status_cd , special_area_id , legal_repr , status_cd , status_date , create_staff , create_date , update_staff , update_date , remark , cust_order_id , order_item_id FROM party_org WHERE party_id = ? AND status_cd = ? ) k 
+            Count: 3
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 8
+         Avg time: 2
+         Max time: 4
+         Min time: 2
+     Max time sql:  select count(1) as count from ( select party_id ,org_type ,org_intro ,org_scale ,principal ,	org_id ,org_name ,org_property ,org_assets , hq_addr , 	cust_build_date cust_bulid_date ,build_name bulid_name ,build_attr bulid_attr ,	org_homepage ,org_addr ,register_org, register_addr, industry_type_id, econ_type,busi_scope, busi_status_cd,	special_area_id ,legal_repr , status_cd ,status_date ,create_staff ,create_date ,update_staff ,	update_date ,remark ,cust_order_id ,order_item_id from party_org where party_id = '112006242307' and status_cd = '1000'  ) k
+Max time sql req : crmtest@136.6.168.89:48574
+         Last sql:  select count(1) as count from ( select party_id ,org_type ,org_intro ,org_scale ,principal ,	org_id ,org_name ,org_property ,org_assets , hq_addr , 	cust_build_date cust_bulid_date ,build_name bulid_name ,build_attr bulid_attr ,	org_homepage ,org_addr ,register_org, register_addr, industry_type_id, econ_type,busi_scope, busi_status_cd,	special_area_id ,legal_repr , status_cd ,status_date ,create_staff ,create_date ,update_staff ,	update_date ,remark ,cust_order_id ,order_item_id from party_org where party_id = '112006242307' and status_cd = '1000'  ) k
+     Last sql req: crmtest@136.6.168.89:51172
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 65. row ***************************
+        Statement: SELECT * FROM information_schema . COLUMNS WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ? ORDER BY ORDINAL_POSITION 
+            Count: 3
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 12
+         Avg time: 4
+         Max time: 4
+         Min time: 4
+     Max time sql: /* ApplicationName=DBeaver 23.1.0 - Metadata */ SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA='CUSDBX' AND TABLE_NAME='special_list' ORDER BY ORDINAL_POSITION
+Max time sql req : crmtest@136.4.163.230:58948
+         Last sql: /* ApplicationName=DBeaver 23.1.0 - Metadata */ SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA='CUSDBX' AND TABLE_NAME='special_list_prove_queue' ORDER BY ORDINAL_POSITION
+     Last sql req: crmtest@136.4.163.230:58948
+               Ip: 136.4.163.230
+           Schema: CUSDB
+*************************** 66. row ***************************
+        Statement: SELECT kc . CONSTRAINT_NAME , kc . TABLE_NAME , kc . COLUMN_NAME , kc . ORDINAL_POSITION FROM INFORMATION_SCHEMA . KEY_COLUMN_USAGE kc WHERE kc . TABLE_SCHEMA = ? AND kc . REFERENCED_TABLE_NAME IS ? AND kc . TABLE_NAME = ? ORDER BY kc . CONSTRAINT_NAME , kc . ORDINAL_POSITION 
+            Count: 3
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 5
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: /* ApplicationName=DBeaver 23.1.0 - Metadata */ SELECT kc.CONSTRAINT_NAME,kc.TABLE_NAME,kc.COLUMN_NAME,kc.ORDINAL_POSITION FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE kc WHERE kc.TABLE_SCHEMA='CUSDBX' AND kc.REFERENCED_TABLE_NAME IS NULL AND kc.TABLE_NAME='special_list_queue' ORDER BY kc.CONSTRAINT_NAME,kc.ORDINAL_POSITION
+Max time sql req : crmtest@136.4.163.230:58948
+         Last sql: /* ApplicationName=DBeaver 23.1.0 - Metadata */ SELECT kc.CONSTRAINT_NAME,kc.TABLE_NAME,kc.COLUMN_NAME,kc.ORDINAL_POSITION FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE kc WHERE kc.TABLE_SCHEMA='CUSDBX' AND kc.REFERENCED_TABLE_NAME IS NULL AND kc.TABLE_NAME='special_list_prove_queue' ORDER BY kc.CONSTRAINT_NAME,kc.ORDINAL_POSITION
+     Last sql req: crmtest@136.4.163.230:58948
+               Ip: 136.4.163.230
+           Schema: CUSDB
+*************************** 67. row ***************************
+        Statement: SELECT * FROM information_schema . STATISTICS WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ? ORDER BY TABLE_NAME , INDEX_NAME , SEQ_IN_INDEX 
+            Count: 3
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 5
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: /* ApplicationName=DBeaver 23.1.0 - Metadata */ SELECT * FROM information_schema.STATISTICS WHERE TABLE_SCHEMA='CUSDBX' AND TABLE_NAME='special_list_queue' ORDER BY TABLE_NAME,INDEX_NAME,SEQ_IN_INDEX
+Max time sql req : crmtest@136.4.163.230:58948
+         Last sql: /* ApplicationName=DBeaver 23.1.0 - Metadata */ SELECT * FROM information_schema.STATISTICS WHERE TABLE_SCHEMA='CUSDBX' AND TABLE_NAME='special_list_prove_queue' ORDER BY TABLE_NAME,INDEX_NAME,SEQ_IN_INDEX
+     Last sql req: crmtest@136.4.163.230:58948
+               Ip: 136.4.163.230
+           Schema: CUSDB
+*************************** 68. row ***************************
+        Statement: SELECT @@session . auto_increment_increment , @@character_set_client , @@character_set_connection , @@character_set_results , @@character_set_server , @@init_connect , @@interactive_timeout , @@license , @@lower_case_table_names , @@max_allowed_packet , @@net_buffer_length , @@net_write_timeout , @@query_cache_size , @@query_cache_type , @@sql_mode , @@system_time_zone , @@time_zone , @@tx_isolation , @@wait_timeout 
+            Count: 3
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 7
+         Avg time: 2
+         Max time: 3
+         Min time: 2
+     Max time sql: /* mysql-connector-java-5.1.36 ( Revision: 4fc1f969f740409a4e03750316df2c0e429f3dc8 ) */SELECT @@session.auto_increment_increment, @@character_set_client, @@character_set_connection, @@character_set_results, @@character_set_server, @@init_connect, @@interactive_timeout, @@license, @@lower_case_table_names, @@max_allowed_packet, @@net_buffer_length, @@net_write_timeout, @@query_cache_size, @@query_cache_type, @@sql_mode, @@system_time_zone, @@time_zone, @@tx_isolation, @@wait_timeout
+Max time sql req : crmtest@136.4.163.230:58947
+         Last sql: /* mysql-connector-java-5.1.36 ( Revision: 4fc1f969f740409a4e03750316df2c0e429f3dc8 ) */SELECT @@session.auto_increment_increment, @@character_set_client, @@character_set_connection, @@character_set_results, @@character_set_server, @@init_connect, @@interactive_timeout, @@license, @@lower_case_table_names, @@max_allowed_packet, @@net_buffer_length, @@net_write_timeout, @@query_cache_size, @@query_cache_type, @@sql_mode, @@system_time_zone, @@time_zone, @@tx_isolation, @@wait_timeout
+     Last sql req: crmtest@136.4.163.230:58949
+               Ip: 136.4.163.230
+           Schema: CUSDB
+*************************** 69. row ***************************
+        Statement: SELECT CUST_ORDER_ID , AGREEMENT_ID , ORDER_ITEM_ID , ACCT_ITEM_ID , ACCT_ITEM_TYPE_ID , CHARGE_FLAG , DEST_SYSTEM , EFF_DATE , EXP_DATE , IS_GET_INVOICE , IS_PREPAY , NEED_CHARGE , OBJ_ID , OBJ_TYPE , OPER_TYPE , PAY_CHARGE , PAY_MODE , OFFER_ID , RELA_PRODUCT_OFFER_INSTANCE_ID , STAFF_CODE , PRE_FLAG , PREPAY_TYPE , BALANCE_TYPE_ID , OFFERSET_VALUE , ID FROM inf_bc_charge WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 3
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select CUST_ORDER_ID,AGREEMENT_ID,ORDER_ITEM_ID,ACCT_ITEM_ID,ACCT_ITEM_TYPE_ID,CHARGE_FLAG,DEST_SYSTEM,EFF_DATE,EXP_DATE,IS_GET_INVOICE,IS_PREPAY,NEED_CHARGE,OBJ_ID,OBJ_TYPE,OPER_TYPE,PAY_CHARGE,PAY_MODE,OFFER_ID,RELA_PRODUCT_OFFER_INSTANCE_ID,STAFF_CODE,PRE_FLAG,PREPAY_TYPE,BALANCE_TYPE_ID,OFFERSET_VALUE,ID from inf_bc_charge where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select CUST_ORDER_ID,AGREEMENT_ID,ORDER_ITEM_ID,ACCT_ITEM_ID,ACCT_ITEM_TYPE_ID,CHARGE_FLAG,DEST_SYSTEM,EFF_DATE,EXP_DATE,IS_GET_INVOICE,IS_PREPAY,NEED_CHARGE,OBJ_ID,OBJ_TYPE,OPER_TYPE,PAY_CHARGE,PAY_MODE,OFFER_ID,RELA_PRODUCT_OFFER_INSTANCE_ID,STAFF_CODE,PRE_FLAG,PREPAY_TYPE,BALANCE_TYPE_ID,OFFERSET_VALUE,ID from inf_bc_charge where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 70. row ***************************
+        Statement: SELECT ROUTINE_SCHEMA , ROUTINE_NAME FROM information_schema . ROUTINES WHERE ROUTINE_NAME LIKE ? AND ROUTINE_SCHEMA = ? ORDER BY ROUTINE_NAME LIMIT ? 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 11
+         Avg time: 5
+         Max time: 6
+         Min time: 5
+     Max time sql: /* ApplicationName=DBeaver 23.1.0 - SQLEditor <Script-27.sql> */ SELECT ROUTINE_SCHEMA,ROUTINE_NAME FROM information_schema.ROUTINES WHERE ROUTINE_NAME LIKE 'status_cd' AND ROUTINE_SCHEMA = 'CUSDBX' ORDER BY ROUTINE_NAME LIMIT 10
+Max time sql req : crmtest@136.4.163.230:58949
+         Last sql: /* ApplicationName=DBeaver 23.1.0 - SQLEditor <Script-27.sql> */ SELECT ROUTINE_SCHEMA,ROUTINE_NAME FROM information_schema.ROUTINES WHERE ROUTINE_NAME LIKE 'status_cd' AND ROUTINE_SCHEMA = 'CUSDBX' ORDER BY ROUTINE_NAME LIMIT 10
+     Last sql req: crmtest@136.4.163.230:58949
+               Ip: 136.4.163.230
+           Schema: CUSDBX
+*************************** 71. row ***************************
+        Statement: SELECT OPER_TYPE , CONTACT_ID , PARTY_ID , CONTACT_TYPE , CONTACT_NAME , CONTACT_GENDER , CONTACT_ADDR , CONTACT_EMPLOYER , HOME_PHONE , OFFICE_PHONE , MOBILE_PHONE , CONTACT_DESC , E_MAIL , POSTCODE , POST_ADDR , FAX , STATUS_CD , STATUS_DATE , CREATE_STAFF , CREATE_DATE , UPDATE_STAFF , UPDATE_DATE , REMARK , QQ_CODE , RECORD_EFF_DATE , UNSUITABLE_CONTACT_TIME , WX_CODE , AGREEMENT_ID , CUST_ORDER_ID , ORDER_ITEM_ID , PRE_FLAG , YX_CODE , ID FROM inf_bc_contacts_info WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 4
+         Avg time: 2
+         Max time: 2
+         Min time: 2
+     Max time sql: select OPER_TYPE,CONTACT_ID,PARTY_ID,CONTACT_TYPE,CONTACT_NAME,CONTACT_GENDER,CONTACT_ADDR,CONTACT_EMPLOYER, HOME_PHONE,OFFICE_PHONE,MOBILE_PHONE,CONTACT_DESC,E_MAIL,POSTCODE,POST_ADDR,FAX,STATUS_CD,STATUS_DATE,CREATE_STAFF, CREATE_DATE,UPDATE_STAFF,UPDATE_DATE,REMARK,QQ_CODE,RECORD_EFF_DATE,UNSUITABLE_CONTACT_TIME,WX_CODE,AGREEMENT_ID, CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,YX_CODE,ID  from inf_bc_contacts_info where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select OPER_TYPE,CONTACT_ID,PARTY_ID,CONTACT_TYPE,CONTACT_NAME,CONTACT_GENDER,CONTACT_ADDR,CONTACT_EMPLOYER, HOME_PHONE,OFFICE_PHONE,MOBILE_PHONE,CONTACT_DESC,E_MAIL,POSTCODE,POST_ADDR,FAX,STATUS_CD,STATUS_DATE,CREATE_STAFF, CREATE_DATE,UPDATE_STAFF,UPDATE_DATE,REMARK,QQ_CODE,RECORD_EFF_DATE,UNSUITABLE_CONTACT_TIME,WX_CODE,AGREEMENT_ID, CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,YX_CODE,ID  from inf_bc_contacts_info where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 72. row ***************************
+        Statement: SELECT OPER_TYPE , PROD_INST_ACCT_REL_ID , ACCT_ID , ACCT_ITEM_GROUP_ID , AGREE_ID , CREATE_DATE , CREATE_STAFF , EFF_DATE , EXP_DATE , IF_DEFAULT_ACCT_ID , LAN_ID , LAST_ORDER_ITEM_ID , PAYMENT_LIMIT , PAYMENT_LIMIT_TYPE , PRIORITY , PROD_INST_ID , STATUS_CD , STATUS_DATE , UPDATE_DATE , UPDATE_STAFF , UPPER_AMOUNT , AGREEMENT_ID , CUST_ORDER_ID , ORDER_ITEM_ID , PRE_FLAG FROM inf_bc_prod_inst_acct_rel WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 4
+         Avg time: 2
+         Max time: 2
+         Min time: 2
+     Max time sql: select OPER_TYPE,PROD_INST_ACCT_REL_ID,ACCT_ID,ACCT_ITEM_GROUP_ID,AGREE_ID,CREATE_DATE,CREATE_STAFF,EFF_DATE,EXP_DATE,IF_DEFAULT_ACCT_ID,LAN_ID,LAST_ORDER_ITEM_ID,PAYMENT_LIMIT,PAYMENT_LIMIT_TYPE,PRIORITY,PROD_INST_ID,STATUS_CD,STATUS_DATE,UPDATE_DATE,UPDATE_STAFF,UPPER_AMOUNT,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG  from inf_bc_prod_inst_acct_rel where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select OPER_TYPE,PROD_INST_ACCT_REL_ID,ACCT_ID,ACCT_ITEM_GROUP_ID,AGREE_ID,CREATE_DATE,CREATE_STAFF,EFF_DATE,EXP_DATE,IF_DEFAULT_ACCT_ID,LAN_ID,LAST_ORDER_ITEM_ID,PAYMENT_LIMIT,PAYMENT_LIMIT_TYPE,PRIORITY,PROD_INST_ID,STATUS_CD,STATUS_DATE,UPDATE_DATE,UPDATE_STAFF,UPPER_AMOUNT,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG  from inf_bc_prod_inst_acct_rel where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 73. row ***************************
+        Statement: SELECT CUST_ORDER_ID , AGREEMENT_ID , ORDER_ITEM_ID , ORDER_ITEM_TYPE , SERVICE_ID , DEAL_ORDER , COMPLETE_DATE , ITEM_SEQUENCE , PRE_FLAG , FORMER_ORDER_ITEM_ID , CRM_FINISH_DATE , ORG_ID , PARTY_ID , PARTY_NAME , ACCEPT_MODE , ASK_ID , ORDER_ITEM_OBJ_ID , ORDER_ITEM_OBJ_TYPE_ID , ID , Seven_Days_Flag FROM inf_bc_order_item WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 4
+         Avg time: 2
+         Max time: 2
+         Min time: 2
+     Max time sql: select CUST_ORDER_ID,AGREEMENT_ID,ORDER_ITEM_ID,ORDER_ITEM_TYPE,SERVICE_ID,DEAL_ORDER,COMPLETE_DATE,ITEM_SEQUENCE,PRE_FLAG,FORMER_ORDER_ITEM_ID,CRM_FINISH_DATE,ORG_ID,PARTY_ID,PARTY_NAME,ACCEPT_MODE,ASK_ID,ORDER_ITEM_OBJ_ID,ORDER_ITEM_OBJ_TYPE_ID,ID,Seven_Days_Flag  from inf_bc_order_item where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select CUST_ORDER_ID,AGREEMENT_ID,ORDER_ITEM_ID,ORDER_ITEM_TYPE,SERVICE_ID,DEAL_ORDER,COMPLETE_DATE,ITEM_SEQUENCE,PRE_FLAG,FORMER_ORDER_ITEM_ID,CRM_FINISH_DATE,ORG_ID,PARTY_ID,PARTY_NAME,ACCEPT_MODE,ASK_ID,ORDER_ITEM_OBJ_ID,ORDER_ITEM_OBJ_TYPE_ID,ID,Seven_Days_Flag  from inf_bc_order_item where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 74. row ***************************
+        Statement: SELECT OPER_TYPE , A_PROD_INST_ID , CREATE_DATE , CREATE_STAFF , EFF_DATE , EXP_DATE , LAST_ORDER_ITEM_ID , PROD_INST_REL_ID , REL_TYPE , REMARK , ROLE_ID , STATUS_CD , STATUS_DATE , UPDATE_DATE , UPDATE_STAFF , Z_PROD_INST_ID , AGREEMENT_ID , CUST_ORDER_ID , ORDER_ITEM_ID , PRE_FLAG FROM inf_bc_prod_inst_rel WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 3
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select OPER_TYPE,A_PROD_INST_ID,CREATE_DATE,CREATE_STAFF,EFF_DATE,EXP_DATE,LAST_ORDER_ITEM_ID,PROD_INST_REL_ID,REL_TYPE,REMARK,ROLE_ID,STATUS_CD,STATUS_DATE,UPDATE_DATE,UPDATE_STAFF,Z_PROD_INST_ID,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG  from inf_bc_prod_inst_rel where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select OPER_TYPE,A_PROD_INST_ID,CREATE_DATE,CREATE_STAFF,EFF_DATE,EXP_DATE,LAST_ORDER_ITEM_ID,PROD_INST_REL_ID,REL_TYPE,REMARK,ROLE_ID,STATUS_CD,STATUS_DATE,UPDATE_DATE,UPDATE_STAFF,Z_PROD_INST_ID,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG  from inf_bc_prod_inst_rel where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 75. row ***************************
+        Statement: SELECT OPER_TYPE , CERT_ADDR , CERT_NUM , CERT_ORG , CERT_TYPE , CHECKER , CHECK_TIME , CREATE_DATE , CREATE_STAFF , EFF_DATE , EXP_DATE , IS_REALNAME_CERT , PARTY_CERT_ID , PARTY_ID , REMARK , STATUS_CD , STATUS_DATE , UPDATE_DATE , UPDATE_STAFF , AGREEMENT_ID , CUST_ORDER_ID , ORDER_ITEM_ID , PRE_FLAG , CERT_CHECK_RESULT FROM inf_bc_party_cert WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 4
+         Avg time: 2
+         Max time: 2
+         Min time: 2
+     Max time sql: select OPER_TYPE,CERT_ADDR,CERT_NUM,CERT_ORG,CERT_TYPE,CHECKER,CHECK_TIME,CREATE_DATE,CREATE_STAFF,EFF_DATE,EXP_DATE,IS_REALNAME_CERT,PARTY_CERT_ID,PARTY_ID,REMARK,STATUS_CD,STATUS_DATE,UPDATE_DATE,UPDATE_STAFF,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,CERT_CHECK_RESULT  from inf_bc_party_cert where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select OPER_TYPE,CERT_ADDR,CERT_NUM,CERT_ORG,CERT_TYPE,CHECKER,CHECK_TIME,CREATE_DATE,CREATE_STAFF,EFF_DATE,EXP_DATE,IS_REALNAME_CERT,PARTY_CERT_ID,PARTY_ID,REMARK,STATUS_CD,STATUS_DATE,UPDATE_DATE,UPDATE_STAFF,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,CERT_CHECK_RESULT  from inf_bc_party_cert where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 76. row ***************************
+        Statement: SELECT OPER_TYPE , APPLY_REGION_ID , ATTR_ID , ATTR_VALUE_ID , ATTR_VALUE , BUSI_MOD_EFF_DATE , CREATE_DATE , CREATE_STAFF , EFF_DATE , EXP_DATE , LAN_ID , LAST_ORDER_ITEM_ID , OBJ_ID , OBJ_TYPE , OFFER_INST_ID , OFFER_INST_ATTR_ID , PAR_OFFER_INST_ATTR_ID , REMARK , STATUS_CD , STATUS_DATE , UPDATE_DATE , UPDATE_STAFF , AGREEMENT_ID , CUST_ORDER_ID , ORDER_ITEM_ID , PRE_FLAG FROM inf_bc_offer_inst_attr WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 4
+         Avg time: 2
+         Max time: 2
+         Min time: 2
+     Max time sql: select OPER_TYPE,APPLY_REGION_ID,ATTR_ID,ATTR_VALUE_ID,ATTR_VALUE,BUSI_MOD_EFF_DATE,CREATE_DATE,CREATE_STAFF,EFF_DATE,EXP_DATE,LAN_ID,LAST_ORDER_ITEM_ID,OBJ_ID,OBJ_TYPE,OFFER_INST_ID,OFFER_INST_ATTR_ID,PAR_OFFER_INST_ATTR_ID,REMARK,STATUS_CD,STATUS_DATE,UPDATE_DATE,UPDATE_STAFF,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG from inf_bc_offer_inst_attr where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select OPER_TYPE,APPLY_REGION_ID,ATTR_ID,ATTR_VALUE_ID,ATTR_VALUE,BUSI_MOD_EFF_DATE,CREATE_DATE,CREATE_STAFF,EFF_DATE,EXP_DATE,LAN_ID,LAST_ORDER_ITEM_ID,OBJ_ID,OBJ_TYPE,OFFER_INST_ID,OFFER_INST_ATTR_ID,PAR_OFFER_INST_ATTR_ID,REMARK,STATUS_CD,STATUS_DATE,UPDATE_DATE,UPDATE_STAFF,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG from inf_bc_offer_inst_attr where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 77. row ***************************
+        Statement: SELECT CUST_ORDER_ID , AGREEMENT_ID , ORDER_ITEM_ID , OFFER_INST_ID , ATTR_ID , ATTR_VALUE , EFF_DATE , EXP_DATE , OPER_TYPE , PRE_FLAG , OFFER_PARAM_ID , PERIODTYPE , PARAM_ATTR_ID , CRM_ATTR_ID , ID FROM inf_bc_offer_param WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 3
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select CUST_ORDER_ID,AGREEMENT_ID,ORDER_ITEM_ID,OFFER_INST_ID,ATTR_ID,ATTR_VALUE,EFF_DATE,EXP_DATE,OPER_TYPE,PRE_FLAG,OFFER_PARAM_ID,PERIODTYPE,PARAM_ATTR_ID,CRM_ATTR_ID,ID  from inf_bc_offer_param where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select CUST_ORDER_ID,AGREEMENT_ID,ORDER_ITEM_ID,OFFER_INST_ID,ATTR_ID,ATTR_VALUE,EFF_DATE,EXP_DATE,OPER_TYPE,PRE_FLAG,OFFER_PARAM_ID,PERIODTYPE,PARAM_ATTR_ID,CRM_ATTR_ID,ID  from inf_bc_offer_param where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 78. row ***************************
+        Statement: SELECT OPER_TYPE , ATTR_ID , ATTR_VALUE , ATTR_VALUE_ID , BUSI_MOD_DATE , CREATE_DATE , CREATE_STAFF , EFF_DATE , EXP_DATE , LAN_ID , LAST_ORDER_ITEM_ID , PAR_PROD_INST_ATTR_ID , PROD_INST_ATTR_ID , FUNC_PROD_INST_ID , REMARK , STATUS_CD , STATUS_DATE , UPDATE_DATE , UPDATE_STAFF , AGREEMENT_ID , CUST_ORDER_ID , ORDER_ITEM_ID , PRE_FLAG , OLD_ATTR_VALUE , ID FROM inf_bc_prod_inst_attr_func WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 5
+         Avg time: 2
+         Max time: 3
+         Min time: 2
+     Max time sql: select OPER_TYPE,ATTR_ID,ATTR_VALUE,ATTR_VALUE_ID,BUSI_MOD_DATE,CREATE_DATE,CREATE_STAFF,EFF_DATE,EXP_DATE,LAN_ID,LAST_ORDER_ITEM_ID,PAR_PROD_INST_ATTR_ID,PROD_INST_ATTR_ID,FUNC_PROD_INST_ID,REMARK,STATUS_CD,STATUS_DATE,UPDATE_DATE,UPDATE_STAFF,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,OLD_ATTR_VALUE,ID  from inf_bc_prod_inst_attr_func where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select OPER_TYPE,ATTR_ID,ATTR_VALUE,ATTR_VALUE_ID,BUSI_MOD_DATE,CREATE_DATE,CREATE_STAFF,EFF_DATE,EXP_DATE,LAN_ID,LAST_ORDER_ITEM_ID,PAR_PROD_INST_ATTR_ID,PROD_INST_ATTR_ID,FUNC_PROD_INST_ID,REMARK,STATUS_CD,STATUS_DATE,UPDATE_DATE,UPDATE_STAFF,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,OLD_ATTR_VALUE,ID  from inf_bc_prod_inst_attr_func where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 79. row ***************************
+        Statement: SELECT OPER_TYPE , ACC_NUM , ACC_PROD_INST_ID , ACCOUNT , ACT_DATE , ADDRESS_DESC , ADDRESS_ID , BEGIN_RENT_DATE , BUSI_MOD_DATE , CREATE_DATE , CREATE_ORG_ID , CREATE_STAFF , EFF_DATE , EXCH_ID , EXP_DATE , EXT_PROD_INST_ID , FIRST_FINISH_DATE , LAN_ID , LAST_ORDER_ITEM_ID , OWNER_CUST_ID , PAYMENT_MODE_CD , POINT_OWNER_ID , PROD_ID , FUNC_PROD_INST_ID , PROD_INST_PWD , PROD_USE_TYPE , REGION_ID , REMARK , STATE , STATUS_CD , STATUS_DATE , STOP_RENT_DATE , UPDATE_DATE , UPDATE_STAFF , USE_CUST_ID , AGREEMENT_ID , CUST_ORDER_ID , ORDER_ITEM_ID , PRE_FLAG , PROD_QUANTITY , CRM_GROUP_CODE FROM inf_bc_prod_inst_func WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 4
+         Avg time: 2
+         Max time: 2
+         Min time: 2
+     Max time sql: select OPER_TYPE,ACC_NUM,ACC_PROD_INST_ID,ACCOUNT,ACT_DATE,ADDRESS_DESC,ADDRESS_ID,BEGIN_RENT_DATE,BUSI_MOD_DATE,CREATE_DATE,CREATE_ORG_ID,CREATE_STAFF,EFF_DATE,EXCH_ID,EXP_DATE,EXT_PROD_INST_ID,FIRST_FINISH_DATE,LAN_ID,LAST_ORDER_ITEM_ID,OWNER_CUST_ID,PAYMENT_MODE_CD,POINT_OWNER_ID,PROD_ID,FUNC_PROD_INST_ID,PROD_INST_PWD,PROD_USE_TYPE,REGION_ID,REMARK,STATE,STATUS_CD,STATUS_DATE,STOP_RENT_DATE,UPDATE_DATE,UPDATE_STAFF,USE_CUST_ID,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,PROD_QUANTITY,CRM_GROUP_CODE  from inf_bc_prod_inst_func where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select OPER_TYPE,ACC_NUM,ACC_PROD_INST_ID,ACCOUNT,ACT_DATE,ADDRESS_DESC,ADDRESS_ID,BEGIN_RENT_DATE,BUSI_MOD_DATE,CREATE_DATE,CREATE_ORG_ID,CREATE_STAFF,EFF_DATE,EXCH_ID,EXP_DATE,EXT_PROD_INST_ID,FIRST_FINISH_DATE,LAN_ID,LAST_ORDER_ITEM_ID,OWNER_CUST_ID,PAYMENT_MODE_CD,POINT_OWNER_ID,PROD_ID,FUNC_PROD_INST_ID,PROD_INST_PWD,PROD_USE_TYPE,REGION_ID,REMARK,STATE,STATUS_CD,STATUS_DATE,STOP_RENT_DATE,UPDATE_DATE,UPDATE_STAFF,USE_CUST_ID,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,PROD_QUANTITY,CRM_GROUP_CODE  from inf_bc_prod_inst_func where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 80. row ***************************
+        Statement: DELETE FROM inf_bc_prod_inst_attr_func WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 4
+         Avg time: 2
+         Max time: 3
+         Min time: 1
+     Max time sql: delete from inf_bc_prod_inst_attr_func where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: delete from inf_bc_prod_inst_attr_func where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 81. row ***************************
+        Statement: SELECT DISTINCT a . cust_id , a . handle_cust_id , a . seq_nbr , a . party_id , a . cust_order_id , a . last_order_item_id AS order_id , a . action_type , a . eff_date record_eff_date , a . exp_date record_exp_date , a . update_date AS mod_date , a . cust_name , a . cust_number , a . lan_id service_region , a . market_region , a . type_flag , a . cust_type , a . cust_sub_type , cb . brand_cd AS cust_brand , cb . cust_sub_brand AS sub_cust_brand , a . is_vip , s . service_level , a . industry_cd , a . cust_area_grade , a . town_flag , a . lieu_id , a . status_cd , a . secrecy_level AS secr_grade , a . cust_addr AS cust_address , a . addr_id , a . cust_mgr , a . enter_date , a . create_date , a . ini_password , a . def_acct_id , a . grp_cust_code , a . charge_province_code , a . charge_lan_id , a . is_realname AS real_flag , a . not_real_reason , a . accept_channel , a . remark AS notes , d . credit_level , a . region_id AS common_region_id , a . cust_brand_modify , c . attr_name AS industry_name , de . approve_level , ccir . contact_id , a . party_cert_id , a . is_realname FROM CUSTOMER a LEFT JOIN credit d ON d . obj_id = a . cust_id AND d . obj_type = ? AND d . status_cd = ? LEFT JOIN credit_ext de ON d . credit_id = de . credit_id LEFT JOIN service_grade s ON s . obj_id = a . cust_id AND s . obj_type = ? AND s . status_cd = ? LEFT JOIN cust_brand cb ON cb . cust_id = a . cust_id AND cb . status_cd = ? AND cb . main_flag = ? LEFT JOIN cust_contact_info_rel ccir ON a . cust_id = ccir . cust_id AND ccir . head_flag = ? AND ccir . status_cd = ? LEFT JOIN attr_spec_tree c ON a . industry_cd = c . attr_value WHERE ? = ? AND a . state = ? AND a . lan_id = ? AND a . cust_name LIKE ? AND a . status_cd <> ? LIMIT ? , ? 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 11
+         Avg time: 5
+         Max time: 6
+         Min time: 5
+     Max time sql:   select distinct a.cust_id,a.handle_cust_id,a.seq_nbr,a.party_id,a.cust_order_id,a.last_order_item_id as order_id,a.action_type,a.eff_date record_eff_date,a.exp_date record_exp_date,a.update_date AS mod_date,a.cust_name,a.cust_number,a.lan_id service_region,a.market_region,a.type_flag,a.cust_type,a.cust_sub_type,cb.brand_cd AS cust_brand,cb.cust_sub_brand AS sub_cust_brand,a.is_vip,s.service_level,a.industry_cd,a.cust_area_grade,a.town_flag,a.lieu_id,a.status_cd,a.secrecy_level AS secr_grade,a.cust_addr AS cust_address,a.addr_id,a.cust_mgr,a.enter_date,a.create_date,a.ini_password,a.def_acct_id,a.grp_cust_code,a.charge_province_code,  a.charge_lan_id,a.is_realname AS real_flag,a.not_real_reason,a.accept_channel,a.remark as notes,d.credit_level,a.region_id as common_region_id,a.cust_brand_modify,c.attr_name as industry_name, de.approve_level, ccir.contact_id, a.party_cert_id,a.is_realname  from CUSTOMER a  LEFT JOIN credit d ON d.obj_id = a.cust_id and d.obj_type = '1100' AND d.status_cd = '1000'  LEFT JOIN credit_ext de on d.credit_id=de.credit_id  LEFT JOIN service_grade s ON s.obj_id = a.cust_id AND s.obj_type = '1100' AND s.status_cd = '1000'  LEFT JOIN cust_brand cb ON cb.cust_id = a.cust_id and cb.status_cd = '1000' and cb.main_flag='1'  LEFT JOIN cust_contact_info_rel ccir on a.cust_id = ccir.cust_id AND ccir.head_flag = '1'  and ccir.status_cd ='1000'  left join attr_spec_tree c on  a.industry_cd=c.attr_value where 1=1   and a.state = '1000'  and a.lan_id = '23'  and a.cust_name like '王丹%'  and a.status_cd <> '1300'  limit 0,10 
+Max time sql req : crmtest@136.6.168.89:43904
+         Last sql:   select distinct a.cust_id,a.handle_cust_id,a.seq_nbr,a.party_id,a.cust_order_id,a.last_order_item_id as order_id,a.action_type,a.eff_date record_eff_date,a.exp_date record_exp_date,a.update_date AS mod_date,a.cust_name,a.cust_number,a.lan_id service_region,a.market_region,a.type_flag,a.cust_type,a.cust_sub_type,cb.brand_cd AS cust_brand,cb.cust_sub_brand AS sub_cust_brand,a.is_vip,s.service_level,a.industry_cd,a.cust_area_grade,a.town_flag,a.lieu_id,a.status_cd,a.secrecy_level AS secr_grade,a.cust_addr AS cust_address,a.addr_id,a.cust_mgr,a.enter_date,a.create_date,a.ini_password,a.def_acct_id,a.grp_cust_code,a.charge_province_code,  a.charge_lan_id,a.is_realname AS real_flag,a.not_real_reason,a.accept_channel,a.remark as notes,d.credit_level,a.region_id as common_region_id,a.cust_brand_modify,c.attr_name as industry_name, de.approve_level, ccir.contact_id, a.party_cert_id,a.is_realname  from CUSTOMER a  LEFT JOIN credit d ON d.obj_id = a.cust_id and d.obj_type = '1100' AND d.status_cd = '1000'  LEFT JOIN credit_ext de on d.credit_id=de.credit_id  LEFT JOIN service_grade s ON s.obj_id = a.cust_id AND s.obj_type = '1100' AND s.status_cd = '1000'  LEFT JOIN cust_brand cb ON cb.cust_id = a.cust_id and cb.status_cd = '1000' and cb.main_flag='1'  LEFT JOIN cust_contact_info_rel ccir on a.cust_id = ccir.cust_id AND ccir.head_flag = '1'  and ccir.status_cd ='1000'  left join attr_spec_tree c on  a.industry_cd=c.attr_value where 1=1   and a.state = '1000'  and a.lan_id = '23'  and a.cust_name like '王丹%'  and a.status_cd <> '1300'  limit 0,10 
+     Last sql req: crmtest@136.6.168.89:43904
+               Ip: 136.6.168.89
+           Schema: CUSDBX
+*************************** 82. row ***************************
+        Statement: SELECT AGREEMENT_ID , STATE , FAILURE_CODE , FAILURE_DESC , STATE_TIME , CUST_ORDER_ID , ID FROM inf_bc_order_error_log WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 3
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select AGREEMENT_ID,STATE,FAILURE_CODE,FAILURE_DESC,STATE_TIME,CUST_ORDER_ID,ID from inf_bc_order_error_log  where CUST_ORDER_ID = '8232601213691189' and AGREEMENT_ID = '58568333' 
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select AGREEMENT_ID,STATE,FAILURE_CODE,FAILURE_DESC,STATE_TIME,CUST_ORDER_ID,ID from inf_bc_order_error_log  where CUST_ORDER_ID = '8232601273691401' and AGREEMENT_ID = '58568509' 
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 83. row ***************************
+        Statement: SELECT AGREEMENT_ID , CUST_ORDER_ID , ORDER_ITEM_ID , PRE_FLAG , OPER_TYPE , PROD_INST_ID , ATTR_ID , ATTR_VALUE FROM inf_bc_carry_num_attr WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 4
+         Avg time: 2
+         Max time: 2
+         Min time: 2
+     Max time sql: select AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,OPER_TYPE,PROD_INST_ID,ATTR_ID,ATTR_VALUE from inf_bc_carry_num_attr where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,OPER_TYPE,PROD_INST_ID,ATTR_ID,ATTR_VALUE from inf_bc_carry_num_attr where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 84. row ***************************
+        Statement: SELECT OPER_TYPE , ACCT_BILLING_TYPE , ACCT_CD , ACCT_ID , ACCT_LOGIN_NAME , ACCT_NAME , ACCT_TYPE , AGREEMENT_ID , CHARGE_PROVINCE_CODE , CREATE_DATE , CREATE_STAFF , CUST_ID , EFF_DATE , EXP_DATE , EXT_ACCT_ID , EXT1_ACCT_ID , EXT2_ACCT_ID , EXT3_ACCT_ID , GROUP_ACCT_ID , LAN_ID , LOGIN_PASSWORD , PARTY_ID , PROD_INST_ID , REGION_ID , REMARK , STAFF_LOCKED , STATUS_CD , STATUS_DATE , UPDATE_DATE , UPDATE_STAFF , CUST_ORDER_ID , ORDER_ITEM_ID , PRE_FLAG , GRP_ACCT_ID , IS_CREDIT_FLAG FROM inf_bc_account WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 6
+         Avg time: 3
+         Max time: 4
+         Min time: 2
+     Max time sql: select OPER_TYPE,ACCT_BILLING_TYPE,ACCT_CD,ACCT_ID,ACCT_LOGIN_NAME,ACCT_NAME,ACCT_TYPE, AGREEMENT_ID,CHARGE_PROVINCE_CODE,CREATE_DATE,CREATE_STAFF,CUST_ID,EFF_DATE,EXP_DATE,EXT_ACCT_ID,EXT1_ACCT_ID,EXT2_ACCT_ID,EXT3_ACCT_ID,GROUP_ACCT_ID,LAN_ID,LOGIN_PASSWORD,PARTY_ID,PROD_INST_ID,REGION_ID,REMARK,STAFF_LOCKED,STATUS_CD,STATUS_DATE,UPDATE_DATE,UPDATE_STAFF,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,GRP_ACCT_ID,IS_CREDIT_FLAG from inf_bc_account where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select OPER_TYPE,ACCT_BILLING_TYPE,ACCT_CD,ACCT_ID,ACCT_LOGIN_NAME,ACCT_NAME,ACCT_TYPE, AGREEMENT_ID,CHARGE_PROVINCE_CODE,CREATE_DATE,CREATE_STAFF,CUST_ID,EFF_DATE,EXP_DATE,EXT_ACCT_ID,EXT1_ACCT_ID,EXT2_ACCT_ID,EXT3_ACCT_ID,GROUP_ACCT_ID,LAN_ID,LOGIN_PASSWORD,PARTY_ID,PROD_INST_ID,REGION_ID,REMARK,STAFF_LOCKED,STATUS_CD,STATUS_DATE,UPDATE_DATE,UPDATE_STAFF,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,GRP_ACCT_ID,IS_CREDIT_FLAG from inf_bc_account where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 85. row ***************************
+        Statement: DELETE FROM inf_bc_order WHERE cust_order_id = ? AND agreement_id = ? 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 3
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: delete from inf_bc_order where cust_order_id='8232601273691401' and agreement_id='58568509'
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: delete from inf_bc_order where cust_order_id='8232601273691401' and agreement_id='58568509'
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 86. row ***************************
+        Statement: SELECT * FROM special_list_queue slq WHERE cust_id = ? LIMIT ? , ? 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 33
+         Avg time: 16
+         Max time: 17
+         Min time: 16
+     Max time sql: /* ApplicationName=DBeaver 23.1.0 - SQLEditor <Script-27.sql> */ select * from special_list_queue slq where cust_id = '800007326106'  LIMIT 0, 200
+Max time sql req : crmtest@136.4.163.230:58949
+         Last sql: /* ApplicationName=DBeaver 23.1.0 - SQLEditor <Script-27.sql> */ select * from special_list_queue slq where cust_id = '800007326106'  LIMIT 0, 200
+     Last sql req: crmtest@136.4.163.230:58949
+               Ip: 136.4.163.230
+           Schema: CUSDBX
+*************************** 87. row ***************************
+        Statement: SELECT AGREEMENT_ID , CUST_ORDER_ID , ORDER_ITEM_ID , PRE_FLAG , OPER_TYPE , PROD_INST_ID , PENALTY_AMOUNT FROM inf_bc_carry_num WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 2
+         Avg time: 1
+         Max time: 1
+         Min time: 1
+     Max time sql: select AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,OPER_TYPE,PROD_INST_ID,PENALTY_AMOUNT from inf_bc_carry_num where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,OPER_TYPE,PROD_INST_ID,PENALTY_AMOUNT from inf_bc_carry_num where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 88. row ***************************
+        Statement: SELECT OPER_TYPE , CHARGE_LAN_ID , CHARGE_PROVINCE_CODE , CREATE_DATE , CREATE_STAFF , CUST_ADDR , CUST_AREA_GRADE , CUST_CONTROL_LEVEL , CUST_ID , CUST_NAME , CUST_NUMBER , CUST_ORDER_ID , CUST_SOURCE_ID , CUST_SUB_TYPE , CUST_TYPE , DISTRIBUTOR_ID , EFF_DATE , ENTER_DATE , EXP_DATE , EXT_CUST_ID , EXT1_CUST_ID , EXT2_CUST_ID , EXT3_CUST_ID , GROUP_CUST_ID , IS_INSTEAD , IS_REALNAME , IS_VIP , LAN_ID , LAST_ORDER_ITEM_ID , PARTY_ID , REGION_ID , REMARK , SECRECY_LEVEL , STATUS_DATE , TAX_PAYER_ID , TYPE_FLAG , UPDATE_DATE , UPDATE_STAFF , AGREEMENT_ID , ORDER_ITEM_ID , PRE_FLAG , TAX_CUST_EFF_DATE , TAX_CUST_EXP_DATE , TAX_CUST_CODE , TAX_CUST_BANK_NAME , TAX_CUST_BANK_CODE , TAX_ACC_NBR , TAX_CUST_ADDRESS , TAX_CUST_FLAG , STATUS_CD , INDUSTRY_TYPE_ID FROM inf_bc_customer WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 4
+         Avg time: 2
+         Max time: 2
+         Min time: 2
+     Max time sql: select OPER_TYPE,CHARGE_LAN_ID,CHARGE_PROVINCE_CODE,CREATE_DATE,CREATE_STAFF,CUST_ADDR,CUST_AREA_GRADE,CUST_CONTROL_LEVEL,CUST_ID,CUST_NAME,CUST_NUMBER,CUST_ORDER_ID,CUST_SOURCE_ID,CUST_SUB_TYPE,CUST_TYPE,DISTRIBUTOR_ID,EFF_DATE,ENTER_DATE,EXP_DATE,EXT_CUST_ID,EXT1_CUST_ID,EXT2_CUST_ID,EXT3_CUST_ID,GROUP_CUST_ID,IS_INSTEAD,IS_REALNAME,IS_VIP,LAN_ID,LAST_ORDER_ITEM_ID,PARTY_ID,REGION_ID,REMARK,SECRECY_LEVEL,STATUS_DATE,TAX_PAYER_ID,TYPE_FLAG,UPDATE_DATE,UPDATE_STAFF,AGREEMENT_ID,ORDER_ITEM_ID,PRE_FLAG,TAX_CUST_EFF_DATE,TAX_CUST_EXP_DATE,TAX_CUST_CODE,TAX_CUST_BANK_NAME,TAX_CUST_BANK_CODE,TAX_ACC_NBR,TAX_CUST_ADDRESS,TAX_CUST_FLAG,STATUS_CD,INDUSTRY_TYPE_ID from inf_bc_customer where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select OPER_TYPE,CHARGE_LAN_ID,CHARGE_PROVINCE_CODE,CREATE_DATE,CREATE_STAFF,CUST_ADDR,CUST_AREA_GRADE,CUST_CONTROL_LEVEL,CUST_ID,CUST_NAME,CUST_NUMBER,CUST_ORDER_ID,CUST_SOURCE_ID,CUST_SUB_TYPE,CUST_TYPE,DISTRIBUTOR_ID,EFF_DATE,ENTER_DATE,EXP_DATE,EXT_CUST_ID,EXT1_CUST_ID,EXT2_CUST_ID,EXT3_CUST_ID,GROUP_CUST_ID,IS_INSTEAD,IS_REALNAME,IS_VIP,LAN_ID,LAST_ORDER_ITEM_ID,PARTY_ID,REGION_ID,REMARK,SECRECY_LEVEL,STATUS_DATE,TAX_PAYER_ID,TYPE_FLAG,UPDATE_DATE,UPDATE_STAFF,AGREEMENT_ID,ORDER_ITEM_ID,PRE_FLAG,TAX_CUST_EFF_DATE,TAX_CUST_EXP_DATE,TAX_CUST_CODE,TAX_CUST_BANK_NAME,TAX_CUST_BANK_CODE,TAX_ACC_NBR,TAX_CUST_ADDRESS,TAX_CUST_FLAG,STATUS_CD,INDUSTRY_TYPE_ID from inf_bc_customer where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 89. row ***************************
+        Statement: DELETE FROM inf_bc_prod_inst WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 6
+         Avg time: 3
+         Max time: 4
+         Min time: 2
+     Max time sql: delete from inf_bc_prod_inst where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: delete from inf_bc_prod_inst where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 90. row ***************************
+        Statement: DELETE FROM inf_bc_prod_inst_func WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 3
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: delete from inf_bc_prod_inst_func where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: delete from inf_bc_prod_inst_func where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 91. row ***************************
+        Statement: SELECT CUST_ORDER_ID , ASK_ID , AGREEMENT_ID , ORDER_ITEM_ID , ORDER_SEQ_ID , DEAL_TIM , STATE , ID FROM inf_bc_ocs_log WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 2
+         Avg time: 1
+         Max time: 1
+         Min time: 1
+     Max time sql: select CUST_ORDER_ID,ASK_ID,AGREEMENT_ID,ORDER_ITEM_ID,ORDER_SEQ_ID,DEAL_TIM,STATE,ID  from inf_bc_ocs_log where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select CUST_ORDER_ID,ASK_ID,AGREEMENT_ID,ORDER_ITEM_ID,ORDER_SEQ_ID,DEAL_TIM,STATE,ID  from inf_bc_ocs_log where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 92. row ***************************
+        Statement: SELECT TABLE_SCHEMA , TABLE_NAME FROM information_schema . TABLES WHERE TABLE_NAME LIKE ? AND TABLE_SCHEMA = ? ORDER BY TABLE_NAME LIMIT ? 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 5
+         Avg time: 2
+         Max time: 3
+         Min time: 2
+     Max time sql: /* ApplicationName=DBeaver 23.1.0 - SQLEditor <Script-27.sql> */ SELECT TABLE_SCHEMA,TABLE_NAME FROM information_schema.TABLES WHERE TABLE_NAME LIKE 'status_cd' AND TABLE_SCHEMA = 'CUSDBX' ORDER BY TABLE_NAME LIMIT 10
+Max time sql req : crmtest@136.4.163.230:58949
+         Last sql: /* ApplicationName=DBeaver 23.1.0 - SQLEditor <Script-27.sql> */ SELECT TABLE_SCHEMA,TABLE_NAME FROM information_schema.TABLES WHERE TABLE_NAME LIKE 'status_cd' AND TABLE_SCHEMA = 'CUSDBX' ORDER BY TABLE_NAME LIMIT 10
+     Last sql req: crmtest@136.4.163.230:58949
+               Ip: 136.4.163.230
+           Schema: CUSDBX
+*************************** 93. row ***************************
+        Statement: DELETE FROM inf_bc_order_item WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 6
+         Avg time: 3
+         Max time: 3
+         Min time: 3
+     Max time sql: delete from inf_bc_order_item where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: delete from inf_bc_order_item where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 94. row ***************************
+        Statement: SELECT CUST_ORDER_ID , AGREEMENT_ID , ORDER_ITEM_ID , CUST_ID , CERT_TYPE , CERT_NO , PRE_FLAG , ID FROM inf_bc_cust_identity WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 4
+         Avg time: 2
+         Max time: 2
+         Min time: 2
+     Max time sql: select CUST_ORDER_ID,AGREEMENT_ID,ORDER_ITEM_ID,CUST_ID,CERT_TYPE,CERT_NO,PRE_FLAG,ID from inf_bc_cust_identity where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select CUST_ORDER_ID,AGREEMENT_ID,ORDER_ITEM_ID,CUST_ID,CERT_TYPE,CERT_NO,PRE_FLAG,ID from inf_bc_cust_identity where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 95. row ***************************
+        Statement: SELECT OPER_TYPE , AVAILABLE_CREDIT_LIMIT_FEE , CREATE_DATE , CREATE_STAFF , CREDIT_LIMIT_FEE , CREDIT_LIMIT_ID , EFF_DATE , EVALUATE_TIME , EVALUATE_TYPE , EXP_DATE , OBJ_ID , OBJ_TYPE , REMARK , SET_REASON , STATUS_CD , STATUS_DATE , UPDATE_DATE , UPDATE_STAFF , AGREEMENT_ID , CUST_ORDER_ID , ORDER_ITEM_ID , PRE_FLAG , CREDIT_VALUE_TYPE_ID , OFFER_INST_ID , ID FROM inf_bc_credit_limit WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 4
+         Avg time: 2
+         Max time: 2
+         Min time: 2
+     Max time sql: select OPER_TYPE,AVAILABLE_CREDIT_LIMIT_FEE,CREATE_DATE,CREATE_STAFF,CREDIT_LIMIT_FEE,CREDIT_LIMIT_ID,EFF_DATE,EVALUATE_TIME,EVALUATE_TYPE,EXP_DATE,OBJ_ID,OBJ_TYPE,REMARK,SET_REASON,STATUS_CD,STATUS_DATE,UPDATE_DATE,UPDATE_STAFF,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,CREDIT_VALUE_TYPE_ID,OFFER_INST_ID,ID  from inf_bc_credit_limit where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select OPER_TYPE,AVAILABLE_CREDIT_LIMIT_FEE,CREATE_DATE,CREATE_STAFF,CREDIT_LIMIT_FEE,CREDIT_LIMIT_ID,EFF_DATE,EVALUATE_TIME,EVALUATE_TYPE,EXP_DATE,OBJ_ID,OBJ_TYPE,REMARK,SET_REASON,STATUS_CD,STATUS_DATE,UPDATE_DATE,UPDATE_STAFF,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,CREDIT_VALUE_TYPE_ID,OFFER_INST_ID,ID  from inf_bc_credit_limit where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 96. row ***************************
+        Statement: SELECT CUST_ORDER_ID , AGREEMENT_ID , ORDER_ITEM_ID , OFFER_INST_ID , SERV_ID , CELL_GROUP_ID , OPER_TYPE , PRE_FLAG , ID FROM inf_bc_offer_cell_group WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 2
+         Avg time: 1
+         Max time: 1
+         Min time: 1
+     Max time sql: select CUST_ORDER_ID,AGREEMENT_ID,ORDER_ITEM_ID,OFFER_INST_ID,SERV_ID,CELL_GROUP_ID,OPER_TYPE,PRE_FLAG,ID from inf_bc_offer_cell_group where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select CUST_ORDER_ID,AGREEMENT_ID,ORDER_ITEM_ID,OFFER_INST_ID,SERV_ID,CELL_GROUP_ID,OPER_TYPE,PRE_FLAG,ID from inf_bc_offer_cell_group where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 97. row ***************************
+        Statement: SELECT OPER_TYPE , CREATE_DATE , CREATE_STAFF , EFF_DATE , EVENT_DATE , EXP_DATE , LAST_ORDER_ITEM_ID , PROD_INST_ID , PROD_INST_STATE_ID , REMARK , STATUS_CD , STATUS_DATE , STOP_DIRECTION , STOP_REASON , STOP_TYPE , UPDATE_DATE , UPDATE_STAFF , AGREEMENT_ID , CUST_ORDER_ID , ORDER_ITEM_ID , PRE_FLAG FROM inf_bc_prod_inst_state WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 3
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select OPER_TYPE,CREATE_DATE,CREATE_STAFF,EFF_DATE,EVENT_DATE,EXP_DATE,LAST_ORDER_ITEM_ID,PROD_INST_ID,PROD_INST_STATE_ID,REMARK,STATUS_CD,STATUS_DATE,STOP_DIRECTION,STOP_REASON,STOP_TYPE,UPDATE_DATE,UPDATE_STAFF,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG  from inf_bc_prod_inst_state where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select OPER_TYPE,CREATE_DATE,CREATE_STAFF,EFF_DATE,EVENT_DATE,EXP_DATE,LAST_ORDER_ITEM_ID,PROD_INST_ID,PROD_INST_STATE_ID,REMARK,STATUS_CD,STATUS_DATE,STOP_DIRECTION,STOP_REASON,STOP_TYPE,UPDATE_DATE,UPDATE_STAFF,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG  from inf_bc_prod_inst_state where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 98. row ***************************
+        Statement: SELECT AGREEMENT_ID , STATE , FAILURE_CODE , FAILURE_DESC , STATE_TIME , CUST_ORDER_ID , ORDER_ITEM_ID , ID FROM inf_bc_order_repeat WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 2
+         Avg time: 1
+         Max time: 1
+         Min time: 1
+     Max time sql: select AGREEMENT_ID,STATE,FAILURE_CODE,FAILURE_DESC,STATE_TIME,CUST_ORDER_ID,ORDER_ITEM_ID,ID  from inf_bc_order_repeat where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' 
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select AGREEMENT_ID,STATE,FAILURE_CODE,FAILURE_DESC,STATE_TIME,CUST_ORDER_ID,ORDER_ITEM_ID,ID  from inf_bc_order_repeat where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' 
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 99. row ***************************
+        Statement: SELECT OPER_TYPE , TAX_CUST_FLAG , TAX_CUST_EFF_DATE , TAX_CUST_EXP_DATE , TAX_CUST_CODE , TAX_CUST_BANK_NAME , TAX_CUST_BANK_CODE , TAX_ACC_NBR , TAX_CUST_ADDRESS , AGREEMENT_ID , CUST_ORDER_ID , ORDER_ITEM_ID , PRE_FLAG , ID FROM inf_bc_tax_payer WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 4
+         Avg time: 2
+         Max time: 2
+         Min time: 2
+     Max time sql: select OPER_TYPE,TAX_CUST_FLAG,TAX_CUST_EFF_DATE,TAX_CUST_EXP_DATE,TAX_CUST_CODE,TAX_CUST_BANK_NAME,TAX_CUST_BANK_CODE,TAX_ACC_NBR,TAX_CUST_ADDRESS,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,ID  from inf_bc_tax_payer where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select OPER_TYPE,TAX_CUST_FLAG,TAX_CUST_EFF_DATE,TAX_CUST_EXP_DATE,TAX_CUST_CODE,TAX_CUST_BANK_NAME,TAX_CUST_BANK_CODE,TAX_ACC_NBR,TAX_CUST_ADDRESS,AGREEMENT_ID,CUST_ORDER_ID,ORDER_ITEM_ID,PRE_FLAG,ID  from inf_bc_tax_payer where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX
+*************************** 100. row ***************************
+        Statement: SELECT CUST_ORDER_ID , AGREEMENT_ID , ORDER_ITEM_ID , SERV_ID , OPER_TYPE , ADD_ACC_NBR , NBR_TYPE , PRE_FLAG , ID FROM inf_bc_serv_add_acc_nbr WHERE CUST_ORDER_ID = ? AND AGREEMENT_ID = ? AND ORDER_ITEM_ID IN ( ? ) 
+            Count: 2
+             Type: ALL
+            Begin: 2026-02-27 00:00:00
+              End: 2026-02-27 16:19:17
+       Total time: 3
+         Avg time: 1
+         Max time: 2
+         Min time: 1
+     Max time sql: select CUST_ORDER_ID,AGREEMENT_ID,ORDER_ITEM_ID,SERV_ID,OPER_TYPE,ADD_ACC_NBR,NBR_TYPE,PRE_FLAG,ID from inf_bc_serv_add_acc_nbr where CUST_ORDER_ID ='8232601213691189' and AGREEMENT_ID ='58568333' and ORDER_ITEM_ID in ('232601213684075')
+Max time sql req : crmtest@136.25.62.144:40678
+         Last sql: select CUST_ORDER_ID,AGREEMENT_ID,ORDER_ITEM_ID,SERV_ID,OPER_TYPE,ADD_ACC_NBR,NBR_TYPE,PRE_FLAG,ID from inf_bc_serv_add_acc_nbr where CUST_ORDER_ID ='8232601273691401' and AGREEMENT_ID ='58568509' and ORDER_ITEM_ID in ('232601273688531')
+     Last sql req: crmtest@136.25.62.144:40678
+               Ip: 136.25.62.144
+           Schema: CUSDBX

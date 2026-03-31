@@ -1,0 +1,88 @@
+{
+  "title": "V3 Group 1 - account 与 customer",
+  "version": "v3",
+  "focused_upload": true,
+  "sql_ids": [
+    "sql_1",
+    "sql_2",
+    "sql_3"
+  ],
+  "sql_units": [
+    {
+      "sql_id": "sql_1",
+      "title": "account 等值查询",
+      "tables": [
+        "account"
+      ],
+      "required_index_names": [
+        "idx_account_acct_id",
+        "idx_account_acct_id_cust_id"
+      ],
+      "table_expectations": [
+        {
+          "table_name": "account",
+          "table_rows_exact": 150000,
+          "primary_key": [],
+          "forbidden_primary_key_columns": [
+            "acct_id",
+            "cust_id"
+          ]
+        }
+      ]
+    },
+    {
+      "sql_id": "sql_2",
+      "title": "account 过滤排序分页",
+      "tables": [
+        "account"
+      ],
+      "required_index_names": [
+        "idx_account_cust_id",
+        "idx_account_acct_id_cust_id"
+      ],
+      "table_expectations": [
+        {
+          "table_name": "account",
+          "table_rows_exact": 150000,
+          "primary_key": [],
+          "forbidden_primary_key_columns": [
+            "acct_id",
+            "cust_id"
+          ]
+        }
+      ]
+    },
+    {
+      "sql_id": "sql_3",
+      "title": "customer 高选择性等值查询",
+      "tables": [
+        "customer"
+      ],
+      "required_index_names": [
+        "PRIMARY",
+        "idx_customer_cust_id"
+      ],
+      "table_expectations": [
+        {
+          "table_name": "customer",
+          "table_rows_exact": 890000,
+          "primary_key": [
+            "id"
+          ],
+          "forbidden_primary_key_columns": [
+            "cust_id"
+          ]
+        }
+      ]
+    }
+  ],
+  "global_forbidden_phrases": [
+    "无索引",
+    "索引未知",
+    "未显示索引信息",
+    "无法确认是否有索引",
+    "DDL 未提供",
+    "未提供 DDL",
+    "DDL 为空"
+  ]
+}

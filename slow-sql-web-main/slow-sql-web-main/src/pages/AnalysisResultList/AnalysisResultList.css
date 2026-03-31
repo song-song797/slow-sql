@@ -1,0 +1,125 @@
+.analysis-result-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.analysis-result-summary {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.analysis-result-metric {
+  border: 1px solid rgba(25, 118, 210, 0.1);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(243, 248, 255, 0.92));
+  padding: 18px 20px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+}
+
+.analysis-result-metric__label {
+  display: block;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.analysis-result-metric__value {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-strong);
+  line-height: 1.1;
+}
+
+.analysis-result-metric__hint {
+  display: block;
+  margin-top: 6px;
+  color: #6f8197;
+  font-size: 13px;
+}
+
+.analysis-result-filter-card {
+  border: 1px solid rgba(25, 118, 210, 0.12);
+}
+
+.analysis-result-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(25, 118, 210, 0.08);
+  color: #1557a6;
+  font-weight: 600;
+}
+
+.analysis-result-table-card {
+  overflow: hidden;
+}
+
+.analysis-result-table-card .ant-card-body {
+  padding: 20px;
+}
+
+.analysis-result-table-card .ant-table-wrapper {
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.analysis-result-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.analysis-result-toolbar__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.analysis-result-sql-popover {
+  max-width: 520px;
+  max-height: 420px;
+  overflow: auto;
+}
+
+.analysis-result-sql-block {
+  margin-bottom: 16px;
+}
+
+.analysis-result-sql-preview {
+  margin: 0;
+  padding: 10px 12px;
+  background: #f4f7fb;
+  border: 1px solid #dbe5f0;
+  border-radius: 12px;
+  font-size: 12px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.analysis-result-row-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.analysis-result-row-subtle {
+  color: var(--text-muted);
+  font-size: 12px;
+  margin-top: 4px;
+  word-break: break-all;
+}
+
+@media (max-width: 900px) {
+  .analysis-result-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

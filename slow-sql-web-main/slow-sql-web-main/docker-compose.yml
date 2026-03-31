@@ -1,0 +1,18 @@
+services:
+  slow-sql-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: slow-sql-analyzer-web
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - slow-sql-network
+
+networks:
+  slow-sql-network:
+    driver: bridge
+

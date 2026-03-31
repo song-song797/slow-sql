@@ -1,0 +1,37 @@
+.record-search-page {
+  width: 100%;
+}
+
+.result-section {
+  margin-top: 16px;
+  overflow: hidden;
+}
+
+.record-search-metadata-tip {
+  margin-top: 16px;
+}
+
+.result-section .ant-card-body {
+  padding: 22px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #8c8c8c;
+}
+
+.analysis-progress-modal .ant-modal-content {
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.analysis-progress-modal .ant-modal-header {
+  border-bottom: 1px solid #edf2f8;
+}
+
+@media (max-width: 768px) {
+  .result-section .ant-card-body {
+    padding: 18px 16px;
+  }
+}

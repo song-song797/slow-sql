@@ -1,0 +1,44 @@
+# Editor
+.vscode/
+
+# Python
+.venv/
+venv/
+**/__pycache__/
+**/*.py[cod]
+
+# Node
+**/node_modules/
+**/dist/
+**/build/
+**/*.tsbuildinfo
+
+# Environment files
+.env
+.env.*
+!.env.example
+!.env.local.example
+
+# Logs and runtime files
+*.log
+*.log.*
+*.pid
+*.pid.lock
+*.stderr.log
+*.stdout.log
+
+# Local runtime dependencies and data
+.codex/
+local-dev/elasticsearch/elasticsearch-8.15.3-windows-x86_64.zip
+local-dev/elasticsearch/elasticsearch-8.15.3/
+local-dev/elasticsearch/es-data/
+local-dev/elasticsearch/es-logs/
+local-dev/mysql-runtime/
+
+# Generated backend reports
+slow-sql-backend-main/slow-sql-backend-main/static/reports/
+
+# Misc temp files
+~$*.docx
+Thumbs.db
+.DS_Store
