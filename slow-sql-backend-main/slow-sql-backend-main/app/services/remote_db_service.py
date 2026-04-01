@@ -71,7 +71,7 @@ class RemoteDatabaseService:
 
     @staticmethod
     def _quote_postgresql_identifier(identifier: str) -> str:
-        return f"\"{identifier.replace('\"', '\"\"')}\""
+        return '"' + identifier.replace('"', '""') + '"'
 
     @staticmethod
     def _get_mysql_table_names(connection, db_name: str) -> list[str]:

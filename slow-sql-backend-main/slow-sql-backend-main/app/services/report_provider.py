@@ -1368,5 +1368,5 @@ def get_report_provider() -> ReportProvider:
     if provider in {"remote_workflow", "api1_workflow"}:
         return RemoteWorkflowReportProvider(file_input_mode=False)
     if provider not in {"remote_workflow", "api1_workflow", "api1_file_workflow"}:
-        raise RuntimeError(f"不再支持本地分析 provider: {settings.report_provider}")
+        raise RuntimeError(f"不支持的 REPORT_PROVIDER: {settings.report_provider}")
     return RemoteWorkflowReportProvider(file_input_mode=False)

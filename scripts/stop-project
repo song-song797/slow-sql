@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+COMPOSE_FILE="$ROOT_DIR/docker-compose.local.yml"
+
+log() {
+  printf '[stop-project] %s\n' "$1"
+}
+
+main() {
+  if ! command -v docker >/dev/null 2>&1; then
+    log "未找到 docker，无法停止 compose 环境"
+    exit 1
+  fi
+
+  if [[ ! -f "$COMPOSE_FILE" ]]; then
+    log "未找到 compose 文件，跳过"
+    exit 0
+  fi
+
+  log "停止完整容器化环境..."
+  docker compose -f "$COMPOSE_FILE" down
+}
+
+main "$@"

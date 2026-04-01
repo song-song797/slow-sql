@@ -1,4 +1,4 @@
 @echo off
 setlocal
 cd /d "%~dp0.."
-powershell.exe -ExecutionPolicy Bypass -File ".\scripts\start-all.ps1"
+docker compose -f docker-compose.local.yml up -d --build

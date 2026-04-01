@@ -2,14 +2,13 @@ services:
   mysql:
     image: mysql:8.0
     container_name: slow-sql-local-mysql
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: slow_sql_db
       MYSQL_USER: slow_sql
       MYSQL_PASSWORD: slow_sql
       TZ: Asia/Shanghai
-    ports:
-      - "3306:3306"
     volumes:
       - ./local-dev/mysql/01-init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
     healthcheck:
@@ -21,13 +20,12 @@ services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.15.3
     container_name: slow-sql-local-es
+    restart: unless-stopped
     environment:
       discovery.type: single-node
       xpack.security.enabled: "false"
       ES_JAVA_OPTS: "-Xms512m -Xmx512m"
       TZ: Asia/Shanghai
-    ports:
-      - "9200:9200"
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:9200/_cluster/health >/dev/null || exit 1"]
       interval: 10s
@@ -48,15 +46,58 @@ services:
     entrypoint: ["sh", "/seed.sh"]
     restart: "no"
 
-  report-stub:
+  backend:
     build:
-      context: ./local-report-stub
+      context: ./slow-sql-backend-main/slow-sql-backend-main
       dockerfile: Dockerfile
-    container_name: slow-sql-local-report-stub
+    container_name: slow-sql-local-backend
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      APP_ENV: local
+      API_KEY: dev-api-key
+      ES_URL: http://elasticsearch:9200
+      ES_INDEX_PATTERN: triangle-mysql-*
+      ES_USERNAME: ""
+      ES_PASSWORD: ""
+      ES_USE_SSL: "false"
+      DB_HOST: mysql
+      DB_PORT: "3306"
+      DB_USER: slow_sql
+      DB_PASSWORD: slow_sql
+      DB_NAME: slow_sql_db
+      REPORT_PROVIDER: ${REPORT_PROVIDER:-api1_workflow}
+      REPORT_API_BASE_URL: ${REPORT_API_BASE_URL:-}
+      REPORT_API_TIMEOUT: ${REPORT_API_TIMEOUT:-300}
+      WORKFLOW_ID: ${WORKFLOW_ID:-}
+      TZ: Asia/Shanghai
     ports:
-      - "18080:18080"
+      - "10800:10800"
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:18080/health').read()"]
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:10800/health >/dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  frontend:
+    build:
+      context: ./slow-sql-web-main/slow-sql-web-main
+      dockerfile: Dockerfile
+    container_name: slow-sql-local-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - "3000:10801"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:10801 || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 12

@@ -29,53 +29,46 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 开发环境启动
 
-### 1. 启动依赖服务
+### 1. 配置远端报告工作流
+在启动前，通过环境变量提供远端 workflow 配置：
+```bash
+export REPORT_PROVIDER=api1_workflow
+export REPORT_API_BASE_URL=http://your-host/api/v2/workflow/invoke
+export WORKFLOW_ID=your-workflow-id
+```
+
+### 2. 启动完整容器化环境
 ```bash
 # 在仓库根目录执行
+./scripts/run-project
+```
+
+也可以直接执行：
+```bash
 docker compose -f docker-compose.local.yml up -d --build
 ```
-依赖服务端口：
-- MySQL: `127.0.0.1:3306` (用户: slow_sql/slow_sql)
-- Elasticsearch: `127.0.0.1:9200` (无需认证)
-- Report Stub: `127.0.0.1:18080` (本地模拟报告生成服务)
 
-### 2. 启动后端
-```bash
-cd slow-sql-backend-main/slow-sql-backend-main
-python -m pip install -r requirements.txt
-python -m uvicorn app.main:app --host 127.0.0.1 --port 10800 --reload
-```
-后端端口：`10800`
-API文档：`http://127.0.0.1:10800/docs`
+默认访问地址：
+- 前端：`http://127.0.0.1:3000`
+- 后端：`http://127.0.0.1:10800/docs`
 
-### 3. 启动前端
+### 3. 停止与重启
 ```bash
-cd slow-sql-web-main/slow-sql-web-main
-npm install
-npm run dev
+./scripts/stop-project
+./scripts/restart-project
 ```
-前端端口：`3000`
-访问地址：`http://127.0.0.1:3000`
 
 ### 4. 运行测试
 ```bash
 # 后端测试
-cd slow-sql-backend-main/slow-sql-backend-main
-pytest
+docker compose -f docker-compose.local.yml exec backend pytest
 
 # 前端类型检查
-cd slow-sql-web-main/slow-sql-web-main
-npm run type-check
-
-# 前端lint
-npm run lint
+docker compose -f docker-compose.local.yml exec frontend sh -lc "cd /usr/share/nginx/html && true"
 ```
 
 ### 5. 构建前端
-```bash
-cd slow-sql-web-main/slow-sql-web-main
-npm run build
-```
+前端镜像构建已包含在根目录 compose 流程中。
 
 ## 核心架构
 
@@ -153,7 +146,7 @@ src/
 主要配置项：
 - `api_key`: API密钥 (默认: dev-api-key)
 - `es_url`: Elasticsearch地址
-- `report_provider`: 报告生成方式 (api1_workflow/local_stub)
+- `report_provider`: 报告生成方式 (api1_workflow/api1_file_workflow/remote_workflow)
 - `metadata_auto_fetch_enabled`: 是否自动获取元数据
 - `metadata_db_overrides`: 元数据获取覆盖配置
 

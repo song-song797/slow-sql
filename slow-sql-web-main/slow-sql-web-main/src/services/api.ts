@@ -12,7 +12,7 @@ import {
   SlowSqlRecord,
 } from "../types";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:10800";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 const API_KEY = import.meta.env.VITE_API_KEY || "dev-api-key";
 
 export function resolveApiUrl(url: string): string {
@@ -20,6 +20,9 @@ export function resolveApiUrl(url: string): string {
     return url;
   }
   if (/^https?:\/\//i.test(url)) {
+    return url;
+  }
+  if (!API_BASE_URL) {
     return url;
   }
   const baseUrl = API_BASE_URL.replace(/\/$/, "");
@@ -30,7 +33,7 @@ export function resolveApiUrl(url: string): string {
 }
 
 async function request<T>(url: string, options?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${url}`, {
+  const response = await fetch(resolveApiUrl(url), {
     headers: {
       "Content-Type": "application/json",
       "X-API-Key": API_KEY,
@@ -369,7 +372,7 @@ export async function disableDataSource(id: number): Promise<DataSource> {
 }
 
 export async function downloadPdfReportsZip(taskIds: string[]): Promise<void> {
-  const response = await fetch(`${API_BASE_URL}/api/v1/sql-analysis/download-pdfs`, {
+  const response = await fetch(resolveApiUrl("/api/v1/sql-analysis/download-pdfs"), {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -427,7 +430,7 @@ export async function downloadPdfReport(
 
   const isRemoteReportUrl = /^https?:\/\//i.test(reportUrl);
   const requestUrl = isRemoteReportUrl
-    ? `${API_BASE_URL}/api/v1/sql-analysis/download-pdf`
+    ? resolveApiUrl("/api/v1/sql-analysis/download-pdf")
     : resolveApiUrl(reportUrl);
   const requestOptions: RequestInit = isRemoteReportUrl
     ? {

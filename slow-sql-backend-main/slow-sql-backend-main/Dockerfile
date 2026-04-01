@@ -1,5 +1,5 @@
 # 多阶段构建优化版本
-FROM reg.un-net.com/python/python:3.10-slim as builder
+FROM python:3.10-slim AS builder
 
 # 设置工作目录
 WORKDIR /app
@@ -8,21 +8,12 @@ WORKDIR /app
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN rm -rf /etc/apt/sources.list.d/* /etc/apt/sources.list && \
-    mkdir -p /etc/apt/sources.list.d
+# 使用清华 Debian 镜像，减少官方源不稳定带来的构建失败
+RUN sed -i 's|http://deb.debian.org/debian|https://mirrors.tuna.tsinghua.edu.cn/debian|g' /etc/apt/sources.list.d/debian.sources && \
+    sed -i 's|http://deb.debian.org/debian-security|https://mirrors.tuna.tsinghua.edu.cn/debian-security|g' /etc/apt/sources.list.d/debian.sources
 
-# 彻底清理旧的 APT 列表缓存（防止复用）
-RUN rm -rf /var/lib/apt/lists/*
-
-# 创建 /etc/apt/sources.list（使用清华源）
-RUN echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian bookworm main" > /etc/apt/sources.list && \
-    echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bookworm-security main" >> /etc/apt/sources.list && \
-    echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian bookworm-updates main" >> /etc/apt/sources.list
-
-# 安装系统依赖
-RUN apt-get update && apt-get install -y \
-    gcc \
-    g++ \
+# 安装健康检查所需依赖
+RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
@@ -52,5 +43,3 @@ ENV PYTHONUNBUFFERED=1
 
 # 启动应用
 CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "10800"]
-
-

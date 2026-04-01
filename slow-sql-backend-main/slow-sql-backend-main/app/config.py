@@ -37,7 +37,7 @@ class Settings(BaseSettings):
 
     # Report Generation Configuration
     report_provider: str = "api1_workflow"
-    report_api_base_url: str = "http://127.0.0.1:18080"
+    report_api_base_url: str = "http://your-host/api/v2/workflow/invoke"
     report_api_timeout: int = 300
     workflow_id: Optional[str] = None
     workflow_file_content_max_chars: int = 14000
