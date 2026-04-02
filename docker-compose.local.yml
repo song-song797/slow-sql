@@ -17,6 +17,23 @@ services:
       timeout: 5s
       retries: 12
 
+  postgres-demo:
+    image: postgres:16
+    container_name: slow-sql-local-postgres-demo
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: cqctdb
+      POSTGRES_USER: cqct
+      POSTGRES_PASSWORD: cqct
+      TZ: Asia/Shanghai
+    volumes:
+      - ./local-dev/postgres/01-init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U cqct -d cqctdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.15.3
     container_name: slow-sql-local-es
@@ -74,6 +91,8 @@ services:
       REPORT_API_BASE_URL: ${REPORT_API_BASE_URL:-}
       REPORT_API_TIMEOUT: ${REPORT_API_TIMEOUT:-300}
       WORKFLOW_ID: ${WORKFLOW_ID:-}
+      DATA_SOURCE_SECRET_KEY: ${DATA_SOURCE_SECRET_KEY:-}
+      METADATA_DB_OVERRIDES: ${METADATA_DB_OVERRIDES:-}
       TZ: Asia/Shanghai
     ports:
       - "10800:10800"

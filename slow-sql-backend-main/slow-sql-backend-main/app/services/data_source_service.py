@@ -3,13 +3,50 @@ from typing import Dict, List, Optional
 
 from sqlalchemy.orm import Session
 
+from app.config import settings
 from app.models.data_source import DataSource
+from app.schemas.database_info import DatabaseInfoCreate
 from app.schemas.data_source import DataSourceCreate, DataSourceUpdate
+from app.services.database_service import DatabaseService
 from app.services.data_source_crypto import DataSourceCryptoService
 from app.services.remote_db_service import RemoteDatabaseService
 
 
 class DataSourceService:
+    @staticmethod
+    def _resolve_runtime_connection_target(data_source: DataSource) -> dict:
+        password = DataSourceService.get_password(data_source)
+        override = settings.find_metadata_fetch_override(
+            db_type=data_source.db_type,
+            db_ip=data_source.host,
+            db_port=data_source.port,
+            db_name=data_source.db_name,
+        )
+        if not override:
+            return {
+                "db_type": data_source.db_type,
+                "host": data_source.host,
+                "port": data_source.port,
+                "db_name": data_source.db_name,
+                "username": data_source.username,
+                "password": password,
+            }
+
+        resolved_target = settings.resolve_metadata_fetch_target(
+            db_type=data_source.db_type,
+            db_ip=data_source.host,
+            db_port=data_source.port,
+            db_name=data_source.db_name,
+        )
+        return {
+            "db_type": resolved_target["db_type"],
+            "host": resolved_target["host"],
+            "port": resolved_target["port"],
+            "db_name": resolved_target["db_name"],
+            "username": resolved_target.get("username") or data_source.username,
+            "password": resolved_target.get("password") or password,
+        }
+
     @staticmethod
     def _normalize_payload(payload: dict) -> dict:
         normalized = dict(payload)
@@ -102,13 +139,14 @@ class DataSourceService:
 
     @staticmethod
     def test_connection(db: Session, data_source: DataSource) -> dict:
+        connection_target = DataSourceService._resolve_runtime_connection_target(data_source)
         result = RemoteDatabaseService.test_connection(
-            db_type=data_source.db_type,
-            host=data_source.host,
-            port=data_source.port,
-            db_name=data_source.db_name,
-            username=data_source.username,
-            password=DataSourceService.get_password(data_source),
+            db_type=connection_target["db_type"],
+            host=connection_target["host"],
+            port=connection_target["port"],
+            db_name=connection_target["db_name"],
+            username=connection_target["username"],
+            password=connection_target["password"],
         )
         data_source.last_test_status = "success"
         data_source.last_test_message = result["message"]
@@ -133,15 +171,24 @@ class DataSourceService:
         *,
         table_name: Optional[str] = None,
     ) -> List[Dict]:
-        return RemoteDatabaseService.fetch_database_info(
-            db_type=data_source.db_type,
-            host=data_source.host,
-            port=data_source.port,
-            db_name=data_source.db_name,
-            username=data_source.username,
-            password=DataSourceService.get_password(data_source),
+        connection_target = DataSourceService._resolve_runtime_connection_target(data_source)
+        records = RemoteDatabaseService.fetch_database_info(
+            db_type=connection_target["db_type"],
+            host=connection_target["host"],
+            port=connection_target["port"],
+            db_name=connection_target["db_name"],
+            username=connection_target["username"],
+            password=connection_target["password"],
             table_name=table_name,
         )
+        for record in records:
+            logical_record = dict(record)
+            logical_record["db_type"] = settings.normalize_db_type(data_source.db_type)
+            logical_record["db_name"] = data_source.db_name
+            logical_record["db_ip"] = data_source.host
+            logical_record["db_port"] = data_source.port
+            DatabaseService.upsert_table_info(db, DatabaseInfoCreate(**logical_record))
+        return records
 
     @staticmethod
     def require_ready_for_analysis(data_source: Optional[DataSource]) -> DataSource:

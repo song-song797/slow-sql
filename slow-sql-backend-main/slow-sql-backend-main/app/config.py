@@ -199,29 +199,12 @@ class Settings(BaseSettings):
             "password": self.get_metadata_fetch_password_for_db_type(normalized_db_type),
         }
 
-        overrides = self._load_metadata_db_overrides()
-        override = None
-        if db_name:
-            candidate_keys = []
-            if db_ip and target["port"]:
-                candidate_keys.append(f"{normalized_db_type}:{db_ip}:{target['port']}:{db_name}")
-            candidate_keys.append(f"{normalized_db_type}:{db_name}")
-            candidate_keys.append(str(db_name))
-
-            for key in candidate_keys:
-                candidate = overrides.get(key)
-                if not candidate:
-                    continue
-                if self._override_matches_metadata_target(
-                    candidate,
-                    db_type=normalized_db_type,
-                    db_ip=db_ip,
-                    db_port=target["port"],
-                    db_name=db_name,
-                ):
-                    override = candidate
-                    break
-
+        override = self.find_metadata_fetch_override(
+            db_type=normalized_db_type,
+            db_ip=db_ip,
+            db_port=target["port"],
+            db_name=db_name,
+        )
         if not override:
             return target
 
@@ -243,6 +226,39 @@ class Settings(BaseSettings):
             or self.get_metadata_fetch_password_for_db_type(override_db_type)
         )
         return target
+
+    def find_metadata_fetch_override(
+        self,
+        db_type: Optional[str],
+        db_ip: Optional[str],
+        db_port: Optional[int],
+        db_name: Optional[str],
+    ) -> Optional[dict[str, Any]]:
+        normalized_db_type = self.normalize_db_type(db_type)
+        target_port = db_port or self.get_default_port_for_db_type(normalized_db_type)
+        overrides = self._load_metadata_db_overrides()
+        if not db_name:
+            return None
+
+        candidate_keys = []
+        if db_ip and target_port:
+            candidate_keys.append(f"{normalized_db_type}:{db_ip}:{target_port}:{db_name}")
+        candidate_keys.append(f"{normalized_db_type}:{db_name}")
+        candidate_keys.append(str(db_name))
+
+        for key in candidate_keys:
+            candidate = overrides.get(key)
+            if not candidate:
+                continue
+            if self._override_matches_metadata_target(
+                candidate,
+                db_type=normalized_db_type,
+                db_ip=db_ip,
+                db_port=target_port,
+                db_name=db_name,
+            ):
+                return candidate
+        return None
 
 
 settings = Settings()

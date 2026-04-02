@@ -11,6 +11,38 @@ logger = logging.getLogger(__name__)
 
 class AnalysisTaskService:
     @staticmethod
+    def _extract_sql_statements_from_section(sql_section: str) -> Optional[list[str]]:
+        statements: list[str] = []
+        in_sql_block = False
+        sql_buffer: list[str] = []
+
+        for line in sql_section.split("\n"):
+            statement = line.strip()
+            if statement.startswith("```sql") or statement == "```":
+                in_sql_block = True
+                sql_buffer = []
+                continue
+            if statement == "```" and in_sql_block:
+                in_sql_block = False
+                sql_text_value = "\n".join(sql_buffer).strip()
+                if sql_text_value:
+                    statements.append(sql_text_value)
+                sql_buffer = []
+                continue
+            if in_sql_block:
+                sql_buffer.append(line.rstrip())
+                continue
+
+            # Older tasks may serialize the SQL list as bullet lines:
+            # - SQL 1: 表 account | select * from account ...
+            if statement.startswith("- SQL ") and " | " in line:
+                sql_text_value = line.split(" | ", 1)[1].strip()
+                if sql_text_value:
+                    statements.append(sql_text_value)
+
+        return statements or None
+
+    @staticmethod
     def _infer_compaction_level(sql_text: Optional[str]) -> str:
         text = sql_text or ""
         if "紧急压缩模式已省略 DDL" in text:
@@ -86,26 +118,7 @@ class AnalysisTaskService:
             sql_section = sql_text.split(sql_section_marker, 1)[-1]
             if "\n## " in sql_section:
                 sql_section = sql_section.split("\n## ", 1)[0]
-
-            statements: list[str] = []
-            in_sql_block = False
-            sql_buffer: list[str] = []
-            for line in sql_section.split("\n"):
-                statement = line.strip()
-                if statement.startswith("```sql"):
-                    in_sql_block = True
-                    sql_buffer = []
-                    continue
-                if statement == "```" and in_sql_block:
-                    in_sql_block = False
-                    sql_text_value = "\n".join(sql_buffer).strip()
-                    if sql_text_value:
-                        statements.append(sql_text_value)
-                    sql_buffer = []
-                    continue
-                if in_sql_block:
-                    sql_buffer.append(line.rstrip())
-            return statements or None
+            return AnalysisTaskService._extract_sql_statements_from_section(sql_section)
 
         if "SQL脚本：" in sql_text:
             sql_script_part = sql_text.split("SQL脚本：", 1)[-1]
@@ -116,26 +129,7 @@ class AnalysisTaskService:
             sql_script_part = sql_text.split("SQL 清单：", 1)[-1]
             if "\n## " in sql_script_part:
                 sql_script_part = sql_script_part.split("\n## ", 1)[0]
-
-            statements: list[str] = []
-            in_sql_block = False
-            sql_buffer: list[str] = []
-            for line in sql_script_part.split("\n"):
-                statement = line.strip()
-                if statement.startswith("```sql"):
-                    in_sql_block = True
-                    sql_buffer = []
-                    continue
-                if statement == "```" and in_sql_block:
-                    in_sql_block = False
-                    sql_text_value = "\n".join(sql_buffer).strip()
-                    if sql_text_value:
-                        statements.append(sql_text_value)
-                    sql_buffer = []
-                    continue
-                if in_sql_block:
-                    sql_buffer.append(line.rstrip())
-            return statements or None
+            return AnalysisTaskService._extract_sql_statements_from_section(sql_script_part)
 
         statements = [sql.strip() for sql in sql_text.split("\n") if sql.strip()]
         return statements or None
