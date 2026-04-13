@@ -120,3 +120,50 @@ services:
       interval: 10s
       timeout: 5s
       retries: 12
+
+  kafka-consumer:
+    build:
+      context: ./kafka-consumer
+      dockerfile: Dockerfile
+    container_name: slow-sql-local-kafka-consumer
+    restart: unless-stopped
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      TZ: Asia/Shanghai
+      RUN_MODE: ${RUN_MODE:-consumer}
+      KAFKA_BOOTSTRAP_SERVERS: ${KAFKA_BOOTSTRAP_SERVERS:-172.20.40.166:9094}
+      KAFKA_TOPIC_PG: log_push_pg
+      KAFKA_TOPIC_UDAL: log_push_udal
+      ES_URL: http://elasticsearch:9200
+      ES_INDEX_PATTERN: triangle-mysql-*
+      ES_USE_SSL: "false"
+      PG_DEFAULT_DB_HOST: ${PG_DEFAULT_DB_HOST:-127.0.0.1}
+      UDAL_DEFAULT_DB_HOST: ${UDAL_DEFAULT_DB_HOST:-127.0.0.1}
+      ES_BATCH_SIZE: "500"
+      ES_FLUSH_INTERVAL_SECONDS: "5.0"
+      UDAL_MERGE_TIMEOUT_SECONDS: "60"
+    volumes:
+      - ${PG_LOG_DIR:-./logs/pg}:/var/log/postgresql:ro
+      - ${UDAL_LOG_DIR:-./logs/udal}:/var/log/udal:ro
+      - kafka-consumer-checkpoints:/data/checkpoints
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:10801/health >/dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  kafka-test-ui:
+    build:
+      context: ./kafka-consumer/test-ui
+      dockerfile: Dockerfile
+    container_name: slow-sql-local-kafka-test-ui
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - "8090:8090"
+
+volumes:
+  kafka-consumer-checkpoints:

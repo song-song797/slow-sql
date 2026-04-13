@@ -6,7 +6,6 @@ import {
   Empty,
   Pagination,
   Popconfirm,
-  Popover,
   Space,
   Spin,
   Table,
@@ -27,6 +26,7 @@ import {
 } from "@ant-design/icons";
 
 import { AnalysisSearchPanel } from "../../components/AnalysisSearchPanel/AnalysisSearchPanel";
+import { MultiSqlViewer } from "../../components/SqlViewer";
 import {
   downloadPdfReport,
   downloadPdfReportsZip,
@@ -222,13 +222,6 @@ export const AnalysisResultListPage: React.FC = () => {
     }
   }, [selectedRowKeys]);
 
-  const truncateSql = (sql: string, maxLength: number = 80) => {
-    if (sql.length <= maxLength) {
-      return sql;
-    }
-    return `${sql.substring(0, maxLength)}...`;
-  };
-
   const columns: ColumnsType<AnalysisResult> = [
     {
       title: "任务ID",
@@ -247,32 +240,7 @@ export const AnalysisResultListPage: React.FC = () => {
         if (!statements || statements.length === 0) {
           return <Text type="secondary">无 SQL 语句</Text>;
         }
-        return (
-          <Popover
-            title="完整 SQL"
-            content={
-              <div className="analysis-result-sql-popover">
-                {statements.map((sql, index) => (
-                  <div key={index} className="analysis-result-sql-block">
-                    {statements.length > 1 && (
-                      <Text strong style={{ display: "block", marginBottom: 8 }}>
-                        SQL {index + 1}:
-                      </Text>
-                    )}
-                    <pre className="analysis-result-sql-preview">{sql}</pre>
-                  </div>
-                ))}
-              </div>
-            }
-          >
-            <div style={{ display: "inline-flex", alignItems: "center", maxWidth: "100%" }}>
-              <Text code style={{ fontSize: 12, maxWidth: 250, whiteSpace: "nowrap" }}>
-                {truncateSql(statements[0])}
-              </Text>
-              {statements.length > 1 && <Tag style={{ marginLeft: 8 }}>+{statements.length - 1} 条</Tag>}
-            </div>
-          </Popover>
-        );
+        return <MultiSqlViewer statements={statements} maxLength={50} placement="left" />;
       },
     },
     {

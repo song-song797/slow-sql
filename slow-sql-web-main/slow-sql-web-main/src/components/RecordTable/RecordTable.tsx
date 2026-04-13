@@ -10,7 +10,6 @@ import {
   Space,
   Tag,
   Typography,
-  Popover,
   Pagination,
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
@@ -22,6 +21,7 @@ import type {
 } from "antd/es/table/interface";
 import { PlayCircleOutlined } from "@ant-design/icons";
 import { ClusteredSqlRecord } from "../../types";
+import { SqlViewer } from "../SqlViewer";
 import "./RecordTable.css";
 
 const { Text } = Typography;
@@ -90,11 +90,6 @@ export const RecordTable: React.FC<RecordTableProps> = ({
   //   );
   // };
 
-  const truncateSql = (sql: string, maxLength: number = 100) => {
-    if (sql.length <= maxLength) return sql;
-    return sql.substring(0, maxLength) + "...";
-  };
-
   const renderDuration = (time?: number | null) =>
     time === null || time === undefined ? "-" : `${time}ms`;
 
@@ -131,20 +126,7 @@ export const RecordTable: React.FC<RecordTableProps> = ({
       ellipsis: true,
 
       render: (text: string) => (
-        <Popover
-          content={
-            <pre style={{ maxWidth: 500, maxHeight: 300, overflow: "auto" }}>
-              {text}
-            </pre>
-          }
-          title="完整 SQL"
-        >
-          <Text code style={{ fontSize: 12 }}>
-            <span style={{ width: 280, display: "inline-block" }}>
-              {truncateSql(text)}
-            </span>
-          </Text>
-        </Popover>
+        <SqlViewer sql={text} maxLength={60} placement="left" />
       ),
     },
     {

@@ -854,7 +854,7 @@ class RemoteWorkflowReportProvider:
                 task_id=task_id,
                 status="pending",
                 report_url=None,
-                sql_text=sql_text,
+                sql_text=json.dumps(sql_lines, ensure_ascii=False),  # 存储原始SQL数组
                 analysis_context_json=json.dumps(context, ensure_ascii=False),
                 error_message=None,
                 risk_level=calculate_risk_level(sql_lines),

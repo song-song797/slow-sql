@@ -24,6 +24,7 @@ import useApp from "antd/es/app/useApp";
 
 import { AnalysisTaskDetail } from "../../types";
 import { downloadPdfReport, getAnalysisTaskDetail } from "../../services/api";
+import { SqlViewer, MultiSqlViewer } from "../../components/SqlViewer";
 import "./AnalysisReportDetail.css";
 
 const { Paragraph, Text, Title } = Typography;
@@ -348,7 +349,11 @@ const parseRemoteReport = (text: string): ParsedRemoteReport | null => {
 
 const renderDetailEntryContent = (entry: ParsedDetailEntry): ReactNode => (
   <div className="analysis-detail-entry-body">
-    {entry.sql && <pre className="analysis-detail-entry-card__sql">{entry.sql}</pre>}
+    {entry.sql && (
+      <div className="analysis-detail-entry-card__sql">
+        <SqlViewer sql={entry.sql} maxLength={80} placement="right" />
+      </div>
+    )}
     {entry.summaryBullets.length > 0 && (
       <ul className="analysis-detail-summary-list">
         {entry.summaryBullets.map((bullet) => (
@@ -422,7 +427,6 @@ export const AnalysisReportDetailPage: React.FC = () => {
   const analysisResult = detail?.analysis_result ?? null;
   const isRemoteResult = analysisResult?.provider === REMOTE_PROVIDER;
   const reportUrl = detail?.report_url || analysisResult?.report_url || null;
-  const sqlStatements = detail?.sql_text ?? [];
 
   const remoteReportText = useMemo(() => {
     const reportContent = analysisResult?.report_content?.trim();
@@ -444,6 +448,30 @@ export const AnalysisReportDetailPage: React.FC = () => {
   }, [analysisResult]);
 
   const parsedReport = useMemo(() => parseRemoteReport(remoteReportText), [remoteReportText]);
+
+  // 收集SQL：优先从detail.sql_text获取，如果没有则从报告中提取
+  const collectSqlsFromReport = (parsedReport: ParsedRemoteReport | null): string[] => {
+    if (!parsedReport) return [];
+    const sqls: string[] = [];
+    parsedReport.detailGroups?.forEach(group => {
+      group.entries?.forEach(entry => {
+        if (entry.sql) {
+          console.log('Found SQL in entry:', entry.sql.substring(0, 50));
+          sqls.push(entry.sql);
+        }
+      });
+    });
+    console.log('Total collected SQLs:', sqls.length);
+    return sqls;
+  };
+
+  const sqlStatements = useMemo(() =>
+    ((detail?.sql_text && detail.sql_text.length > 0)
+      ? detail.sql_text
+      : collectSqlsFromReport(parsedReport)).filter(sql => sql && sql.trim() !== ""),
+    [detail?.sql_text, parsedReport]
+  );
+
   const metadataSummary = analysisResult?.metadata_summary ?? null;
   const inputDiagnostics = analysisResult?.input_diagnostics ?? null;
   const consistencyFlags = analysisResult?.consistency_flags ?? null;
@@ -881,6 +909,38 @@ export const AnalysisReportDetailPage: React.FC = () => {
                 </Card>
               )}
 
+              {/* 调试信息 */}
+              <Card className="analysis-detail-card surface-card" title="调试信息" style={{ border: "2px solid red" }}>
+                <Text code>sqlStatements.length: {sqlStatements.length}</Text>
+                <br />
+                <Text code>detail?.sql_text: {JSON.stringify(detail?.sql_text)}</Text>
+                <br />
+                <Text code>analysis_result存在: {!!detail?.analysis_result}</Text>
+                <br />
+                <Text code>report_content存在: {!!detail?.analysis_result?.report_content}</Text>
+                <br />
+                <Text code>sqlStatements内容: {sqlStatements.length > 0 ? sqlStatements[0].substring(0, 100) + "..." : "空"}</Text>
+                <br />
+                <Text code>parsedReport存在: {!!parsedReport}</Text>
+                <br />
+                <Text code>parsedReport.detailGroups数量: {parsedReport?.detailGroups?.length || 0}</Text>
+              </Card>
+
+              {sqlStatements.length > 0 && (
+                <Card className="analysis-detail-card surface-card" title="SQL 查看器">
+                  <Space direction="vertical" style={{ width: "100%" }} size="middle">
+                    <Text type="secondary" style={{ fontSize: 12 }}>
+                      💡 悬浮预览快速查看，点击打开完整查看器（支持格式化和语法高亮）
+                    </Text>
+                    {sqlStatements.length === 1 ? (
+                      <SqlViewer sql={sqlStatements[0]} maxLength={120} placement="left" />
+                    ) : (
+                      <MultiSqlViewer statements={sqlStatements} maxLength={100} placement="left" />
+                    )}
+                  </Space>
+                </Card>
+              )}
+
               {sqlStatements.length > 0 && (
                 <Card className="analysis-detail-card surface-card" title="分析 SQL">
                   <List
@@ -892,7 +952,7 @@ export const AnalysisReportDetailPage: React.FC = () => {
                           <Text strong className="analysis-detail-sql-label">
                             SQL {index + 1}
                           </Text>
-                          <pre className="analysis-detail-sql-block">{sql}</pre>
+                          <SqlViewer sql={sql} maxLength={100} placement="bottom" />
                         </div>
                       </List.Item>
                     )}

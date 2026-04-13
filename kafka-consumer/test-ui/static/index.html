@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kafka 消息测试工具</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ===== 全局变量 ===== */
+        :root {
+            /* 主色调：深蓝靛蓝（用于 Topic Selector 填充背景） */
+            --indigo: #3b4a8a;
+            --indigo-light: #4a5ba0;
+
+            /* 强调色：青绿渐变（用于 Send Message 按钮） */
+            --teal: #34d399;
+            --teal-dark: #10b981;
+            --teal-gradient: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+            --teal-shadow: 0 4px 14px -2px rgba(16, 185, 129, 0.45);
+
+            /* 中性色 */
+            --text-dark: #1a1a2e;
+            --text-base: #334155;
+            --text-muted: #94a3b8;
+            --border: rgba(226, 232, 240, 0.7);
+            --bg-editor: #f0f4f8;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* ===== 背景：极致还原概念图中左蓝右桃的温暖渐变 ===== */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 30px;
+            /* 多层渐变复合：左上偏天蓝，右下偏蜜桃，中间通透白 */
+            background:
+                radial-gradient(ellipse at 0% 0%, rgba(186, 230, 253, 0.7) 0%, transparent 50%),
+                radial-gradient(ellipse at 100% 100%, rgba(254, 205, 170, 0.6) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(253, 242, 248, 0.4) 0%, transparent 60%),
+                linear-gradient(135deg, #e0f2fe 0%, #faf5ff 50%, #fff7ed 100%);
+            background-attachment: fixed;
+            color: var(--text-base);
+        }
+
+        /* ===== 主窗口：毛玻璃容器 ===== */
+        .app-window {
+            width: 100%;
+            max-width: 1320px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(32px) saturate(160%);
+            -webkit-backdrop-filter: blur(32px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 27px;
+            box-shadow:
+                0 36px 72px -18px rgba(0, 0, 0, 0.08),
+                0 18px 36px -6px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* ===== 顶部导航栏 ===== */
+        .app-header {
+            padding: 21px 36px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        /* Logo: 还原概念图中的青绿色六边形图标 */
+        .brand-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, #34d399, #06b6d4);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 8px rgba(52, 211, 153, 0.3);
+        }
+        .brand-icon svg { width: 27px; height: 27px; color: #fff; }
+        .brand-text h1 { font-size: 1.58rem; font-weight: 700; color: var(--text-dark); letter-spacing: -0.3px; line-height: 1.1; }
+        .brand-text span { font-size: 0.98rem; color: var(--text-muted); font-weight: 500; }
+
+        .header-nav { display: flex; gap: 20px; font-size: 1.23rem; font-weight: 500;}
+        .header-nav a { color: var(--text-muted); text-decoration: none; cursor: pointer; transition: color 0.2s; }
+        .header-nav a:hover { color: var(--text-dark); }
+
+        .avatar {
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fde68a, #f9a8d4);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.05rem; font-weight: 700; color: #78350f;
+            cursor: pointer;
+        }
+
+        /* ===== 主内容区 ===== */
+        .app-main { padding: 36px; display: flex; flex-direction: column; gap: 30px; }
+
+        /* ===== 配置区：左右分布 ===== */
+        .config-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 36px;
+        }
+        .config-left { flex: 1; }
+        .config-left h2 { font-size: 1.58rem; font-weight: 700; color: var(--text-dark); margin-bottom: 9px; }
+        .config-left p { font-size: 1.17rem; color: var(--text-muted); line-height: 1.5; max-width: 510px; }
+
+        .config-right { display: flex; flex-direction: column; align-items: flex-end; }
+        .config-right label { font-size: 1.13rem; font-weight: 600; color: var(--text-dark); margin-bottom: 9px; display: block; text-align: left; width: 100%; }
+
+        /* Topic 选择器：深蓝填充背景+白色文字 */
+        .topic-select {
+            appearance: none;
+            padding: 12px 42px 12px 18px;
+            background: var(--indigo) url('data:image/svg+xml;utf8,<svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>') no-repeat right 14px center/18px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            color: #ffffff;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            outline: none;
+            min-width: 360px;
+            box-shadow: 0 2px 8px rgba(59, 74, 138, 0.2);
+            transition: background 0.2s;
+        }
+        .topic-select:hover { background-color: var(--indigo-light); }
+        .topic-select option { background: #fff; color: var(--text-dark); }
+
+        /* ===== 工作区卡片 ===== */
+        .workspace-card {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.02);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex; gap: 36px; padding: 0 30px;
+            border-bottom: 1px solid var(--border);
+        }
+        .tab {
+            padding: 19px 0; cursor: pointer;
+            font-size: 1.23rem; font-weight: 600;
+            color: var(--text-muted);
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+            transition: all 0.2s;
+        }
+        .tab:hover { color: var(--indigo); }
+        .tab.active { color: var(--indigo); border-bottom-color: var(--indigo); }
+
+        .tab-content { display: none; padding: 30px; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+
+        /* ===== 编辑器 + 侧边栏 分栏布局 ===== */
+        .split-layout { display: flex; gap: 30px; }
+
+        /* 代码编辑器容器：带行号沟槽 */
+        .editor-box {
+            flex: 1;
+            display: flex;
+            background: var(--bg-editor);
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            border-radius: 12px;
+            overflow: hidden;
+            min-height: 330px;
+        }
+        .gutter {
+            width: 54px;
+            padding: 18px 12px 18px 0;
+            text-align: right;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.17rem;
+            line-height: 1.65;
+            color: #b0bec5;
+            user-select: none;
+            background: rgba(226, 232, 240, 0.25);
+            border-right: 1px solid rgba(226, 232, 240, 0.5);
+        }
+        .gutter span { display: block; }
+
+        textarea {
+            flex: 1; width: 100%;
+            padding: 18px 21px;
+            background: transparent;
+            border: none; outline: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.17rem;
+            line-height: 1.65;
+            color: var(--text-dark);
+            resize: none;
+        }
+
+        /* ===== 右侧操作面板 ===== */
+        .side-panel {
+            width: 300px;
+            display: flex; flex-direction: column; gap: 21px;
+        }
+        .field-group label {
+            display: block;
+            font-size: 1.08rem; font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+        .field-input {
+            width: 100%; padding: 11px 15px;
+            background: #fff; border: 1px solid var(--border);
+            border-radius: 9px; font-size: 1.17rem; color: var(--text-dark);
+            outline: none; font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
+        }
+        .field-input:focus { border-color: var(--indigo); }
+        .field-select {
+            width: 100%; padding: 11px 15px;
+            background: #fff; border: 1px solid var(--border);
+            border-radius: 9px; font-size: 1.17rem; color: var(--text-dark);
+            outline: none; font-family: 'Inter', sans-serif;
+            cursor: pointer;
+        }
+
+        /* ===== 发送按钮：还原概念图中的青绿色渐变 + 纸飞机 ===== */
+        .btn-send {
+            width: 100%;
+            padding: 15px 24px;
+            background: var(--teal-gradient);
+            color: #fff;
+            border: none; border-radius: 12px;
+            font-size: 1.23rem; font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            box-shadow: var(--teal-shadow);
+            transition: all 0.2s;
+        }
+        .btn-send:hover { box-shadow: 0 8px 20px -4px rgba(16, 185, 129, 0.55); transform: translateY(-1px); }
+        .btn-send:active { transform: scale(0.97); }
+        .btn-send svg { width: 24px; height: 24px; }
+
+        .btn-outline {
+            width: 100%; padding: 12px 21px;
+            background: #fff; border: 1px solid var(--border); border-radius: 9px;
+            font-size: 1.17rem; font-weight: 500; color: var(--text-base);
+            cursor: pointer; font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+        .btn-outline:hover { background: #f8fafc; }
+
+        /* ===== 底部状态栏：胶囊型 ===== */
+        .status-bar {
+            background: rgba(248, 250, 252, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px 24px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.08rem;
+            color: var(--text-muted);
+        }
+        .status-bar .sep { color: #d1d5db; }
+        .status-bar strong { color: var(--text-dark); font-weight: 600; }
+        .status-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 3px 12px; border-radius: 6px;
+            font-size: 1.05rem; font-weight: 600;
+        }
+        .badge-ready { background: #f1f5f9; color: #64748b; }
+        .badge-success { background: #dcfce7; color: #166534; }
+        .badge-error { background: #fee2e2; color: #991b1b; }
+
+        /* ===== 辅助类 ===== */
+        .link-btn {
+            background: none; border: none; font-family: 'Inter', sans-serif;
+            font-size: 1.08rem; color: var(--text-muted); cursor: pointer;
+            text-decoration: none; transition: color 0.2s; padding: 0;
+        }
+        .link-btn:hover { color: var(--indigo); }
+        .link-btn.warn { color: #d97706; }
+        .link-btn.danger { color: #ef4444; }
+
+        .template-row { display: flex; align-items: center; gap: 18px; margin-bottom: 18px; flex-wrap: wrap; }
+        .templates-extra { display: none; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; }
+        .templates-extra.show { display: flex; }
+
+        /* DropZone */
+        .drop-zone {
+            border: 2px dashed rgba(52, 211, 153, 0.4);
+            background: rgba(248, 250, 252, 0.5);
+            border-radius: 15px; padding: 60px; text-align: center;
+            color: var(--text-muted); cursor: pointer; transition: all 0.2s;
+            min-height: 300px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+        .drop-zone:hover { border-color: var(--teal); background: rgba(52,211,153,0.03); }
+        #fileInput { display: none; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Scrollbar */
+        textarea::-webkit-scrollbar { width: 9px; }
+        textarea::-webkit-scrollbar-track { background: transparent; }
+        textarea::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    </style>
+</head>
+<body>
+
+<div class="app-window">
+
+    <!-- ===== 顶部导航栏 ===== -->
+    <header class="app-header">
+        <div class="brand">
+            <div class="brand-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            </div>
+            <div class="brand-text">
+                <h1>KAFKA</h1>
+                <span>消息测试工具</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="app-main">
+
+        <!-- ===== 配置区 ===== -->
+        <section class="config-section">
+            <div class="config-left">
+                <h2>Kafka 配置信息</h2>
+                <p>Kafka 管理界面：<a href="http://172.20.40.166:9000" target="_blank" style="color:var(--indigo); font-weight:600; text-decoration:none;">172.20.40.166:9000</a></p>
+                <!-- UDAL 快速配对 -->
+                <div id="quickPair" style="display:none; margin-top: 12px;">
+                    <button class="link-btn warn" onclick="sendPair()">⚡ 快速发送 UDAL REQUEST + END 配对消息</button>
+                </div>
+            </div>
+            <div class="config-right">
+                <label>Topic 选择</label>
+                <select class="topic-select" id="topic" onchange="onTopicChange()">
+                    <option value="log_push_udal">log_push_udal (UDAL 审计日志)</option>
+                    <option value="log_push_pg">log_push_pg (PG 慢日志)</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- ===== 工作区 ===== -->
+        <div class="workspace-card">
+            <div class="tabs">
+                <div class="tab" onclick="switchTab('json')">手动编辑 JSON</div>
+                <div class="tab" onclick="switchTab('raw')">粘贴原始日志</div>
+                <div class="tab active" onclick="switchTab('upload')">上传日志文件</div>
+                <div class="tab" onclick="switchTab('stats')">统计</div>
+            </div>
+
+            <!-- Tab 1: 手动编辑 JSON -->
+            <div id="tab-json" class="tab-content">
+                <div class="template-row">
+                    <span style="font-size:1.08rem; color:var(--text-muted);">快速加载：</span>
+                    <span id="templates"></span>
+                    <button class="link-btn" id="toggleTemplates" onclick="toggleExtraTemplates()">展开更多 ▾</button>
+                </div>
+                <div class="templates-extra" id="templatesExtra"></div>
+
+                <div class="split-layout">
+                    <div class="editor-box">
+                        <div class="gutter" id="gutter-json">
+                            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+                        </div>
+                        <textarea id="message" placeholder='{&#10;    "raw_line": "...",&#10;    "source": "postgresql",&#10;    "collected_at": ...&#10;}' spellcheck="false" oninput="updateGutter('message','gutter-json')"></textarea>
+                    </div>
+                    <div class="side-panel">
+                        <div class="field-group">
+                            <label>循环次数</label>
+                            <input type="number" class="field-input" id="loopCount" value="1" min="1" max="1000" placeholder="1">
+                        </div>
+                        <div class="field-group">
+                            <label>发送间隔 (毫秒)</label>
+                            <input type="number" class="field-input" id="sendDelay" value="0" min="0" max="60000" step="100" placeholder="0">
+                        </div>
+                        <div style="flex:1;"></div>
+                        <div style="display:flex; justify-content:space-between; margin-bottom:2px;">
+                            <button class="link-btn" onclick="formatJson()">格式化</button>
+                            <button class="link-btn danger" onclick="clearJson()">清空</button>
+                        </div>
+                        <button class="btn-send" id="btnSend" onclick="sendMessage()">
+                            发送消息
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: 粘贴原始日志 -->
+            <div id="tab-raw" class="tab-content">
+                <div class="split-layout">
+                    <div class="editor-box">
+                        <div class="gutter" id="gutter-raw">
+                            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+                        </div>
+                        <textarea id="rawText" placeholder="粘贴 PG 或 UDAL 的原始日志...&#10;每行独立为一条记录" spellcheck="false" oninput="updateGutter('rawText','gutter-raw')"></textarea>
+                    </div>
+                    <div class="side-panel">
+                        <div style="flex:1;">
+                            <p style="font-size:1.08rem; color:var(--text-muted); line-height:1.6; background:rgba(248,250,252,0.6); padding:15px; border-radius:9px;">
+                                支持多行日志粘贴。<br>系统将自动包装为 Kafka 结构化消息后批量下发。
+                            </p>
+                        </div>
+                        <button class="btn-outline" onclick="document.getElementById('rawText').value='';">清空</button>
+                        <button class="btn-send" onclick="sendRawLogs()">
+                            发送日志
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3: 上传日志文件 -->
+            <div id="tab-upload" class="tab-content active">
+                <div class="split-layout">
+                    <div style="flex:1;">
+                        <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()"
+                             ondragover="event.preventDefault();this.style.borderColor='var(--teal)';"
+                             ondragleave="this.style.borderColor='rgba(52,211,153,0.4)';"
+                             ondrop="handleDrop(event)">
+                            <span style="font-size:3.75rem; margin-bottom:18px;">📁</span>
+                            <div><strong style="color: var(--teal-dark); font-size: 1.35rem;">点击选择文件</strong> 或拖拽到此处</div>
+                            <div style="font-size:1.08rem; margin-top:12px; opacity:0.8;">支持 .log / .txt / .csv 文件</div>
+                        </div>
+                        <input type="file" id="fileInput" accept=".log,.txt,.csv" onchange="handleFileSelect(this)">
+                        <div id="fileInfo" style="display:none; min-height:300px; border:1px solid var(--border); border-radius:15px; background:rgba(248,250,252,0.8); flex-direction:column; justify-content:center; align-items:center; padding:30px;">
+                            <div style="font-size:4.5rem; margin-bottom:18px;">📄</div>
+                            <h3 id="fileName" style="font-size:1.28rem; color:var(--text-dark); margin-bottom:9px;"></h3>
+                            <span style="font-size:1.08rem; color:var(--teal-dark); background:#dcfce7; padding:5px 15px; border-radius:15px;">准备就绪</span>
+                        </div>
+                    </div>
+                    <div class="side-panel">
+                        <div style="flex:1;">
+                            <p style="font-size:1.08rem; color:var(--text-muted); line-height:1.6; background:rgba(248,250,252,0.6); padding:15px; border-radius:9px;">
+                                上传历史日志文件，用于批量回放测试或压力测试。
+                            </p>
+                        </div>
+                        <button class="btn-outline" onclick="clearFile()">取消选择</button>
+                        <button class="btn-send" onclick="uploadFile()" id="uploadBtn">
+                            上传并发送
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 4: 统计（占位） -->
+            <div id="tab-stats" class="tab-content">
+                <div style="padding:60px; text-align:center; color:var(--text-muted); font-size:1.28rem;">
+                    📊 统计功能开发中...
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 底部状态栏 ===== -->
+        <div class="status-bar">
+            <span>Topic: <strong id="status-topic">--</strong></span>
+            <span class="sep">|</span>
+            <span>已发送: <strong id="status-sent">0</strong> 条</span>
+            <span class="sep">|</span>
+            <span id="status-detail" style="flex:1;">等待操作...</span>
+            <span>状态: <span class="status-badge badge-ready" id="status-badge">就绪</span></span>
+        </div>
+
+    </main>
+</div>
+
+<script>
+    const API = '';
+    let selectedFile = null;
+
+    // ===== 行号同步 =====
+    function updateGutter(textareaId, gutterId) {
+        const ta = document.getElementById(textareaId);
+        const gutter = document.getElementById(gutterId);
+        const lines = ta.value.split('\n').length;
+        const maxLines = Math.max(lines, 7);
+        gutter.innerHTML = Array.from({length: maxLines}, (_, i) => `<span>${i + 1}</span>`).join('');
+    }
+
+    // ===== 状态栏 =====
+    let totalSent = 0;
+
+    function updateStatusBar(status, topic, sentCount, message) {
+        if (topic) document.getElementById('status-topic').textContent = topic;
+        if (sentCount !== undefined && sentCount !== null) {
+            totalSent += sentCount;
+        }
+        document.getElementById('status-sent').textContent = totalSent;
+        if (message) document.getElementById('status-detail').textContent = message;
+
+        const badge = document.getElementById('status-badge');
+        if (status === 'success') {
+            badge.className = 'status-badge badge-success';
+            badge.innerHTML = '✅ 已完成';
+        } else if (status === 'error') {
+            badge.className = 'status-badge badge-error';
+            badge.innerHTML = '❌ 失败';
+        } else if (status === 'sending') {
+            badge.className = 'status-badge badge-ready';
+            badge.innerHTML = '⏳ 发送中';
+        } else {
+            badge.className = 'status-badge badge-ready';
+            badge.innerHTML = '就绪';
+        }
+    }
+
+    function showResult(msg, success) {
+        updateStatusBar(success ? 'success' : 'error', document.getElementById('topic').value, null, msg);
+    }
+
+    // ===== Tab 切换 =====
+    function switchTab(name) {
+        document.querySelectorAll('.tab').forEach((t, i) => {
+            t.classList.toggle('active', ['json', 'raw', 'upload', 'stats'][i] === name);
+        });
+        document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+        document.getElementById('tab-' + name).classList.add('active');
+    }
+
+    function onTopicChange() {
+        const topic = document.getElementById('topic').value;
+        document.getElementById('quickPair').style.display = topic === 'log_push_udal' ? 'block' : 'none';
+    }
+
+    // ===== 模板加载 =====
+    async function loadTemplates() {
+        try {
+            const res = await fetch(API + '/api/templates');
+            if (!res.ok) return;
+            const templates = await res.json();
+            const container = document.getElementById('templates');
+            const extraContainer = document.getElementById('templatesExtra');
+            const primary = ['pg', 'udal_request'];
+
+            Object.entries(templates).forEach(([key, tpl]) => {
+                const btn = document.createElement('button');
+                btn.className = 'link-btn';
+                btn.textContent = tpl.name;
+                btn.onclick = () => {
+                    document.getElementById('topic').value = tpl.topic;
+                    try {
+                        document.getElementById('message').value = JSON.stringify(JSON.parse(tpl.message), null, 4);
+                    } catch (e) {
+                        document.getElementById('message').value = tpl.message;
+                    }
+                    onTopicChange();
+                    updateGutter('message', 'gutter-json');
+                    updateStatusBar('ready', tpl.topic);
+                };
+
+                if (primary.includes(key)) {
+                    container.appendChild(btn);
+                } else {
+                    extraContainer.appendChild(btn);
+                }
+            });
+        } catch (e) {
+            console.warn('无法连接后端，模板未加载。', e);
+        }
+    }
+
+    function toggleExtraTemplates() {
+        const extra = document.getElementById('templatesExtra');
+        const toggle = document.getElementById('toggleTemplates');
+        if (extra.classList.contains('show')) {
+            extra.classList.remove('show');
+            toggle.textContent = '展开更多 ▾';
+        } else {
+            extra.classList.add('show');
+            toggle.textContent = '收起 ▴';
+        }
+    }
+
+    // ===== 网络请求 =====
+    function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+    async function sendMessage() {
+        const topic = document.getElementById('topic').value;
+        const message = document.getElementById('message').value.trim();
+        if (!message) { showResult('请输入消息内容', false); return; }
+        try { JSON.parse(message); } catch (e) { showResult('JSON 格式错误', false); return; }
+
+        const loopCount = Math.max(1, parseInt(document.getElementById('loopCount').value) || 1);
+        const delay = Math.max(0, parseInt(document.getElementById('sendDelay').value) || 0);
+        const btn = document.getElementById('btnSend');
+        btn.disabled = true;
+
+        let successCount = 0;
+        let failCount = 0;
+
+        for (let i = 0; i < loopCount; i++) {
+            // 更新按钮状态
+            btn.innerHTML = `发送中 ${i + 1}/${loopCount}...`;
+            updateStatusBar('sending', topic, 0, `正在发送第 ${i + 1}/${loopCount} 条...`);
+
+            try {
+                const res = await fetch(API + '/api/send', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ topic, message }),
+                });
+                const data = await res.json();
+                if (data.status === 'ok') {
+                    successCount++;
+                    updateStatusBar('sending', topic, 1, `第 ${i + 1} 条发送成功`);
+                } else {
+                    failCount++;
+                }
+            } catch (e) {
+                failCount++;
+            }
+
+            // 非最后一次发送时，按间隔等待
+            if (i < loopCount - 1 && delay > 0) {
+                await sleep(delay);
+            }
+        }
+
+        // 恢复按钮
+        btn.disabled = false;
+        btn.innerHTML = `发送消息 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>`;
+
+        // 汇总结果
+        if (failCount === 0) {
+            updateStatusBar('success', topic, 0, `全部发送成功，本轮共 ${successCount} 条`);
+        } else {
+            updateStatusBar('error', topic, 0, `成功 ${successCount} 条，失败 ${failCount} 条`);
+        }
+    }
+
+    async function sendRawLogs() {
+        const topic = document.getElementById('topic').value;
+        const rawText = document.getElementById('rawText').value.trim();
+        if (!rawText) { showResult('请粘贴日志内容', false); return; }
+
+        try {
+            const res = await fetch(API + '/api/send-raw', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ topic, raw_text: rawText }),
+            });
+            const data = await res.json();
+            if (data.status === 'ok') {
+                updateStatusBar('success', topic, data.sent, `已发送 ${data.sent}/${data.total_lines} 条`);
+            } else {
+                showResult('发送失败: ' + (data.error || JSON.stringify(data)), false);
+            }
+        } catch (e) { showResult('网络错误', false); }
+    }
+
+    async function sendPair() {
+        const now = new Date().toISOString().replace('T', ' ').substring(0, 19);
+        const requestId = Math.floor(Math.random() * 100000);
+        const cost = Math.floor(Math.random() * 2000) + 50;
+
+        const messages = [
+            { timestamp: now, payload: { schema: "CUSDBX", requestId, eventType: "RECEIVE_REQUEST", user: "crmtest@192.168.1.100:54321", sql: `SELECT * FROM party_cert WHERE party_id = '${requestId}' AND status = 'active'` }, source: "udal", collected_at: Date.now() / 1000 },
+            { timestamp: now, payload: { requestId, eventType: "END_REQUEST", cost }, source: "udal", collected_at: Date.now() / 1000 },
+        ];
+
+        try {
+            const res = await fetch(API + '/api/send-batch', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ topic: 'log_push_udal', messages }),
+            });
+            const data = await res.json();
+            if (data.status === 'ok') {
+                updateStatusBar('success', 'log_push_udal', data.sent, `UDAL 配对已发送，requestId=${requestId}，耗时=${cost}ms`);
+            } else {
+                showResult('发送失败: ' + JSON.stringify(data), false);
+            }
+        } catch (e) { showResult('网络错误', false); }
+    }
+
+    // ===== 文件操作 =====
+    function handleFileSelect(input) { if (input.files.length > 0) showFileInfo(input.files[0]); }
+    function handleDrop(event) {
+        event.preventDefault();
+        event.currentTarget.style.borderColor = 'rgba(52,211,153,0.4)';
+        if (event.dataTransfer.files.length > 0) showFileInfo(event.dataTransfer.files[0]);
+    }
+    function showFileInfo(file) {
+        selectedFile = file;
+        document.getElementById('fileName').textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+        document.getElementById('fileInfo').style.display = 'flex';
+        document.getElementById('dropZone').style.display = 'none';
+    }
+    function clearFile() {
+        selectedFile = null;
+        document.getElementById('fileInput').value = '';
+        document.getElementById('fileInfo').style.display = 'none';
+        document.getElementById('dropZone').style.display = 'flex';
+    }
+
+    async function uploadFile() {
+        if (!selectedFile) { showResult('请先选择文件', false); return; }
+        const topic = document.getElementById('topic').value;
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+        formData.append('topic', topic);
+
+        const btn = document.getElementById('uploadBtn');
+        btn.disabled = true;
+        btn.innerHTML = `⏳ 处理中...`;
+        updateStatusBar('sending', topic, 0, '文件上传中...');
+
+        try {
+            const res = await fetch(`${API}/api/upload-log?topic=${encodeURIComponent(topic)}`, {
+                method: 'POST', body: formData,
+            });
+            const data = await res.json();
+            if (data.status === 'ok') {
+                updateStatusBar('success', topic, data.sent, `文件上传成功，已发送 ${data.sent} 条（共 ${data.total_lines} 行）`);
+            } else {
+                showResult('上传失败: ' + (data.error || JSON.stringify(data)), false);
+            }
+            clearFile();
+        } catch (e) { showResult('网络错误', false); }
+        finally {
+            btn.disabled = false;
+            btn.innerHTML = '上传并发送 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>';
+        }
+    }
+
+    function formatJson() {
+        const el = document.getElementById('message');
+        if (!el.value) return;
+        try {
+            el.value = JSON.stringify(JSON.parse(el.value), null, 4);
+            updateGutter('message', 'gutter-json');
+        } catch (e) { showResult('JSON 格式不正确', false); }
+    }
+    function clearJson() {
+        document.getElementById('message').value = '';
+        updateGutter('message', 'gutter-json');
+    }
+
+    window.onload = () => {
+        loadTemplates();
+        onTopicChange();
+    };
+</script>
+</body>
+</html>

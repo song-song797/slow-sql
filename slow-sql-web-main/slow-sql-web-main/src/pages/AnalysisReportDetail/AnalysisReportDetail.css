@@ -233,14 +233,11 @@
 
 .analysis-detail-entry-card__sql {
   margin: 0 0 14px;
-  padding: 14px 16px;
-  border-radius: 14px;
-  background: #f5f8fc;
-  border: 1px solid #d9e4f0;
-  white-space: pre-wrap;
-  word-break: break-word;
+  /* 移除固定样式，让SqlViewer组件自己处理 */
+}
+
+.analysis-detail-entry-card__sql .ant-typography {
   font-size: 12px;
-  line-height: 1.7;
 }
 
 .analysis-detail-summary-list,
